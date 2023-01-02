@@ -42,7 +42,7 @@ void Graphics::Init()
 	desc.BufferDesc.RefreshRate.Numerator = 60;		//분자
 	desc.BufferDesc.RefreshRate.Denominator = 1;	//분모
 	//60fps가 된다.
-	//R8 G8 B8 A8비율로 표현한다.	
+	//R8 G8 B8 A8(투명도)비율로 표현한다.	
 	desc.BufferDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
 
 }
