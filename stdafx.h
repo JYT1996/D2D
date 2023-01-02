@@ -28,10 +28,10 @@ using namespace std;
 #pragma comment(lib, "dxgi.lib")
 #pragma comment(lib, "d3d11.lib")
 #pragma comment(lib, "d3dcompiler.lib")
-using namespace DirectX;
 
 //DirectXTK
-#include "_Libraries/DirectXTK/SimpleMath.inl"
+#include "_Libraries/DirectXTK/SimpleMath.h"
+using namespace DirectX;
 using namespace SimpleMath;
 
 //Meacros
@@ -44,6 +44,7 @@ using namespace SimpleMath;
 
 #define SAFE_DELETE(p) { if (p) { delete(p); p = nullptr; } }
 #define SAFE_DELETE_ARRAY(p) { if (p) { delete[](p); p = nullptr; } }
+#define SAFE_RELEASE(p) { if (p) { p->Release(); p = nullptr; } }
 
 #define DECLARE_SINGLETON(CLASS_NAME)							\
 private:														\

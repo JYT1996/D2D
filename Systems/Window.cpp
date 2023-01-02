@@ -78,6 +78,15 @@ WPARAM Window::Run()
 			TranslateMessage(&msg);
 			DispatchMessage(&msg);
 		}		
+		else
+		{
+			INPUT->Updata();
+			TIME->Updata();
+
+			program->Update();
+
+			program->Render();
+		}
 	}
 	//무한루프를 탈출했다는 것은 종료를 의미하기 때문에 동적할당을 해제해야 한다.
 	SAFE_DELETE(program);
@@ -87,52 +96,16 @@ WPARAM Window::Run()
 
 LRESULT Window::WndProc(HWND handle, UINT message, WPARAM wParam, LPARAM lParam)
 {
-	PAINTSTRUCT ps;
-	ZeroMemory(&ps, sizeof(ps));
-	
-	HDC hdc;
-
-	static RECT rect = { 0 };
-	static RECT rect2 = { 0 };
-	static RECT rect3 = { 0 };
-	static POINT mousePos = { 0 };
-	static wstring mouseStr = L"";
-	static wstring selectionStr = L"선 그리기 모드";
-	static POINT startPos = { 0 };
-	static POINT endPos = { 0 };
-	static UINT selection = 1;
-
-
 	switch (message)
 	{
 	case WM_CREATE:
 		gHandle = handle;
-		//SetTimer USER_TIMER_MINIMUM = 10 = 0.01초. 1000이 실제 1초. 설정할 수 있는 최소치.
-		SetTimer(handle, NULL, USER_TIMER_MINIMUM, nullptr);
-			
-		break;
-	case WM_TIMER:
-		INPUT->Updata();
-		TIME->Updata();
-		program->Update();
 
-		InvalidateRect(handle, nullptr, true);	//화면을 지우고 다시 그린다.
-
-		break;
-	case WM_PAINT:
-		gHDC = BeginPaint(handle, &ps);	//그리기 시작. 시작과 끝 사이에서 윈도우창에 그리는 것이다.
-		
-		program->Render();
-
-		EndPaint(handle, &ps);	//그리기 끝
-		break;	
-	}
-
-	if (message == WM_CLOSE || message == WM_DESTROY)
-	{
-		KillTimer(handle, NULL);
+	case WM_CLOSE:
+	case WM_DESTROY:
 		PostQuitMessage(0);
 		return 0;
 	}
+	
 	return DefWindowProc(handle,message,wParam, lParam);
 }

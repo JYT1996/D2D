@@ -27,6 +27,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Systems\Graphics.cpp" />
     <ClCompile Include="Systems\Input.cpp" />
     <ClCompile Include="Systems\Time.cpp" />
     <ClCompile Include="Systems\Window.cpp" />
@@ -34,6 +35,7 @@
   <ItemGroup>
     <ClInclude Include="Program.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="Systems\Graphics.h" />
     <ClInclude Include="Systems\Input.h" />
     <ClInclude Include="Systems\Time.h" />
     <ClInclude Include="Systems\Window.h" />
