@@ -19,7 +19,7 @@
 #include <string>
 #include <chrono>
 #include <iostream>
-
+#include <vector>
 using namespace std;
 
 //DirectX D3D11
@@ -41,6 +41,8 @@ using namespace SimpleMath;
 #define WIN_CENTER_X ( gWinWidth / 2 )
 #define WIN_CENTER_Y ( gWinHeight / 2 )
 #define WIN_CENTER ( Vector2 ( WIN_CENTER_X, WIN_CENTER_Y ))
+
+#define CHECK(hr) { assert(SUCCEEDED(hr)); }
 
 #define SAFE_DELETE(p) { if (p) { delete(p); p = nullptr; } }
 #define SAFE_DELETE_ARRAY(p) { if (p) { delete[](p); p = nullptr; } }
