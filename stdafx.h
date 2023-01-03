@@ -19,7 +19,7 @@
 #include <string>
 #include <chrono>
 #include <iostream>
-
+#include <vector>
 using namespace std;
 
 //DirectX D3D11
@@ -28,6 +28,11 @@ using namespace std;
 #pragma comment(lib, "dxgi.lib")
 #pragma comment(lib, "d3d11.lib")
 #pragma comment(lib, "d3dcompiler.lib")
+
+//WRL
+#include <wrl.h>
+using namespace Microsoft;
+using namespace WRL;
 
 //DirectXTK
 #include "_Libraries/DirectXTK/SimpleMath.h"
@@ -41,6 +46,8 @@ using namespace SimpleMath;
 #define WIN_CENTER_X ( gWinWidth / 2 )
 #define WIN_CENTER_Y ( gWinHeight / 2 )
 #define WIN_CENTER ( Vector2 ( WIN_CENTER_X, WIN_CENTER_Y ))
+
+#define CHECK(hr) { assert(SUCCEEDED(hr)); }
 
 #define SAFE_DELETE(p) { if (p) { delete(p); p = nullptr; } }
 #define SAFE_DELETE_ARRAY(p) { if (p) { delete[](p); p = nullptr; } }
@@ -71,7 +78,11 @@ extern float gWinHeight;
 //Headers
 #include "Systems/Input.h"
 #include "Systems/Time.h"
+#include "Systems/Graphics.h"
 
 //GetSingletonInstance
 #define INPUT Input::Get()
 #define TIME Time::Get()
+#define GRAPHICS Graphics::Get()
+#define DEVICE GRAPHICS->GetDevice()
+#define DC GRAPHICS->GetDC()

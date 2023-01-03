@@ -6,21 +6,22 @@ class Graphics
 
 public:
 	void Init();
-	void VreateBackBuffer();
-
-	ID3D11Device* GetDevice() { return device; }
-	ID3D11DeviceContext* GetDC() {return deviceContext; }
+	void CreateBackBuffer();
+	
+	ComPtr<ID3D11Device> GetDevice() const { return device; }
+	ComPtr<ID3D11DeviceContext> GetDC() const {return deviceContext; }
 
 	void Begin();
 	void End();
 
 private:
-	//자원을 생성한다. 리소스를 생성한다. 쉐이더를 통해서 GPU에게 명령을 내릴 수 있다. GPU를 다루기 위한 함수의 집합이 쉐이더이다.
-	ID3D11Device* device = nullptr;
-	//생성된 자원을 쉐이더에게 넘긴다.
-	ID3D11DeviceContext* deviceContext = nullptr;
-	IDXGISwapChain* swapChain = nullptr;
-	ID3D11RenderTargetView* rtv = nullptr;
+	//스마트포인터로 사용하기 위해 WRL.h를 포함한다. COM Pointer라고 한다.
+	//객체의 사용이 끝나면 알아서 동적해제를 해준다.
+	ComPtr<ID3D11Device> device = nullptr;
+	ComPtr<ID3D11DeviceContext> deviceContext = nullptr;
+	ComPtr<IDXGISwapChain> swapChain = nullptr;
+	ComPtr<ID3D11RenderTargetView> rtv = nullptr;
+	//윈도우창을 생성했을 시 보여지는 영역.
 	D3D11_VIEWPORT viewport = { 0 };
 	Color clearColor = { 0.4f, 0.4f, 0.4f, 1.0f };
 };

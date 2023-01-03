@@ -82,10 +82,13 @@ WPARAM Window::Run()
 		{
 			INPUT->Updata();
 			TIME->Updata();
-
 			program->Update();
 
-			program->Render();
+			GRAPHICS->Begin();
+			{
+				program->Render();
+			}
+			GRAPHICS->End();
 		}
 	}
 	//무한루프를 탈출했다는 것은 종료를 의미하기 때문에 동적할당을 해제해야 한다.
@@ -100,7 +103,7 @@ LRESULT Window::WndProc(HWND handle, UINT message, WPARAM wParam, LPARAM lParam)
 	{
 	case WM_CREATE:
 		gHandle = handle;
-
+		break;
 	case WM_CLOSE:
 	case WM_DESTROY:
 		PostQuitMessage(0);
