@@ -112,7 +112,6 @@ void Graphics::CreateBackBuffer()
 		&rtv
 	);
 	CHECK(hr);
-	//backBuffer의 정보를 rtv에 넘겨줬기 때문에 동적해제를 한다.
 
 	viewport.TopLeftX = 0.0f;
 	viewport.TopLeftY = 0.0f;
@@ -125,7 +124,7 @@ void Graphics::CreateBackBuffer()
 
 void Graphics::Begin()
 {
-	//Input Asssembler(IS) >> Vertex Shader(VS) >> RS >> PS>> OM
+	//Input Asssembler(IA) >> Vertex Shader(VS) >> RS >> PS>> OM
 	//윈도우창에 보여질 영역을 정하고,
 	deviceContext->RSSetViewports(1, &viewport);
 	//그리기 위한 장소의 주소를 주고,
