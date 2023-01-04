@@ -9,4 +9,7 @@ public:
 public:
 	void Update();
 	void Render();
+
+private:
+
 };

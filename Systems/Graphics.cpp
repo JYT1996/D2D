@@ -125,7 +125,7 @@ void Graphics::CreateBackBuffer()
 
 void Graphics::Begin()
 {
-	//IS >> RS >> VS >> PS>> OM
+	//Input Asssembler(IS) >> Vertex Shader(VS) >> RS >> PS>> OM
 	//윈도우창에 보여질 영역을 정하고,
 	deviceContext->RSSetViewports(1, &viewport);
 	//그리기 위한 장소의 주소를 주고,
