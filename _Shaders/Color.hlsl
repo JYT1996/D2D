@@ -15,6 +15,7 @@ struct PixelInput
 };
 //진입점을 VS로 잡아서 컴파일할 것이다.
 
+
 PixelInput VS(VertexInput input)
 {
     PixelInput output;	
