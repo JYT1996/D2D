@@ -2,7 +2,7 @@
 #include "Window.h"
 #include "Program.h"
 //정적멤버변수를 이용한다. 동적할당을 했으니 프로그램이 종료될 때 동적해제를 한다.
-Program* Window::program = new Program();
+Program* Window::program;
 
 Window::Window(WinDesc initDesc)
 {
@@ -66,6 +66,9 @@ ATOM Window::MyRegisterClass(WinDesc desc)
 WPARAM Window::Run()
 {
 	MSG msg = { 0 };
+
+	program = new Program();
+
 	while (true)
 	{
 		if (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE))

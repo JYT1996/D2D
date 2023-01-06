@@ -10,13 +10,15 @@ Program::Program()
 	
 	//vertex
 	{
-		vertices.assign(3, VertexColor());
+		vertices.assign(4, VertexColor());
 		vertices[0].position = {- 0.5f, -0.5f};
 		vertices[0].color = { 1.0f, 0.0f, 0.0f, 1.0f };
 		vertices[1].position = { -0.5f, 0.5f };
 		vertices[1].color = { 1.0f, 0.0f, 0.0f, 1.0f };
 		vertices[2].position = { 0.5f, -0.5f };
 		vertices[2].color = { 1.0f, 0.0f, 0.0f, 1.0f };
+		vertices[3].position = { 0.5f, 0.5f };
+		vertices[3].color = { 1.0f, 0.0f, 0.0f, 1.0f };
 	}
 
 	//vertexBuffer
@@ -46,14 +48,83 @@ Program::Program()
 		CHECK(hr);
 	}
 
-	//inputLayoutDesc
+	
+	//HLSL도 define이나 include를 활용할 수 있다.
+	//Binary Large Object, 컴파일이 완료된 파일을 의미한다.
+	//쉐이더는 따로 컴파일하기 때문에 쉐이더에서 문제가 생길 때 받을 메시지의 경로. 
+	//vertexShader
 	{
-		//CPU와 GPU의 연결고리가 된다.
+		HRESULT hr = D3DCompileFromFile
+		(
+			L"_Shaders/Color.hlsl",
+			nullptr,
+			nullptr,
+			"VS",
+			"vs_5_0",
+			0,
+			0,
+			&vsBlob,
+			nullptr
+		);
+		CHECK(hr);
+
+		hr = DEVICE->CreateVertexShader
+		(
+			vsBlob->GetBufferPointer(),
+			vsBlob->GetBufferSize(),
+			nullptr,
+			&vertexShader
+		);
+		CHECK(hr);
+	}
+
+	//inputLayout
+	{
+		//inputLayoutDesc
 		D3D11_INPUT_ELEMENT_DESC layoutDesc[]
+		//CPU와 GPU의 연결고리가 된다.
 		{
 			{ "POSITION", 0, DXGI_FORMAT_R32G32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0},
 			{ "COLOR", 0, DXGI_FORMAT_R32G32B32A32_FLOAT, 0, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_VERTEX_DATA, 0},
 		};	//정점 정보가 2개라면 layoutDesc은 2개가 필요하다. 배열을 통해서 두개 desc를 합쳐서 관리한다.
+
+		//컴파일을 할 때 비교를 한다. 시멘틱이 맞아야 진행이 된다.
+		HRESULT hr = DEVICE->CreateInputLayout
+		(
+			layoutDesc,
+			2,
+			vsBlob->GetBufferPointer(),
+			vsBlob->GetBufferSize(),
+			&inputLayout
+		);
+		CHECK(hr);
+	}
+	//RS단계는 알아서 다해주기 때문에 쉐이더가 필요하지 않다.
+	
+	//pixerShader
+	{
+		HRESULT hr = D3DCompileFromFile
+		(
+			L"_Shaders/Color.hlsl",
+			nullptr,
+			nullptr,
+			"PS",
+			"ps_5_0",
+			0,
+			0,
+			&psBlob,
+			nullptr
+		);
+		CHECK(hr);
+
+		hr = DEVICE->CreatePixelShader
+		(
+			psBlob->GetBufferPointer(),
+			psBlob->GetBufferSize(),
+			nullptr,
+			&pixelShader
+		);
+		CHECK(hr);
 	}
 }
 
@@ -69,5 +140,22 @@ void Program::Update()	//게임 로직의 메시지를 보내게 하는 것.
 
 void Program::Render()	//화면에 출력되게 메시지를 보내는 것.
 {
+	//Strides 보폭
+	UINT stride = sizeof(VertexColor);
+	UINT offset = 0;
 	
+	//IA
+	DC->IASetVertexBuffers(0, 1, vertexBuffer.GetAddressOf(), &stride, &offset);
+	DC->IASetInputLayout(inputLayout.Get());
+	DC->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);
+
+	//VS
+	DC->VSSetShader(vertexShader.Get(), nullptr, 0);
+
+	//PS
+	DC->PSSetShader(pixelShader.Get(), nullptr, 0);
+
+	//파이프라인 정보를 전부 입력했으니, 실제로 그리면된다.
+	//그릴 때는 Draw함수를 사용한다. 매개변수로 정점의 갯수와 순서를 넣어준다.
+	DC->Draw((UINT)vertices.size(), 0);
 }

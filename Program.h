@@ -25,6 +25,12 @@ private:
 	ComPtr<ID3D11Buffer> vertexBuffer;		//COMI는 이중포인터로 값을 주기 때문에 그것을 위한 ComPtr이다.
 
 	//쉐이더를 작성할 것인데, HLSL를 사용해서 코딩할 것이다.
+	//컴파일러가 HLSL로 작성된 것을 컴파일해주지 않는다. 사용자가 직접 컴파일을 하게끔 명령해야 한다.
+	ComPtr<ID3DBlob> vsBlob;
+	ComPtr<ID3D11VertexShader> vertexShader;
 
 	ComPtr<ID3D11InputLayout> inputLayout;	//정점의 정보를 쉐이더에 넘길 때 레이아웃도 넘겨서 같은지 확인을 해야한다.
+
+	ComPtr<ID3DBlob> psBlob;
+	ComPtr<ID3D11PixelShader> pixelShader;
 };

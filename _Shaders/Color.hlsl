@@ -13,9 +13,8 @@ struct PixelInput
     float4 position : SV_Position0;
     float4 color : COLOR0;
 };
+
 //진입점을 VS로 잡아서 컴파일할 것이다.
-
-
 PixelInput VS(VertexInput input)
 {
     PixelInput output;	
@@ -24,4 +23,10 @@ PixelInput VS(VertexInput input)
     output.color = input.color;
     
     return output;	
+}
+
+//진입점을 PS로 잡아서 컴파일할 것이다.
+float4 PS(PixelInput input) : SV_Target
+{
+    return input.color;
 }
