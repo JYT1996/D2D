@@ -24,6 +24,8 @@ private:
 	//정보를 잠시 저장했다가 넘기는 것이기 때문에 buffer를 이용한다.
 	ComPtr<ID3D11Buffer> vertexBuffer;		//COMI는 이중포인터로 값을 주기 때문에 그것을 위한 ComPtr이다.
 
+	vector<UINT> indices;
+	ComPtr<ID3D11Buffer> indexBuffer;
 	//쉐이더를 작성할 것인데, HLSL를 사용해서 코딩할 것이다.
 	//컴파일러가 HLSL로 작성된 것을 컴파일해주지 않는다. 사용자가 직접 컴파일을 하게끔 명령해야 한다.
 	ComPtr<ID3DBlob> vsBlob;
