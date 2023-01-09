@@ -10,15 +10,61 @@ Program::Program()
 	
 	//vertex
 	{
-		vertices.assign(4, VertexColor());
-		vertices[0].position = {- 0.5f, -0.5f};
-		vertices[0].color = { 1.0f, 0.0f, 0.0f, 1.0f };
-		vertices[1].position = { -0.5f, 0.5f };
-		vertices[1].color = { 1.0f, 0.0f, 0.0f, 1.0f };
-		vertices[2].position = { 0.5f, -0.5f };
-		vertices[2].color = { 1.0f, 0.0f, 0.0f, 1.0f };
-		vertices[3].position = { 0.5f, 0.5f };
-		vertices[3].color = { 1.0f, 0.0f, 0.0f, 1.0f };
+		vertices.assign(23, VertexColor());		
+		//1번째 잎
+		vertices[0].position = { 0.0f, 0.7f };
+		vertices[0].color = { 0.0f, 0.4f, 0.0f, 1.0f };
+		vertices[1].position = { 0.1f, 0.4f };
+		vertices[1].color = { 0.0f, 0.4f, 0.0f, 1.0f };
+		vertices[2].position = { -0.1f, 0.4f };
+		vertices[2].color = { 0.0f, 0.4f, 0.0f, 1.0f };
+		//2번째 잎
+		vertices[3].position = { 0.0f, 0.55f };
+		vertices[3].color = { 0.0f, 0.4f, 0.0f, 1.0f };
+		vertices[4].position = { 0.17f, 0.1f };
+		vertices[4].color = { 0.0f, 0.4f, 0.0f, 1.0f };
+		vertices[5].position = { -0.17f, 0.1f };
+		vertices[5].color = { 0.0f, 0.4f, 0.0f, 1.0f };
+		//3번째 잎
+		vertices[6].position = { 0.0f, 0.35f };
+		vertices[6].color = { 0.0f, 0.4f, 0.0f, 1.0f };
+		vertices[7].position = { 0.25f, -0.2f };
+		vertices[7].color = { 0.0f, 0.4f, 0.0f, 1.0f };
+		vertices[8].position = { -0.25f, -0.2f };
+		vertices[8].color = { 0.0f, 0.4f, 0.0f, 1.0f };
+		//4번째 잎
+		vertices[9].position = { 0.0f, 0.0f };
+		vertices[9].color = { 0.0f, 0.4f, 0.0f, 1.0f };
+		vertices[10].position = { 0.3f, -0.65f };
+		vertices[10].color = { 0.0f, 0.4f, 0.0f, 1.0f };
+		vertices[11].position = { -0.3f, -0.65f };
+		vertices[11].color = { 0.0f, 0.4f, 0.0f, 1.0f };
+		//나무기둥
+		vertices[12].position = { -0.04f, -0.85f };
+		vertices[12].color = {0.58f, 0.3f, 0.0f, 1.0f};
+		vertices[13].position = { -0.04f, -0.65f };
+		vertices[13].color = { 0.58f, 0.3f, 0.0f, 1.0f };
+		vertices[14].position = { 0.04f, -0.85f };
+		vertices[14].color = { 0.58f, 0.3f, 0.0f, 1.0f };
+		vertices[15].position = { 0.04f, -0.65f };
+		vertices[15].color = { 0.58f, 0.3f, 0.0f, 1.0f };
+		//별
+		vertices[16].position = { -0.04f, 0.7f };
+		vertices[16].color = { 1.0f, 1.0f, 0.2f, 1.0f };
+		vertices[17].position = { 0.04f, 0.7f };
+		vertices[17].color = { 1.0f, 1.0f, 0.2f, 1.0f };
+		vertices[18].position = { 0.0f, 0.65f };
+		vertices[18].color = { 1.0f, 1.0f, 0.2f, 1.0f };
+
+		vertices[19].position = { -0.03f, 0.6f };
+		vertices[19].color = { 1.0f, 1.0f, 0.2f, 1.0f };
+		vertices[20].position = { 0.0f, 0.75f };
+		vertices[20].color = { 1.0f, 1.0f, 0.2f, 1.0f };
+		vertices[21].position = { 0.03f, 0.6f };
+		vertices[21].color = { 1.0f, 1.0f, 0.2f, 1.0f };
+		vertices[22].position = { 0.0f, 0.65f };
+		vertices[22].color = { 1.0f, 1.0f, 0.2f, 1.0f };
+
 	}
 
 	//vertexBuffer
@@ -147,8 +193,8 @@ void Program::Render()	//화면에 출력되게 메시지를 보내는 것.
 	//IA
 	DC->IASetVertexBuffers(0, 1, vertexBuffer.GetAddressOf(), &stride, &offset);
 	DC->IASetInputLayout(inputLayout.Get());
-	DC->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);
-
+	DC->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+	
 	//VS
 	DC->VSSetShader(vertexShader.Get(), nullptr, 0);
 
@@ -157,5 +203,8 @@ void Program::Render()	//화면에 출력되게 메시지를 보내는 것.
 
 	//파이프라인 정보를 전부 입력했으니, 실제로 그리면된다.
 	//그릴 때는 Draw함수를 사용한다. 매개변수로 정점의 갯수와 순서를 넣어준다.
-	DC->Draw((UINT)vertices.size(), 0);
+	DC->Draw(12, 0);
+	DC->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);
+	DC->Draw(4, 12);
+	DC->Draw(7, 16);
 }
