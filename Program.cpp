@@ -152,6 +152,22 @@ Program::Program()
 		);
 		CHECK(hr);
 	}
+
+	//CreateWorldViewProjection
+	{
+		Matrix S, R, T;
+
+		S._11 = 100;
+		S._22 = 100;
+		//30도를 라디안으로 바꿔서 넣어준다.
+		R._11 = cosf(XMConvertToRadians(30.0f));
+		R._12 = sinf(XMConvertToRadians(30.0f));
+		R._21 = -sinf(XMConvertToRadians(30.0f));
+		R._22 = cosf(XMConvertToRadians(30.0f));
+		
+		T._41 = 100;
+		T._42 = 100;
+	}
 }
 
 Program::~Program()

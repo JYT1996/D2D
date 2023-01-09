@@ -35,4 +35,6 @@ private:
 
 	ComPtr<ID3DBlob> psBlob;
 	ComPtr<ID3D11PixelShader> pixelShader;
+	//Matrix는 기본적으로 4x4행렬이다.
+	Matrix world, view, projection;
 };
