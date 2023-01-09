@@ -10,7 +10,7 @@ Program::Program()
 	
 	//vertex
 	{
-		vertices.assign(3, VertexColor());
+		vertices.assign(4, VertexColor());
 
 		vertices[0].position = { -0.5f, -0.5f };
 		vertices[0].color = { 1.0f, 0.0f, 0.0f, 1.0f };
@@ -18,6 +18,8 @@ Program::Program()
 		vertices[1].color = { 1.0f, 0.0f, 0.0f, 1.0f };
 		vertices[2].position = { 0.5f, -0.5f };
 		vertices[2].color = { 1.0f, 0.0f, 0.0f, 1.0f };	
+		vertices[3].position = { 0.5f, 0.5f };
+		vertices[3].color = { 1.0f, 0.0f, 0.0f, 1.0f };
 	}
 
 	//vertexBuffer
@@ -76,6 +78,31 @@ Program::Program()
 		);
 		CHECK(hr);
 	}
+
+
+	//indexData
+	{
+		indices = { 0, 1, 2, 2, 1, 3 };
+	}
+
+	//indexBuffer
+	{
+		D3D11_BUFFER_DESC desc;
+		ZeroMemory(&desc, sizeof(D3D11_BUFFER_DESC));
+
+		desc.Usage = D3D11_USAGE_IMMUTABLE;
+		desc.BindFlags = D3D11_BIND_INDEX_BUFFER;
+		desc.ByteWidth = sizeof(UINT) * (UINT)indices.size();
+
+		//주소를 넘겨주기 위한 서브데이터.
+		D3D11_SUBRESOURCE_DATA subData;
+		ZeroMemory(&subData, sizeof(D3D11_SUBRESOURCE_DATA));
+		subData.pSysMem = indices.data();
+
+		HRESULT hr = DEVICE->CreateBuffer(&desc, &subData, &indexBuffer);
+		CHECK(hr);
+	}
+
 
 	//inputLayout
 	{
@@ -145,6 +172,7 @@ void Program::Render()	//화면에 출력되게 메시지를 보내는 것.
 	
 	//IA
 	DC->IASetVertexBuffers(0, 1, vertexBuffer.GetAddressOf(), &stride, &offset);
+	DC->IASetIndexBuffer(indexBuffer.Get(), DXGI_FORMAT_R32_UINT, 0);
 	DC->IASetInputLayout(inputLayout.Get());
 	DC->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 	
@@ -156,5 +184,5 @@ void Program::Render()	//화면에 출력되게 메시지를 보내는 것.
 
 	//파이프라인 정보를 전부 입력했으니, 실제로 그리면된다.
 	//그릴 때는 Draw함수를 사용한다. 매개변수로 정점의 갯수와 순서를 넣어준다.
-	DC->Draw((UINT)vertices.size(), 0);
+	DC->DrawIndexed((UINT)indices.size(), 0, 0);
 }
