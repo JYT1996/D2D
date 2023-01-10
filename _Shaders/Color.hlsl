@@ -7,6 +7,13 @@ struct VertexInput
 	float4 position : POSITION0;
 	float4 color : COLOR0;
 };
+//값을 넣어진 순서대로 쉐이더에서 받아줘야 한다.
+cbuffer TransformBuffer : register(b0)
+{
+    matrix _world;
+    matrix _view;
+    matrix _proj;
+}
 
 struct PixelInput
 {
@@ -17,9 +24,11 @@ struct PixelInput
 //진입점을 VS로 잡아서 컴파일할 것이다.
 PixelInput VS(VertexInput input)
 {
-    PixelInput output;	
+    PixelInput output;
 	
-    output.position = input.position;
+    output.position = mul(input.position, _world);
+    output.position = mul(output.position, _view);
+    output.position = mul(output.position, _proj);
     output.color = input.color;
     
     return output;	

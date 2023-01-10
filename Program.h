@@ -8,6 +8,13 @@ struct VertexColor
 	//나중에 더 많은 비트를 통해서 표현하려 할 때 코드를 수정해야하는 상황이 올 수 있다.
 	//하지만 정규화를 해놓으면 같은 비율로 색을 표현하기 때문에 코드를 수정하지 않을 수 있다.
 };
+//데이터 패딩을 조심해야한다. 16byte단위로 맞춰줘야 한다. GPU가 16byte씩 읽기 때문이다.
+struct TransformData
+{
+	Matrix world;
+	Matrix view;
+	Matrix projection;	
+};
 
 class Program
 {
@@ -37,4 +44,7 @@ private:
 	ComPtr<ID3D11PixelShader> pixelShader;
 	//Matrix는 기본적으로 4x4행렬이다.
 	Matrix world, view, projection;
+	
+	TransformData cpuBuffer;
+	ComPtr<ID3D11Buffer> gpuBuffer;
 };

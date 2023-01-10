@@ -157,16 +157,43 @@ Program::Program()
 	{
 		Matrix S, R, T;
 
-		S._11 = 100;
-		S._22 = 100;
-		//30도를 라디안으로 바꿔서 넣어준다.
-		R._11 = cosf(XMConvertToRadians(30.0f));
-		R._12 = sinf(XMConvertToRadians(30.0f));
-		R._21 = -sinf(XMConvertToRadians(30.0f));
-		R._22 = cosf(XMConvertToRadians(30.0f));
+		//S._11 = 100;
+		//S._22 = 100;
 		
-		T._41 = 100;
-		T._42 = 100;
+		//30도를 라디안으로 바꿔서 넣어준다.
+		//R._11 = cosf(XMConvertToRadians(-30.0f));
+		//R._12 = sinf(XMConvertToRadians(-30.0f));
+		//R._21 = -sinf(XMConvertToRadians(-30.0f));
+		//R._22 = cosf(XMConvertToRadians(-30.0f));
+		
+		//T._41 = 100;
+		//T._42 = 100;
+
+		S = XMMatrixScaling(50, 100, 1);
+		R = XMMatrixRotationZ(XMConvertToRadians(-30.0f));
+		T = XMMatrixTranslation(100, 100, 0);
+
+		world = S * R * T;
+		//LH왼손좌표계, RH 오른손좌표계. 차이는 z의 방향.
+		//카메라의 위치, 카메라의 시점(방향), 높이
+		//2D라서 높이는 움직일 필요는 없다.
+		view = XMMatrixLookAtLH(Vector3(0, 0, 0), Vector3(0, 0, 1), Vector3(0, 1, 0));
+		//DX는 왼손좌표. 
+		projection = XMMatrixOrthographicLH(gWinWidth, gWinHeight, 0, 1);
+	}
+
+	//ConstantBuffer (용도가 정확하지 않은 정보를 넣은 버퍼)
+	{		
+		D3D11_BUFFER_DESC desc;
+		ZeroMemory(&desc, sizeof(desc));
+
+		desc.Usage = D3D11_USAGE_DYNAMIC;
+		desc.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
+		desc.ByteWidth = sizeof(TransformData);
+		desc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
+		
+		HRESULT hr = DEVICE->CreateBuffer(&desc, nullptr, &gpuBuffer);
+		CHECK(hr);
 	}
 }
 
@@ -177,7 +204,29 @@ Program::~Program()
 
 void Program::Update()	//게임 로직의 메시지를 보내게 하는 것.
 {
-	
+	//GPU는 코어가 많아 수시로 접근이 될 가능성이 있다.
+	//다른 코어가 사용중일 때 cpu가 접근하면 안되기 때문에 cpu가 접근할 때는 gpu를 접근차단을 하고나서 값을 넣어준다.
+	//이후 접근차단을 해제해준다. map 접근하지 못하게 차단, unmap 차단한 것을 풀어준다.
+	//CPU에서는 world view projection은 행우선 행렬이다. GPU는 열우선 행렬이다. GPU에 값을 넣어주기 위해서는 전치행렬로 만들어서 값을 넣어줘야 한다.
+	cpuBuffer.world = XMMatrixTranspose(world);
+	cpuBuffer.view = XMMatrixTranspose(view);
+	cpuBuffer.projection = XMMatrixTranspose(projection);
+
+	D3D11_MAPPED_SUBRESOURCE mappedSubResource;
+	//어디를 접근차단을 할 것인가. gpuBuffer, 사용하고 cpu에 값을 저장하고 있을 것인가?
+	//그곳에 접근하기 위한 주소.
+	DC->Map
+	(
+		gpuBuffer.Get(),
+		0,
+		D3D11_MAP_WRITE_DISCARD,	//사용 후 폐기
+		0,
+		&mappedSubResource
+	);
+
+	memcpy(mappedSubResource.pData, &cpuBuffer, sizeof(TransformData));
+
+	DC->Unmap(gpuBuffer.Get(), 0);
 }
 
 void Program::Render()	//화면에 출력되게 메시지를 보내는 것.
@@ -192,6 +241,9 @@ void Program::Render()	//화면에 출력되게 메시지를 보내는 것.
 	DC->IASetInputLayout(inputLayout.Get());
 	DC->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 	
+	//VS Constant Buffer
+	DC->VSSetConstantBuffers(0, 1, gpuBuffer.GetAddressOf());
+
 	//VS
 	DC->VSSetShader(vertexShader.Get(), nullptr, 0);
 
