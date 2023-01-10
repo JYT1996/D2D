@@ -26,4 +26,6 @@ private:
 	WinDesc _desc;
 
 	static class Program* program;
+
+	static bool isWindowCreated;
 };

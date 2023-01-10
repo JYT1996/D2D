@@ -2,7 +2,8 @@
 #include "Window.h"
 #include "Program.h"
 //정적멤버변수를 이용한다. 동적할당을 했으니 프로그램이 종료될 때 동적해제를 한다.
-Program* Window::program;
+Program* Window::program = nullptr;
+bool Window::isWindowCreated = false;
 
 Window::Window(WinDesc initDesc)
 {
@@ -35,7 +36,10 @@ Window::Window(WinDesc initDesc)
 
 	ShowWindow(_desc.handle, SW_SHOWNORMAL);
 	UpdateWindow(_desc.handle);	
+
 	ShowCursor(true);
+
+	isWindowCreated = true;
 }
 
 Window::~Window()
@@ -106,6 +110,13 @@ LRESULT Window::WndProc(HWND handle, UINT message, WPARAM wParam, LPARAM lParam)
 	{
 	case WM_CREATE:
 		gHandle = handle;
+		break;
+	case WM_SIZE:
+		if (isWindowCreated)
+		{
+			gWinWidth = LOWORD(lParam);
+			gWinHeight = LOWORD(lParam);
+		}
 		break;
 	case WM_CLOSE:
 	case WM_DESTROY:

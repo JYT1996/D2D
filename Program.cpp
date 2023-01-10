@@ -178,8 +178,8 @@ Program::Program()
 		//카메라의 위치, 카메라의 시점(방향), 높이
 		//2D라서 높이는 움직일 필요는 없다.
 		view = XMMatrixLookAtLH(Vector3(0, 0, 0), Vector3(0, 0, 1), Vector3(0, 1, 0));
-		//DX는 왼손좌표. 
-		projection = XMMatrixOrthographicLH(gWinWidth, gWinHeight, 0, 1);
+		//DX는 기본이 왼손좌표계이다. 
+		projection = XMMatrixOrthographicLH(WIN_DEFAULT_WIDTH, WIN_DEFAULT_HEIGHT, 0, 1);
 	}
 
 	//ConstantBuffer (용도가 정확하지 않은 정보를 넣은 버퍼)
@@ -193,6 +193,26 @@ Program::Program()
 		desc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
 		
 		HRESULT hr = DEVICE->CreateBuffer(&desc, nullptr, &gpuBuffer);
+		CHECK(hr);
+	}
+
+	//CreateRasterizerState
+	//프로그래밍 영역이 아니다. 옵션를 바꾸는 정도는 가능하다.
+	{
+		D3D11_RASTERIZER_DESC desc;
+		ZeroMemory(&desc, sizeof(D3D11_RASTERIZER_DESC));
+		//프리그먼트 예비픽셀을 어떻게 채울 것인가.
+		//기본값은 SOLID 색을 채운다. WIREFRAME 선으로 표현한다.
+		//RS를 설정하지 않아도 기본값이 지정되어 있다.
+		desc.FillMode = D3D11_FILL_SOLID;
+
+		//어디 부분을 자를 것인가. BACK 뒷면을 자른다. FRONT 앞면을 자른다.
+		desc.CullMode = D3D11_CULL_BACK;
+		
+		//앞이 반시계방향인가?
+		desc.FrontCounterClockwise = false;	
+
+		HRESULT hr = DEVICE->CreateRasterizerState(&desc, &RS);
 		CHECK(hr);
 	}
 }
@@ -246,6 +266,9 @@ void Program::Render()	//화면에 출력되게 메시지를 보내는 것.
 
 	//VS
 	DC->VSSetShader(vertexShader.Get(), nullptr, 0);
+	
+	//RS
+	DC->RSSetState(RS.Get());
 
 	//PS
 	DC->PSSetShader(pixelShader.Get(), nullptr, 0);

@@ -47,4 +47,6 @@ private:
 	
 	TransformData cpuBuffer;
 	ComPtr<ID3D11Buffer> gpuBuffer;
+
+	ComPtr<ID3D11RasterizerState> RS;
 };

@@ -57,6 +57,7 @@ void Input::InputProc(UINT message, LPARAM lParam)
 	//마우스의 입력에 관한 시작점과 마지막을 통해서 마우스 입력을 구분한다.
 	if (message >= WM_MOUSEFIRST && message <= WM_MOUSELAST)
 	{
+		//DX는 투영변환을 하기 때문에 윈도우창의 비율이 바뀌면 마우스의 값이 대응이 안된다.
 		mousePosition.x = (float)GET_X_LPARAM(lParam);
 		mousePosition.y = (float)GET_Y_LPARAM(lParam);
 		//좌클릭의 더블클릭만 구현.
