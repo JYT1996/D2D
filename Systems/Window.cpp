@@ -35,7 +35,7 @@ Window::Window(WinDesc initDesc)
 	MoveWindow(_desc.handle, centerX, centerY, (int)_desc.width, (int)_desc.height, true);
 
 	ShowWindow(_desc.handle, SW_SHOWNORMAL);
-	UpdateWindow(_desc.handle);	
+	UpdateWindow(_desc.handle);
 
 	ShowCursor(true);
 
@@ -84,7 +84,7 @@ WPARAM Window::Run()
 
 			TranslateMessage(&msg);
 			DispatchMessage(&msg);
-		}		
+		}
 		else
 		{
 			INPUT->Updata();
@@ -112,17 +112,15 @@ LRESULT Window::WndProc(HWND handle, UINT message, WPARAM wParam, LPARAM lParam)
 		gHandle = handle;
 		break;
 	case WM_SIZE:
-		if (isWindowCreated)
-		{
-			gWinWidth = LOWORD(lParam);
-			gWinHeight = LOWORD(lParam);
-		}
+		gWinWidth = LOWORD(lParam);
+		gWinHeight = HIWORD(lParam);
+		//cout << "X : " << gWinWidth << ", Y : " << gWinHeight << '\n';
 		break;
 	case WM_CLOSE:
 	case WM_DESTROY:
 		PostQuitMessage(0);
 		return 0;
 	}
-	
-	return DefWindowProc(handle,message,wParam, lParam);
+
+	return DefWindowProc(handle, message, wParam, lParam);
 }
