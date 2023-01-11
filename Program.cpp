@@ -4,22 +4,27 @@
 
 Program::Program()
 {
-	//사용자가 윈도우창의 크기를 어떻게 설정할지 모르기 때문에 -1 ~ 1로 정규화를 해놓는다.
-	//그래서 초기 화면의 변환이 일어나지 않은 상태에서는, 정점의 정보를 -1 ~ 1를 통해서 값을 넘겨야한다. 
-	//왼쪽 -1, 오른쪽 1, 아래 -1, 위 1. windowAPI랑 다르다.
-	
 	//vertex
 	{
-		vertices.assign(4, VertexColor());
+		vertices.assign(4, VertexTexture());
 
-		vertices[0].position = { -0.5f, -0.5f };
+		/*vertices[0].position = { -0.5f, -0.5f };
 		vertices[0].color = { 1.0f, 0.0f, 0.0f, 1.0f };
 		vertices[1].position = { -0.5f, 0.5f };
 		vertices[1].color = { 1.0f, 0.0f, 0.0f, 1.0f };
 		vertices[2].position = { 0.5f, -0.5f };
 		vertices[2].color = { 1.0f, 0.0f, 0.0f, 1.0f };	
 		vertices[3].position = { 0.5f, 0.5f };
-		vertices[3].color = { 1.0f, 0.0f, 0.0f, 1.0f };
+		vertices[3].color = { 1.0f, 0.0f, 0.0f, 1.0f };*/
+
+		vertices[0].position = { -0.5f, -0.5f };
+		vertices[0].uv = { 0.0f , 1.0f };
+		vertices[1].position = { -0.5f, 0.5f };
+		vertices[1].uv = { 0.0f, 0.0f };
+		vertices[2].position = { 0.5f, -0.5f };
+		vertices[2].uv = { 1.0f, 1.0f };
+		vertices[3].position = { 0.5f, 0.5f };
+		vertices[3].uv = { 1.0f, 0.0f };
 	}
 
 	//vertexBuffer
@@ -27,20 +32,11 @@ Program::Program()
 		D3D11_BUFFER_DESC desc;
 		ZeroMemory(&desc, sizeof(D3D11_BUFFER_DESC));
 	
-		desc.ByteWidth = sizeof(VertexColor) * (UINT)vertices.size();
-		//Usage의 형태는 4가지가 있다.
-		//생성하고 변환이 필요없는 자원일 경우 IMMUTABLE. GPU가 정보를 읽을 수만 있는 것(읽기 전용). const 같은 기능
-		//DEFAULT는 GPU에서 정보를 읽고 수정도 가능하다.
-		//DYNAMIC GPU가 정보를 읽기도 하는데, CPU에서 map을 통해서 데이터를 수정을 하기도 한다. CPU에서 값을 변경해서 GPU에 보낼 때 사용한다.
-		//STAGING GPU메모리에서 CPU메모리로 복사를 허용하는 것이다.
+		desc.ByteWidth = sizeof(VertexTexture) * (UINT)vertices.size();
 		desc.Usage = D3D11_USAGE_IMMUTABLE;	
 
-		//GPU의 원하는 파이프라인 단계에 정보를 넣어준다. vertexBuffer은 view가 필요없기 때문에 enum이 따로 존재한다.
 		desc.BindFlags = D3D11_BIND_VERTEX_BUFFER;
 
-		//CPU의 접근 권한 UINT CPUAccessFlags; 현재 사용용도를 읽기전용으로 해놨기 때문에 권한이 필요없다.
-
-		//정점의 정보를 가지고 있는 곳의 주소를 넘겨주기 위해 subData를 만들어야 한다.		
 		D3D11_SUBRESOURCE_DATA subData;
 		ZeroMemory(&subData, sizeof(D3D11_SUBRESOURCE_DATA));
 		subData.pSysMem = vertices.data();
@@ -49,15 +45,12 @@ Program::Program()
 		CHECK(hr);
 	}
 	
-	
-	//HLSL도 define이나 include를 활용할 수 있다.
-	//Binary Large Object, 컴파일이 완료된 파일을 의미한다.
-	//쉐이더는 따로 컴파일하기 때문에 쉐이더에서 문제가 생길 때 받을 메시지의 경로. 
 	//vertexShader
 	{
 		HRESULT hr = D3DCompileFromFile
 		(
-			L"_Shaders/Color.hlsl",
+			//L"_Shaders/Color.hlsl",
+			L"_Shaders/Texture.hlsl",
 			nullptr,
 			nullptr,
 			"VS",
@@ -94,7 +87,6 @@ Program::Program()
 		desc.BindFlags = D3D11_BIND_INDEX_BUFFER;
 		desc.ByteWidth = sizeof(UINT) * (UINT)indices.size();
 
-		//주소를 넘겨주기 위한 서브데이터.
 		D3D11_SUBRESOURCE_DATA subData;
 		ZeroMemory(&subData, sizeof(D3D11_SUBRESOURCE_DATA));
 		subData.pSysMem = indices.data();
@@ -108,13 +100,13 @@ Program::Program()
 	{
 		//inputLayoutDesc
 		D3D11_INPUT_ELEMENT_DESC layoutDesc[]
-		//CPU와 GPU의 연결고리가 된다.
 		{
+			/*{ "POSITION", 0, DXGI_FORMAT_R32G32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0},
+			{ "COLOR", 0, DXGI_FORMAT_R32G32B32A32_FLOAT, 0, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_VERTEX_DATA, 0},*/
 			{ "POSITION", 0, DXGI_FORMAT_R32G32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0},
-			{ "COLOR", 0, DXGI_FORMAT_R32G32B32A32_FLOAT, 0, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_VERTEX_DATA, 0},
-		};	//정점 정보가 2개라면 layoutDesc은 2개가 필요하다. 배열을 통해서 두개 desc를 합쳐서 관리한다.
+			{ "TEXCOORD", 0, DXGI_FORMAT_R32G32_FLOAT, 0, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_VERTEX_DATA, 0},
+		};
 
-		//컴파일을 할 때 비교를 한다. 시멘틱이 맞아야 진행이 된다.
 		HRESULT hr = DEVICE->CreateInputLayout
 		(
 			layoutDesc,
@@ -125,13 +117,13 @@ Program::Program()
 		);
 		CHECK(hr);
 	}
-	//RS단계는 알아서 다해주기 때문에 쉐이더가 필요하지 않다.
 	
 	//pixerShader
 	{
 		HRESULT hr = D3DCompileFromFile
 		(
-			L"_Shaders/Color.hlsl",
+			//L"_Shaders/Color.hlsl",
+			L"_Shaders/Texture.hlsl",
 			nullptr,
 			nullptr,
 			"PS",
@@ -160,7 +152,6 @@ Program::Program()
 		//S._11 = 100;
 		//S._22 = 100;
 		
-		//30도를 라디안으로 바꿔서 넣어준다.
 		//R._11 = cosf(XMConvertToRadians(-30.0f));
 		//R._12 = sinf(XMConvertToRadians(-30.0f));
 		//R._21 = -sinf(XMConvertToRadians(-30.0f));
@@ -169,16 +160,12 @@ Program::Program()
 		//T._41 = 100;
 		//T._42 = 100;
 
-		S = XMMatrixScaling(50, 100, 1);
-		R = XMMatrixRotationZ(XMConvertToRadians(-30.0f));
+		S = XMMatrixScaling(500, 500, 1);
+		R = XMMatrixRotationZ(XMConvertToRadians(0.0f));
 		T = XMMatrixTranslation(100, 100, 0);
 
 		world = S * R * T;
-		//LH왼손좌표계, RH 오른손좌표계. 차이는 z의 방향.
-		//카메라의 위치, 카메라의 시점(방향), 높이
-		//2D라서 높이는 움직일 필요는 없다.
 		view = XMMatrixLookAtLH(Vector3(0, 0, 0), Vector3(0, 0, 1), Vector3(0, 1, 0));
-		//DX는 기본이 왼손좌표계이다. 
 		projection = XMMatrixOrthographicLH(WIN_DEFAULT_WIDTH, WIN_DEFAULT_HEIGHT, 0, 1);
 	}
 
@@ -197,22 +184,62 @@ Program::Program()
 	}
 
 	//CreateRasterizerState
-	//프로그래밍 영역이 아니다. 옵션를 바꾸는 정도는 가능하다.
 	{
 		D3D11_RASTERIZER_DESC desc;
 		ZeroMemory(&desc, sizeof(D3D11_RASTERIZER_DESC));
-		//프리그먼트 예비픽셀을 어떻게 채울 것인가.
-		//기본값은 SOLID 색을 채운다. WIREFRAME 선으로 표현한다.
-		//RS를 설정하지 않아도 기본값이 지정되어 있다.
 		desc.FillMode = D3D11_FILL_SOLID;
 
-		//어디 부분을 자를 것인가. BACK 뒷면을 자른다. FRONT 앞면을 자른다.
 		desc.CullMode = D3D11_CULL_BACK;
 		
-		//앞이 반시계방향인가?
 		desc.FrontCounterClockwise = false;	
 
 		HRESULT hr = DEVICE->CreateRasterizerState(&desc, &RS);
+		CHECK(hr);
+	}
+
+	//SRV
+	{
+		//이미지가 있는 경로를 적는다.
+		wstring path = L"_Textures/bk.bmp";
+		//이미지를 담을 공간을 만든다.
+		ScratchImage image;
+		//이미지를 불러온다.
+		LoadFromWICFile(path.c_str(), WIC_FLAGS_NONE, nullptr, image);
+		//메타데이터란 그림의 정보(픽셀의 형식, 픽셀의 갯수)
+		HRESULT hr = CreateShaderResourceView
+		(
+			DEVICE.Get(),
+			image.GetImages(),
+			image.GetImageCount(),
+			image.GetMetadata(),
+			&SRV
+		);
+		CHECK(hr);
+	}
+
+	//CreateSamplerState
+	{
+		//값을 크게 바꾸지 않고 기본값을 사용할 것이라면 이렇게 사용해도 된다.
+		CD3D11_DEFAULT def;
+		CD3D11_SAMPLER_DESC desc(def);
+		//ZeroMemory(&desc, sizeof(CD3D11_SAMPLER_DESC));
+		
+		//텍스처 필터링의 방식.
+		desc.Filter = D3D11_FILTER_MIN_MAG_MIP_LINEAR;
+		desc.AddressU = D3D11_TEXTURE_ADDRESS_CLAMP;
+		desc.AddressV = D3D11_TEXTURE_ADDRESS_CLAMP;
+		desc.AddressW = D3D11_TEXTURE_ADDRESS_CLAMP;
+		desc.MipLODBias = 0;
+		desc.MaxAnisotropy = 1;
+		desc.ComparisonFunc = D3D11_COMPARISON_NEVER;
+		desc.BorderColor[0] = 1.0f;
+		desc.BorderColor[1] = 1.0f;
+		desc.BorderColor[2] = 1.0f;
+		desc.BorderColor[3] = 1.0f;
+		desc.MinLOD = -3.402823466e+38F; // -FLT_MAX
+		desc.MaxLOD = 3.402823466e+38F; // FLT_MAX
+
+		HRESULT hr = DEVICE->CreateSamplerState(&desc, &samplerState); //업캐스팅을 이용해서 사용한다.
 		CHECK(hr);
 	}
 }
@@ -224,22 +251,16 @@ Program::~Program()
 
 void Program::Update()	//게임 로직의 메시지를 보내게 하는 것.
 {
-	//GPU는 코어가 많아 수시로 접근이 될 가능성이 있다.
-	//다른 코어가 사용중일 때 cpu가 접근하면 안되기 때문에 cpu가 접근할 때는 gpu를 접근차단을 하고나서 값을 넣어준다.
-	//이후 접근차단을 해제해준다. map 접근하지 못하게 차단, unmap 차단한 것을 풀어준다.
-	//CPU에서는 world view projection은 행우선 행렬이다. GPU는 열우선 행렬이다. GPU에 값을 넣어주기 위해서는 전치행렬로 만들어서 값을 넣어줘야 한다.
 	cpuBuffer.world = XMMatrixTranspose(world);
 	cpuBuffer.view = XMMatrixTranspose(view);
 	cpuBuffer.projection = XMMatrixTranspose(projection);
 
 	D3D11_MAPPED_SUBRESOURCE mappedSubResource;
-	//어디를 접근차단을 할 것인가. gpuBuffer, 사용하고 cpu에 값을 저장하고 있을 것인가?
-	//그곳에 접근하기 위한 주소.
 	DC->Map
 	(
 		gpuBuffer.Get(),
 		0,
-		D3D11_MAP_WRITE_DISCARD,	//사용 후 폐기
+		D3D11_MAP_WRITE_DISCARD,
 		0,
 		&mappedSubResource
 	);
@@ -249,10 +270,10 @@ void Program::Update()	//게임 로직의 메시지를 보내게 하는 것.
 	DC->Unmap(gpuBuffer.Get(), 0);
 }
 
-void Program::Render()	//화면에 출력되게 메시지를 보내는 것.
+void Program::Render()
 {
 	//Strides 보폭
-	UINT stride = sizeof(VertexColor);
+	UINT stride = sizeof(VertexTexture);
 	UINT offset = 0;
 	
 	//IA
@@ -272,8 +293,8 @@ void Program::Render()	//화면에 출력되게 메시지를 보내는 것.
 
 	//PS
 	DC->PSSetShader(pixelShader.Get(), nullptr, 0);
+	DC->PSSetShaderResources(0, 1, SRV.GetAddressOf());
+	DC->PSSetSamplers(0, 1, samplerState.GetAddressOf());
 
-	//파이프라인 정보를 전부 입력했으니, 실제로 그리면된다.
-	//그릴 때는 Draw함수를 사용한다. 매개변수로 정점의 갯수와 순서를 넣어준다.
 	DC->DrawIndexed((UINT)indices.size(), 0, 0);
 }

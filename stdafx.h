@@ -39,6 +39,21 @@ using namespace WRL;
 using namespace DirectX;
 using namespace SimpleMath;
 
+//DirectXTex
+#include "_Libraries/DirectXTex/DirectXTex.h"
+#ifdef _M_X64
+	#ifdef _DEBUG
+		#pragma comment(lib, "_Libraries/DirectXTex/x64/Debug/DirectXTex.lib")
+	#elif NDEBUG
+		#pragma comment(lib, "_Libraries/DirectXTex/x64/Release/DirectXTex.lib")
+	#endif
+#elif _M_IX86
+	#ifdef _DEBUG
+		#pragma comment(lib, "_Libraries/DirectXTex/Win32/Debug/DirectXTex.lib")
+	#elif NDEBUG
+		#pragma comment(lib, "_Libraries/DirectXTex/Win32/Release/DirectXTex.lib")
+	#endif
+#endif
 //Meacros
 #define WIN_DEFAULT_WIDTH 1280.0f
 #define WIN_DEFAULT_HEIGHT 720.0f

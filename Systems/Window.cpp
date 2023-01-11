@@ -1,13 +1,11 @@
 #include "stdafx.h"
 #include "Window.h"
 #include "Program.h"
-//정적멤버변수를 이용한다. 동적할당을 했으니 프로그램이 종료될 때 동적해제를 한다.
 Program* Window::program = nullptr;
 bool Window::isWindowCreated = false;
 
 Window::Window(WinDesc initDesc)
 {
-	//멤버변수 _desc = initDesc 대입.
 	_desc = initDesc;
 	WORD wHr = MyRegisterClass(_desc);
 	assert(wHr != 0);
@@ -98,7 +96,6 @@ WPARAM Window::Run()
 			GRAPHICS->End();
 		}
 	}
-	//무한루프를 탈출했다는 것은 종료를 의미하기 때문에 동적할당을 해제해야 한다.
 	SAFE_DELETE(program);
 
 	return msg.wParam;
