@@ -16,6 +16,12 @@
     <ClCompile Include="Systems\Graphics.cpp">
       <Filter>Systems</Filter>
     </ClCompile>
+    <ClCompile Include="Renders\Resources\VertexType.cpp">
+      <Filter>Renders\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="Renders\IA\VertexBuffer.cpp">
+      <Filter>Renders\IA</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Program.h" />
@@ -33,10 +39,25 @@
     <ClInclude Include="Systems\Graphics.h">
       <Filter>Systems</Filter>
     </ClInclude>
+    <ClInclude Include="Renders\Resources\VertexType.h">
+      <Filter>Renders\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="Renders\IA\VertexBuffer.h">
+      <Filter>Renders\IA</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Systems">
       <UniqueIdentifier>{653e8031-b48c-489b-b62a-34e90060652c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Renders">
+      <UniqueIdentifier>{8ae728ae-aa37-4d10-8998-17d79b922131}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Renders\Resources">
+      <UniqueIdentifier>{3f7fe885-8ee5-4bfb-9057-0602141a1109}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Renders\IA">
+      <UniqueIdentifier>{1470f833-38bf-4703-b475-6f17bdb2e9a3}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
