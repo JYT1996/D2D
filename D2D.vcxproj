@@ -36,8 +36,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Program.h" />
-    <ClInclude Include="Renders\IA\VertexBuffer.h" />
-    <ClInclude Include="Renders\Resources\VertexType.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Systems\Graphics.h" />
     <ClInclude Include="Systems\Input.h" />

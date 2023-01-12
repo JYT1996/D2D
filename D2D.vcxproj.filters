@@ -16,12 +16,6 @@
     <ClCompile Include="Systems\Graphics.cpp">
       <Filter>Systems</Filter>
     </ClCompile>
-    <ClCompile Include="Renders\Resources\VertexType.cpp">
-      <Filter>Renders\Resources</Filter>
-    </ClCompile>
-    <ClCompile Include="Renders\IA\VertexBuffer.cpp">
-      <Filter>Renders\IA</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Program.h" />
@@ -38,12 +32,6 @@
     </ClInclude>
     <ClInclude Include="Systems\Graphics.h">
       <Filter>Systems</Filter>
-    </ClInclude>
-    <ClInclude Include="Renders\Resources\VertexType.h">
-      <Filter>Renders\Resources</Filter>
-    </ClInclude>
-    <ClInclude Include="Renders\IA\VertexBuffer.h">
-      <Filter>Renders\IA</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
