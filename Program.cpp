@@ -200,7 +200,7 @@ Program::Program()
 	//SRV
 	{
 		//이미지가 있는 경로를 적는다.
-		wstring path = L"_Textures/bk.bmp";
+		wstring path = L"_Textures/Tree.png";
 		//이미지를 담을 공간을 만든다.
 		ScratchImage image;
 		//이미지를 불러온다.
@@ -225,21 +225,53 @@ Program::Program()
 		//ZeroMemory(&desc, sizeof(CD3D11_SAMPLER_DESC));
 		
 		//텍스처 필터링의 방식.
-		desc.Filter = D3D11_FILTER_MIN_MAG_MIP_LINEAR;
-		desc.AddressU = D3D11_TEXTURE_ADDRESS_CLAMP;
-		desc.AddressV = D3D11_TEXTURE_ADDRESS_CLAMP;
-		desc.AddressW = D3D11_TEXTURE_ADDRESS_CLAMP;
-		desc.MipLODBias = 0;
-		desc.MaxAnisotropy = 1;
-		desc.ComparisonFunc = D3D11_COMPARISON_NEVER;
-		desc.BorderColor[0] = 1.0f;
-		desc.BorderColor[1] = 1.0f;
-		desc.BorderColor[2] = 1.0f;
-		desc.BorderColor[3] = 1.0f;
-		desc.MinLOD = -3.402823466e+38F; // -FLT_MAX
-		desc.MaxLOD = 3.402823466e+38F; // FLT_MAX
-
+		desc.Filter = D3D11_FILTER_MIN_MAG_MIP_POINT;
+		desc.AddressU = D3D11_TEXTURE_ADDRESS_BORDER;
+		desc.AddressV = D3D11_TEXTURE_ADDRESS_BORDER;
+		desc.AddressW = D3D11_TEXTURE_ADDRESS_BORDER;
+		//이전의 데이터와 현재의 데이터를 어떻게 분석할 것인가.
+		desc.ComparisonFunc = D3D11_COMPARISON_ALWAYS;
+		desc.BorderColor[0] = 1.0f; //(R)
+		desc.BorderColor[1] = 1.0f;	//(G)
+		desc.BorderColor[2] = 1.0f;	//(B)
+		desc.BorderColor[3] = 1.0f;	//(A)
+	
 		HRESULT hr = DEVICE->CreateSamplerState(&desc, &samplerState); //업캐스팅을 이용해서 사용한다.
+		CHECK(hr);
+	}
+
+	//CreateBlendState
+	{
+		D3D11_BLEND_DESC desc;
+		ZeroMemory(&desc, sizeof(D3D11_BLEND_DESC));
+
+		//멀티샘플링안티얼리어세싱할 때, 폴리곤에 대해서 처리에 대한 옵션 아직 사용하지 않는다.
+		//BOOL AlphaToCoverageEnable;
+		//각각의 타켓들은 독립적으로 blending을 할 것인가
+		//BOOL IndependentBlendEnable;
+		//하나의 desc는 8개의 타켓을 만들 수 있다.
+		//D3D11_RENDER_TARGET_BLEND_DESC RenderTarget[8];
+
+		desc.AlphaToCoverageEnable = false;
+		desc.IndependentBlendEnable = false;
+		
+		desc.RenderTarget[0].BlendEnable = true;
+
+		//float4 color = (srs(우리가 넣은 자원의 색) * srcBlend(우리가 설정한 색)) BlendOP (destColor * destBlend)
+		desc.RenderTarget[0].SrcBlend = D3D11_BLEND_SRC_ALPHA;
+		desc.RenderTarget[0].DestBlend = D3D11_BLEND_INV_SRC_ALPHA;
+		desc.RenderTarget[0].BlendOp = D3D11_BLEND_OP_ADD;
+		
+		//PS이 끝나고 나온 Alpha의 값을 수정하는 방식.
+		//alpha = (SrcAlpha(우리가 넣은 자원) * SrcBlendAlpha(우리가 설정한 색)) BlendOpAlpha (DestAlpha * DestBlendAlpha)
+		desc.RenderTarget[0].SrcBlendAlpha = D3D11_BLEND_ONE;
+		desc.RenderTarget[0].DestBlendAlpha = D3D11_BLEND_ZERO;
+		desc.RenderTarget[0].BlendOpAlpha = D3D11_BLEND_OP_ADD;
+
+		//특정 색의 채널만 출력되게 하는 값이다.
+		desc.RenderTarget[0].RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_ALL;
+
+		HRESULT hr = DEVICE->CreateBlendState(&desc, &blendState);
 		CHECK(hr);
 	}
 }
@@ -295,6 +327,9 @@ void Program::Render()
 	DC->PSSetShader(pixelShader.Get(), nullptr, 0);
 	DC->PSSetShaderResources(0, 1, SRV.GetAddressOf());
 	DC->PSSetSamplers(0, 1, samplerState.GetAddressOf());
+
+	//OM
+	DC->OMSetBlendState(blendState.Get(), nullptr, 0xFFFFFFFF);
 
 	DC->DrawIndexed((UINT)indices.size(), 0, 0);
 }
