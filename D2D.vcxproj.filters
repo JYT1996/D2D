@@ -16,6 +16,7 @@
     <ClCompile Include="Systems\Graphics.cpp">
       <Filter>Systems</Filter>
     </ClCompile>
+    <ClCompile Include="Renders\Resources\VertexType.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Program.h" />
@@ -33,6 +34,7 @@
     <ClInclude Include="Systems\Graphics.h">
       <Filter>Systems</Filter>
     </ClInclude>
+    <ClInclude Include="Renders\Resources\VertexType.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Systems">
