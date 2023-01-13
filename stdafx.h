@@ -90,7 +90,7 @@ extern HDC gHDC;
 extern float gWinWidth;
 extern float gWinHeight;
 
-//Headers
+//Singletons
 #include "Systems/Input.h"
 #include "Systems/Time.h"
 #include "Systems/Graphics.h"
@@ -101,3 +101,14 @@ extern float gWinHeight;
 #define GRAPHICS Graphics::Get()
 #define DEVICE GRAPHICS->GetDevice()
 #define DC GRAPHICS->GetDC()
+
+//Headers
+#include "Renders/Resources/VertexType.h"
+#include "Renders/IA/VertexBuffer.h"
+#include "Renders/Shaders/IShader.h"
+#include "Renders/Shaders/VertexShader.h"
+#include "Renders/IA/IndexBuffer.h"
+#include "Renders/IA/InputLayout.h"
+#include "Renders//Shaders/PixelShader.h"
+#include "Renders/Resources/ConstantBuffer.h"
+#include "Renders//Resources/GlobalBuffer.h"

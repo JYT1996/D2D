@@ -22,6 +22,24 @@
     <ClCompile Include="Renders\Resources\VertexType.cpp">
       <Filter>Renders\IA</Filter>
     </ClCompile>
+    <ClCompile Include="Renders\Shaders\IShader.cpp">
+      <Filter>Renders\Shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="Renders\Shaders\VertexShader.cpp">
+      <Filter>Renders\Shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="Renders\IA\IndexBuffer.cpp">
+      <Filter>Renders\IA</Filter>
+    </ClCompile>
+    <ClCompile Include="Renders\IA\InputLayout.cpp">
+      <Filter>Renders\IA</Filter>
+    </ClCompile>
+    <ClCompile Include="Renders\Shaders\PixelShader.cpp">
+      <Filter>Renders\Shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="Renders\Resources\ConstantBuffer.h">
+      <Filter>Renders\Resources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Program.h" />
@@ -45,6 +63,22 @@
     <ClInclude Include="Renders\Resources\VertexType.h">
       <Filter>Renders\IA</Filter>
     </ClInclude>
+    <ClInclude Include="Renders\Shaders\IShader.h">
+      <Filter>Renders\Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="Renders\Shaders\VertexShader.h">
+      <Filter>Renders\Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="Renders\IA\IndexBuffer.h">
+      <Filter>Renders\IA</Filter>
+    </ClInclude>
+    <ClInclude Include="Renders\IA\InputLayout.h">
+      <Filter>Renders\IA</Filter>
+    </ClInclude>
+    <ClInclude Include="Renders\Shaders\PixelShader.h">
+      <Filter>Renders\Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="Renders\Resources\GlobalBuffer.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Systems">
@@ -58,6 +92,9 @@
     </Filter>
     <Filter Include="Renders\IA">
       <UniqueIdentifier>{1470f833-38bf-4703-b475-6f17bdb2e9a3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Renders\Shaders">
+      <UniqueIdentifier>{6bafc57f-a830-47c3-8d22-8a19f41918d2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

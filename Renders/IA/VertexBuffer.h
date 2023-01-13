@@ -6,13 +6,12 @@ public:
 	template <typename T>
 	void Create(const vector<T>& vertices, const D3D11_USAGE& usage = D3D11_USAGE_DEFAULT);
 
-	ComPtr<ID3D11Buffer> GetResource() const { return buffer; }
+	ID3D11Buffer* GetResource() const { return buffer.Get(); }
 	UINT GetStride() const { return stride; }
 	UINT GetOffset() const { return offset; }
 	UINT GetCount() const { return count; }
 
 	void SetIA();
-
 
 private:
 	ComPtr<ID3D11Buffer> buffer;
