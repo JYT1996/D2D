@@ -24,7 +24,6 @@
     <ClCompile Include="Renders\IA\IndexBuffer.cpp" />
     <ClCompile Include="Renders\IA\InputLayout.cpp" />
     <ClCompile Include="Renders\IA\VertexBuffer.cpp" />
-    <ClCompile Include="Renders\Resources\ConstantBuffer.h" />
     <ClCompile Include="Renders\Resources\VertexType.cpp" />
     <ClCompile Include="Renders\Shaders\IShader.cpp" />
     <ClCompile Include="Renders\Shaders\PixelShader.cpp" />
@@ -41,6 +40,7 @@
     <ClCompile Include="Systems\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ConstantBuffer.h" />
     <ClInclude Include="Program.h" />
     <ClInclude Include="Renders\IA\IndexBuffer.h" />
     <ClInclude Include="Renders\IA\InputLayout.h" />
