@@ -79,7 +79,6 @@
     <ClInclude Include="ConstantBuffer.h">
       <Filter>Renders\Resources</Filter>
     </ClInclude>
-    <ClInclude Include="Renders\Resources\ConstantBuffer.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Systems">
