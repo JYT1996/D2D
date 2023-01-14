@@ -40,7 +40,7 @@
     <ClCompile Include="Systems\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ConstantBuffer.h" />
+    <ClInclude Include="Renders\Resources\ConstantBuffer.h" />
     <ClInclude Include="Program.h" />
     <ClInclude Include="Renders\IA\IndexBuffer.h" />
     <ClInclude Include="Renders\IA\InputLayout.h" />

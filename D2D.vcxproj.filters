@@ -76,7 +76,7 @@
       <Filter>Renders\Shaders</Filter>
     </ClInclude>
     <ClInclude Include="Renders\Resources\GlobalBuffer.h" />
-    <ClInclude Include="ConstantBuffer.h">
+    <ClInclude Include="Renders\Resources\ConstantBuffer.h">
       <Filter>Renders\Resources</Filter>
     </ClInclude>
   </ItemGroup>
