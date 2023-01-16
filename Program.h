@@ -11,12 +11,12 @@ public:
 
 public:
 	void Update();
-	void Render();	
+	void Render();
+	
 
 private:
 	unique_ptr<ViewProjectiondBuffer> VPBuffer;
 
 	Matrix view, projection;
 	
-	unique_ptr<ColorRect> rect;
 };
