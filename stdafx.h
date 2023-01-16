@@ -112,3 +112,5 @@ extern float gWinHeight;
 #include "Renders//Shaders/PixelShader.h"
 #include "Renders/Resources/ConstantBuffer.h"
 #include "Renders//Resources/GlobalBuffer.h"
+
+#include "Objects/ColorRect.h"
