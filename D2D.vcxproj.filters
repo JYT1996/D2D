@@ -37,6 +37,7 @@
     <ClCompile Include="Renders\Shaders\PixelShader.cpp">
       <Filter>Renders\Shaders</Filter>
     </ClCompile>
+    <ClCompile Include="Objects\ColorRect.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Program.h" />
@@ -79,6 +80,7 @@
     <ClInclude Include="Renders\Resources\ConstantBuffer.h">
       <Filter>Renders\Resources</Filter>
     </ClInclude>
+    <ClInclude Include="Objects\ColorRect.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Systems">
@@ -96,5 +98,8 @@
     <Filter Include="Renders\Shaders">
       <UniqueIdentifier>{6bafc57f-a830-47c3-8d22-8a19f41918d2}</UniqueIdentifier>
     </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="_Shaders\VertexColor.hlsl" />
   </ItemGroup>
 </Project>
