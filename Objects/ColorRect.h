@@ -34,8 +34,12 @@ private:
 	vector<UINT> indices;
 	IndexBuffer indexBuffer;
 
+	ComPtr<ID3DBlob> vsBlob;
+	VertexShader vertexShader;
+
 	InputLayout inputLayout;
 
+	ComPtr<ID3DBlob> psBlob;
 	PixelShader pixelShader;
 
 	ComPtr<ID3D11Buffer> gpuBuffer;
