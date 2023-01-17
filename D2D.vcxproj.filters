@@ -37,7 +37,9 @@
     <ClCompile Include="Renders\Shaders\PixelShader.cpp">
       <Filter>Renders\Shaders</Filter>
     </ClCompile>
-    <ClCompile Include="Objects\ColorRect.cpp" />
+    <ClCompile Include="Objects\ColorRect.cpp">
+      <Filter>Objects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Program.h" />
@@ -76,11 +78,15 @@
     <ClInclude Include="Renders\Shaders\PixelShader.h">
       <Filter>Renders\Shaders</Filter>
     </ClInclude>
-    <ClInclude Include="Renders\Resources\GlobalBuffer.h" />
     <ClInclude Include="Renders\Resources\ConstantBuffer.h">
       <Filter>Renders\Resources</Filter>
     </ClInclude>
-    <ClInclude Include="Objects\ColorRect.h" />
+    <ClInclude Include="Objects\ColorRect.h">
+      <Filter>Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Renders\Resources\GlobalBuffer.h">
+      <Filter>Renders\Resources</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Systems">
@@ -98,8 +104,8 @@
     <Filter Include="Renders\Shaders">
       <UniqueIdentifier>{6bafc57f-a830-47c3-8d22-8a19f41918d2}</UniqueIdentifier>
     </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <FxCompile Include="_Shaders\VertexColor.hlsl" />
+    <Filter Include="Objects">
+      <UniqueIdentifier>{ea9e0b65-92c4-42f5-9c91-57819fe22bf8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

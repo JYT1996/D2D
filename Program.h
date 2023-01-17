@@ -15,8 +15,12 @@ public:
 
 private:
 	unique_ptr<ViewProjectiondBuffer> VPBuffer;
-
 	Matrix view, projection;
+
+	unique_ptr<WorldBuffer> worldBuffer;
+	Matrix world;
 	
-	unique_ptr<ColorRect> rect;
+	unique_ptr<ColorRect> rect;	
+	
+
 };
