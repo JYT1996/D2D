@@ -1,6 +1,6 @@
 struct VertexInput
 {
-	float4 position : POSITION0;
+    float4 position : POSITION0;
 	float4 color : COLOR0;
 };
 //값을 넣어진 순서대로 쉐이더에서 받아줘야 한다.
