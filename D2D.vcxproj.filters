@@ -40,6 +40,9 @@
     <ClCompile Include="Objects\ColorRect.cpp">
       <Filter>Objects</Filter>
     </ClCompile>
+    <ClCompile Include="Objects\Object.cpp">
+      <Filter>Objects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Program.h" />
@@ -87,6 +90,12 @@
     <ClInclude Include="Renders\Resources\GlobalBuffer.h">
       <Filter>Renders\Resources</Filter>
     </ClInclude>
+    <ClInclude Include="Objects\Object.h">
+      <Filter>Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Component\Component.h">
+      <Filter>Component</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Systems">
@@ -106,6 +115,9 @@
     </Filter>
     <Filter Include="Objects">
       <UniqueIdentifier>{ea9e0b65-92c4-42f5-9c91-57819fe22bf8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component">
+      <UniqueIdentifier>{cd306244-0c6f-4c5e-8b72-5aff7379d0c3}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
