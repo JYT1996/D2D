@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Objects\ColorRect.cpp" />
+    <ClCompile Include="Objects\Object.cpp" />
     <ClCompile Include="Program.cpp" />
     <ClCompile Include="Renders\IA\IndexBuffer.cpp" />
     <ClCompile Include="Renders\IA\InputLayout.cpp" />
@@ -41,7 +42,9 @@
     <ClCompile Include="Systems\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Component\Component.h" />
     <ClInclude Include="Objects\ColorRect.h" />
+    <ClInclude Include="Objects\Object.h" />
     <ClInclude Include="Renders\Resources\ConstantBuffer.h" />
     <ClInclude Include="Program.h" />
     <ClInclude Include="Renders\IA\IndexBuffer.h" />

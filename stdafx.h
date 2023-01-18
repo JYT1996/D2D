@@ -20,6 +20,7 @@
 #include <chrono>
 #include <iostream>
 #include <vector>
+#include <map>
 using namespace std;
 
 //DirectX D3D11
@@ -123,4 +124,9 @@ extern float gWinHeight;
 #include "Renders/Resources/ConstantBuffer.h"
 #include "Renders//Resources/GlobalBuffer.h"
 
+//Components
+#include "Component/Component.h"
+
+//Object
+#include "Objects/Object.h"
 #include "Objects/ColorRect.h"
