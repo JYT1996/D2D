@@ -1,97 +1,61 @@
 #include "stdafx.h"
 #include "ColorRect.h"
 
-ColorRect::ColorRect()
+ColorRect::ColorRect(const Vector2& position, const Vector2& scale, const float& rotation)
+	: position(position), scale(scale), rotation(XMConvertToRadians(rotation))
 {
-	{
-		vertices.assign(4, VertexColor());
-		vertices[0].position = { -0.5f, -0.5f };
-		vertices[0].color = { 1.0f, 0.0f, 0.f, 1.0f };
-		vertices[1].position = { -0.5f, 0.5f };
-		vertices[1].color = { 1.0f, 0.0f, 0.f, 1.0f };
-		vertices[2].position = { 0.5f, -0.5f };
-		vertices[2].color = { 1.0f, 0.0f, 0.f, 1.0f };
-		vertices[3].position = { 0.5f, 0.5f };
-		vertices[3].color = { 1.0f, 0.0f, 0.f, 1.0f };
-	}
+	vertices.assign(4, VertexColor());
+	vertices[0].position = Vector2(-0.5f, -0.5f);
+	vertices[0].color = RED;
+	vertices[1].position = Vector2(-0.5f, 0.5f);
+	vertices[1].color = RED;
+	vertices[2].position = Vector2(0.5f, -0.5f);
+	vertices[2].color = RED;
+	vertices[3].position = Vector2(0.5f, 0.5f);
+	vertices[3].color = RED;
 
-	{
-		vertexBuffer.Create(vertices);
-	}
+	indices = { 0, 1, 2, 2, 1, 3 };
+	
+	vertexBuffer = make_unique<VertexBuffer>();
+	vertexBuffer->Create(vertices, D3D11_USAGE_IMMUTABLE);
+	
+	vertexShader = make_unique<VertexShader>();
+	vertexShader->Create(L"_Shaders/VertexColor.hlsl", "VS");
 
-	{
-		vertexShader.Create(L"_Shaders/VertexColor.hlsl", "VS");
-	}
+	indexBuffer = make_unique<IndexBuffer>();
+	indexBuffer->Create(indices,D3D11_USAGE_IMMUTABLE);
+	
+	inputLayout = make_unique<InputLayout>();
+	inputLayout->Create(VertexColor::descs, VertexColor::count, vertexShader->GetBlob());
 
-	{
-		indices = { 0, 1, 2, 2, 1, 3 };
-	}
+	pixelShader = make_unique<PixelShader>();
+	pixelShader->Create(L"_Shaders/VertexColor.hlsl", "PS");
 
-	{
-		indexBuffer.Create(indices);
-	}
-
-	{
-		inputLayout.Create(VertexColor::descs, VertexColor::count, vertexShader.GetBlob());
-	}
-
-	{
-		pixelShader.Create(L"_Shaders/VertexColor.hlsl", "PS");
-	}
-
-	{		
-		_degrees = -30.0f;
-		cpuBuffer = make_unique<WorldBuffer>();		
-		_scale = XMMatrixScaling(100, 100, 1);
-		_rotation = XMMatrixRotationZ(XMConvertToRadians(_degrees));
-		_translation = XMMatrixTranslation(WIN_DEFAULT_WIDTH / 2, WIN_DEFAULT_HEIGHT / 2, 0);
-		SetWorldBuffer();
-	}
-}
-
-void ColorRect::SetWorldBuffer()
-{
-	world = _scale * _rotation * _translation;
-	cpuBuffer->SetWorld(world);
-}
-
-void ColorRect::SetCPUBuffer()
-{
-	cpuBuffer.get()->SetVSBuffer(0);
+	worldBuffer = make_unique<WorldBuffer>();			
 }
 
 void ColorRect::Update()
 {
-	if (_keyCount == 2)
-		_speed = _maxSpeed / sqrtf(2.0f);
-	else
-		_speed = _maxSpeed;
+	S = XMMatrixScalingFromVector(scale);
+	R = XMMatrixRotationZ(-rotation);
+	T = XMMatrixTranslationFromVector(position);
+	
+	world = S * R * T;	
+
+	worldBuffer->SetWorld(world);
 }
 
 void ColorRect::Render()
 {	
-	vertexBuffer.SetIA();
-	indexBuffer.SetIA();
-	inputLayout.SetIA();
+	vertexBuffer->SetIA();
+	indexBuffer->SetIA();
+	inputLayout->SetIA();
 	DC->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 
-	vertexShader.SetShader();
-	pixelShader.SetShader();
+	worldBuffer->SetVSBuffer(0);
 
-	DC->DrawIndexed((UINT)indices.size(), 0, 0);
-}
-void ColorRect::Move(float x, float y, float z)
-{
-	SetTranslation(x, y, z);
-}
+	vertexShader->SetShader();
+	pixelShader->SetShader();
 
-void ColorRect::Rotate(float Degrees)
-{	
-	SetRotation(_degrees);
-	_degrees += Degrees;
-}
-
-void ColorRect::Scale(float x, float y, float z)
-{
-	SetScale(x, y, z);
+	DC->DrawIndexed(indexBuffer->GetCount(), 0, 0);
 }

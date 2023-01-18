@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "Window.h"
 #include "Program.h"
-Program* Window::program = nullptr;
+unique_ptr<Program> Window::program = nullptr;
 bool Window::isWindowCreated = false;
 
 Window::Window(WinDesc initDesc)
@@ -69,7 +69,7 @@ WPARAM Window::Run()
 {
 	MSG msg = { 0 };
 
-	program = new Program();
+	program = make_unique<Program>();
 
 	while (true)
 	{
@@ -96,8 +96,6 @@ WPARAM Window::Run()
 			GRAPHICS->End();
 		}
 	}
-	SAFE_DELETE(program);
-
 	return msg.wParam;
 }
 

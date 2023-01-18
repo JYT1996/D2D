@@ -102,6 +102,16 @@ extern float gWinHeight;
 #define DEVICE GRAPHICS->GetDevice()
 #define DC GRAPHICS->GetDC()
 
+//ColorMacros
+#define RED Color(1, 0, 0, 1)
+#define GREEN Color(0, 1, 0, 1)
+#define BLUE Color(0, 0, 1, 1)
+#define YELLOW Color(1, 1, 0, 1)
+#define MAGENTA Color(1, 0, 1, 1)
+#define CYAN Color(0, 1, 1, 1)
+#define WHITE Color(1, 1, 1, 1)
+#define BLACK Color(0, 0, 0, 1)
+ 
 //Headers
 #include "Renders/Resources/VertexType.h"
 #include "Renders/IA/VertexBuffer.h"

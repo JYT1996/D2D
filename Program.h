@@ -4,7 +4,6 @@ class Program
 {
 public:
 	Program();
-	~Program();
 
 public:
 	void SetGlobalBuffer();
