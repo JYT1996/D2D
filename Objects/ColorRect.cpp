@@ -40,9 +40,10 @@ ColorRect::ColorRect()
 	}
 
 	{		
+		_degrees = -30.0f;
 		cpuBuffer = make_unique<WorldBuffer>();		
 		_scale = XMMatrixScaling(100, 100, 1);
-		_rotation = XMMatrixRotationZ(XMConvertToRadians(-30.0f));
+		_rotation = XMMatrixRotationZ(XMConvertToRadians(_degrees));
 		_translation = XMMatrixTranslation(WIN_DEFAULT_WIDTH / 2, WIN_DEFAULT_HEIGHT / 2, 0);
 		SetWorldBuffer();
 	}
@@ -53,9 +54,18 @@ void ColorRect::SetWorldBuffer()
 	world = _scale * _rotation * _translation;
 	cpuBuffer->SetWorld(world);
 }
+
 void ColorRect::SetCPUBuffer()
 {
 	cpuBuffer.get()->SetVSBuffer(0);
+}
+
+void ColorRect::Update()
+{
+	if (_keyCount == 2)
+		_speed = _maxSpeed / sqrtf(2.0f);
+	else
+		_speed = _maxSpeed;
 }
 
 void ColorRect::Render()
@@ -73,4 +83,15 @@ void ColorRect::Render()
 void ColorRect::Move(float x, float y, float z)
 {
 	SetTranslation(x, y, z);
+}
+
+void ColorRect::Rotate(float Degrees)
+{	
+	SetRotation(_degrees);
+	_degrees += Degrees;
+}
+
+void ColorRect::Scale(float x, float y, float z)
+{
+	SetScale(x, y, z);
 }
