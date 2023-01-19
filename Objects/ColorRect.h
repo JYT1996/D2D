@@ -10,5 +10,6 @@ public:
 	void Render();
 
 private:
-	
+	vector<VertexColor> vertices;
+	vector<UINT> indices;
 };

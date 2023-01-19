@@ -1,9 +1,9 @@
 #pragma once
-
+//그리기 위한 기능을 담은 Object
 class Drawable : public Object
 {
 public:
-	Drawable(const string& name, const Vector2& position, const Vector2& scale, const float& rotation, const wstring& shaderPath);
+	Drawable(const string& name, const Vector2& position, const Vector2& scale, const float& rotation, const wstring shaderPath);
 	Drawable(const Drawable& other) : Object(other) { *this = other; }
 	Drawable& operator=(const Drawable& other);
 
@@ -23,6 +23,4 @@ protected:
 
 protected:
 	wstring shaderPath = L"";
-
-
 };

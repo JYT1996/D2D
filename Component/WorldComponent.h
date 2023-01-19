@@ -1,5 +1,5 @@
 #pragma once
-
+//월드변환을 위한 기능을 담은 Component
 class WorldComponent : public Component
 {
 public:

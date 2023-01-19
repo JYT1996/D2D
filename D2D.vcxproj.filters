@@ -46,7 +46,9 @@
     <ClCompile Include="Objects\Drawable.cpp">
       <Filter>Objects</Filter>
     </ClCompile>
-    <ClCompile Include="Component\WorldComponent.cpp" />
+    <ClCompile Include="Component\WorldComponent.cpp">
+      <Filter>Component</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Program.h" />
