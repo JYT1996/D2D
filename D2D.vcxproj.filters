@@ -117,7 +117,7 @@
       <UniqueIdentifier>{ea9e0b65-92c4-42f5-9c91-57819fe22bf8}</UniqueIdentifier>
     </Filter>
     <Filter Include="Component">
-      <UniqueIdentifier>{cd306244-0c6f-4c5e-8b72-5aff7379d0c3}</UniqueIdentifier>
+      <UniqueIdentifier>{bfcf20a1-5aa9-4854-b4b6-df24ef72ceb4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
