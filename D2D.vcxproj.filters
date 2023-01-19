@@ -43,10 +43,6 @@
     <ClCompile Include="Objects\Object.cpp">
       <Filter>Objects</Filter>
     </ClCompile>
-    <ClCompile Include="Objects\Drawable.cpp">
-      <Filter>Objects</Filter>
-    </ClCompile>
-    <ClCompile Include="Component\WorldComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Program.h" />
@@ -98,12 +94,6 @@
       <Filter>Objects</Filter>
     </ClInclude>
     <ClInclude Include="Component\Component.h">
-      <Filter>Component</Filter>
-    </ClInclude>
-    <ClInclude Include="Objects\Drawable.h">
-      <Filter>Objects</Filter>
-    </ClInclude>
-    <ClInclude Include="Component\WorldComponent.h">
       <Filter>Component</Filter>
     </ClInclude>
   </ItemGroup>
