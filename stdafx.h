@@ -64,6 +64,7 @@ using namespace SimpleMath;
 #define WIN_CENTER ( Vector2 ( WIN_CENTER_X, WIN_CENTER_Y ))
 
 #define CHECK(hr) { assert(SUCCEEDED(hr)); }
+#define SUPER __super
 
 #define SAFE_DELETE(p) { if (p) { delete(p); p = nullptr; } }
 #define SAFE_DELETE_ARRAY(p) { if (p) { delete[](p); p = nullptr; } }
@@ -126,7 +127,9 @@ extern float gWinHeight;
 
 //Components
 #include "Component/Component.h"
+#include "Component/WorldComponent.h"
 
 //Object
 #include "Objects/Object.h"
+#include "Objects/Drawable.h"
 #include "Objects/ColorRect.h"
