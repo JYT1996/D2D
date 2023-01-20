@@ -19,11 +19,11 @@ Drawable::Drawable(const string& name, const Vector2& position, const Vector2& s
 	AddComponent(make_shared<WorldComponent>(position, scale, rotation));
 }
 
-Drawable& Drawable::operator=(const Drawable& other)
-{
-	// TODO: 여기에 return 문을 삽입합니다.
-	return *this;
-}
+//Drawable& Drawable::operator=(const Drawable& other)
+//{
+//	// TODO: 여기에 return 문을 삽입합니다.
+//	return *this;
+//}
 
 void Drawable::Updata()
 {

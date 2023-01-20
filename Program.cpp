@@ -7,7 +7,7 @@ Program::Program()
 	VPBuffer = make_unique<ViewProjectiondBuffer>();	
 	SetGlobalBuffer();
 
-	rect = make_unique<ColorRect>("World", Vector2(WIN_CENTER_X, WIN_CENTER_Y), Vector2(100,100), 30.0f, L"_Shaders/VertexColor.hlsl");
+	rect = make_unique<ColorRect>(Vector2(WIN_CENTER_X, WIN_CENTER_Y), Vector2(100,100), 30.0f);
 }
 
 void Program::SetGlobalBuffer()
@@ -22,24 +22,43 @@ void Program::SetGlobalBuffer()
 void Program::Update()	//게임 로직의 메시지를 보내게 하는 것.world
 {
 	if (INPUT->Press('W'))		
-		rect->GetComponent<WorldComponent>("World")->Move(Vector2(0, 300));
+		rect->GetWorld()->Move(Vector2(0, 300));
 	if (INPUT->Press('S'))
-		rect->GetComponent<WorldComponent>("World")->Move(Vector2(0, -300));
+		rect->GetWorld()->Move(Vector2(0, -300));
 	if (INPUT->Press('A'))
-		rect->GetComponent<WorldComponent>("World")->Move(Vector2(-300, 0));
+		rect->GetWorld()->Move(Vector2(-300, 0));
 	if (INPUT->Press('D'))
-		rect->GetComponent<WorldComponent>("World")->Move(Vector2(300, 0));
+		rect->GetWorld()->Move(Vector2(300, 0));
 	
-
 	if (INPUT->Press('Q'))
-		rect->GetComponent<WorldComponent>("World")->Rotat(-100);
+		rect->GetWorld()->Rotat(-100);
 	if (INPUT->Press('E'))
-		rect->GetComponent<WorldComponent>("World")->Rotat(100);
+		rect->GetWorld()->Rotat(100);
 
 	if (INPUT->Press('F'))
-		rect->GetComponent<WorldComponent>("World")->Scale(Vector2(100,100));
+		rect->GetWorld()->Scale(Vector2(100,100));
 	if (INPUT->Press('G'))
-		rect->GetComponent<WorldComponent>("World")->Scale(Vector2(-100,-100));
+		rect->GetWorld()->Scale(Vector2(-100,-100));
+
+	if (INPUT->Press('Z'))
+	{
+		if(rect->GetColor() == RED)
+			rect->SetColor(GREEN);
+		else if(rect->GetColor() == GREEN)
+			rect->SetColor(BLUE);
+		else if (rect->GetColor() == BLUE)
+			rect->SetColor(YELLOW);
+		else if (rect->GetColor() == YELLOW)
+			rect->SetColor(MAGENTA);
+		else if (rect->GetColor() == MAGENTA)
+			rect->SetColor(CYAN);
+		else if (rect->GetColor() == CYAN)
+			rect->SetColor(WHITE);
+		else if (rect->GetColor() == WHITE)
+			rect->SetColor(BLACK);
+		else if (rect->GetColor() == BLACK)
+			rect->SetColor(RED);
+	}
 
 	rect->Update();
 }
