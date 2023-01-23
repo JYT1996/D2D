@@ -19,7 +19,7 @@ void Program::SetGlobalBuffer()
 	VPBuffer->SetProjection(projection);
 }
 
-void Program::Update()	//게임 로직의 메시지를 보내게 하는 것.world
+void Program::Update()
 {
 	if (INPUT->Press('W'))		
 		rect->GetWorld()->Move(Vector2(0, 300));
