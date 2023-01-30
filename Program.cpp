@@ -45,24 +45,23 @@ void Program::Update()
 
 	if (INPUT->Press('Z'))
 	{
-		if(rect->GetColor() == RED)
-			rect->SetColor(GREEN);
-		else if(rect->GetColor() == GREEN)
-			rect->SetColor(BLUE);
-		else if (rect->GetColor() == BLUE)
-			rect->SetColor(YELLOW);
-		else if (rect->GetColor() == YELLOW)
-			rect->SetColor(MAGENTA);
-		else if (rect->GetColor() == MAGENTA)
-			rect->SetColor(CYAN);
-		else if (rect->GetColor() == CYAN)
-			rect->SetColor(WHITE);
-		else if (rect->GetColor() == WHITE)
-			rect->SetColor(BLACK);
-		else if (rect->GetColor() == BLACK)
-			rect->SetColor(RED);		
+		if(filledCircle->GetColor() == RED)
+			filledCircle->SetColor(GREEN);
+		else if(filledCircle->GetColor() == GREEN)
+			filledCircle->SetColor(BLUE);
+		else if (filledCircle->GetColor() == BLUE)
+			filledCircle->SetColor(YELLOW);
+		else if (filledCircle->GetColor() == YELLOW)
+			filledCircle->SetColor(MAGENTA);
+		else if (filledCircle->GetColor() == MAGENTA)
+			filledCircle->SetColor(CYAN);
+		else if (filledCircle->GetColor() == CYAN)
+			filledCircle->SetColor(WHITE);
+		else if (filledCircle->GetColor() == WHITE)
+			filledCircle->SetColor(BLACK);
+		else if (filledCircle->GetColor() == BLACK)
+			filledCircle->SetColor(RED);
 	}
-
 	
 	//rect->Update();
 	//line->Updata();

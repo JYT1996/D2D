@@ -128,6 +128,7 @@ extern float gWinHeight;
 //Components
 #include "Component/Component.h"
 #include "Component/WorldComponent.h"
+#include "Component//ColorComponent.h"
 
 //Object
 #include "Objects/Object.h"

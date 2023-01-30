@@ -20,10 +20,10 @@ FilledCircle::FilledCircle(const Vector2& position, const Vector2& scale, const 
 			j = 0;
 		indices.emplace_back(i);
 		indices.emplace_back(j);
-		indices.emplace_back(vertices.size() - 1);		
+		indices.emplace_back(vertices.size() - 1);
 	}
 
-	vertexBuffer->Create(vertices, D3D11_USAGE_IMMUTABLE);
+	vertexBuffer->Create(vertices, D3D11_USAGE_DYNAMIC);
 	indexBuffer->Create(indices, D3D11_USAGE_IMMUTABLE);
 	inputLayout->Create(VertexColor::descs, VertexColor::count, vertexShader->GetBlob());
 }
@@ -41,12 +41,13 @@ void FilledCircle::Render()
 
 void FilledCircle::SetColor(Color color)
 {
-	/*this->color = color;
+	this->color = color;
 
 	D3D11_MAPPED_SUBRESOURCE mappedSubResource;
 	ZeroMemory(&mappedSubResource, sizeof(mappedSubResource));
 
-	DC->Map(vertexBuffer->GetResource(), 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedSubResource);
+	HRESULT hr = DC->Map(vertexBuffer->GetResource(), 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedSubResource);
+	CHECK(hr);
 	{
 		for (auto& vertex : vertices)
 			vertex.color = color;
@@ -54,5 +55,5 @@ void FilledCircle::SetColor(Color color)
 		memcpy(mappedSubResource.pData, vertices.data(), sizeof(vertices[0]) * vertices.size());
 	}
 
-	DC->Unmap(vertexBuffer->GetResource(), 0);*/
+	DC->Unmap(vertexBuffer->GetResource(), 0);
 }

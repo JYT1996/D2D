@@ -16,7 +16,7 @@ ColorRect::ColorRect(const Vector2& position, const Vector2& scale, const float&
 
 	indices = { 0, 1, 2, 2, 1, 3 };
 	
-	vertexBuffer->Create(vertices, D3D11_USAGE_IMMUTABLE);
+	vertexBuffer->Create(vertices, D3D11_USAGE_DYNAMIC);
 	indexBuffer->Create(indices, D3D11_USAGE_IMMUTABLE);
 	inputLayout->Create(VertexColor::descs, VertexColor::count, vertexShader->GetBlob());
 }
@@ -34,24 +34,19 @@ void ColorRect::Render()
 
 void ColorRect::SetColor(Color color)
 {
-	/*this->color = color;
+	this->color = color;
 
 	D3D11_MAPPED_SUBRESOURCE mappedSubResource;
 	ZeroMemory(&mappedSubResource, sizeof(mappedSubResource));
-	
-	DC->Map
-	(
-		vertexBuffer->GetResource(),
-		0,
-		D3D11_MAP_WRITE_DISCARD,
-		0,
-		&mappedSubResource
-	);
 
-	for (auto& vertex : vertices)
+	HRESULT hr = DC->Map(vertexBuffer->GetResource(), 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedSubResource);
+	CHECK(hr);
+	{
+		for (auto& vertex : vertices)
 			vertex.color = color;
 
-	memcpy(mappedSubResource.pData, vertices.data(), sizeof(VertexColor) * vertices.size());
+		memcpy(mappedSubResource.pData, vertices.data(), sizeof(vertices[0]) * vertices.size());
+	}
 
-	DC->Unmap(vertexBuffer->GetResource(), 0);*/
+	DC->Unmap(vertexBuffer->GetResource(), 0);
 }

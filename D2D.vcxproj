@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Component\ColorComponent.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Objects\Circle.cpp" />
     <ClCompile Include="Objects\ColorRect.cpp" />
@@ -47,6 +48,7 @@
     <ClCompile Include="Systems\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Component\ColorComponent.h" />
     <ClInclude Include="Component\Component.h" />
     <ClInclude Include="Objects\Circle.h" />
     <ClInclude Include="Objects\ColorRect.h" />
