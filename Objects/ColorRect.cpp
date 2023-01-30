@@ -39,13 +39,19 @@ void ColorRect::SetColor(Color color)
 	D3D11_MAPPED_SUBRESOURCE mappedSubResource;
 	ZeroMemory(&mappedSubResource, sizeof(mappedSubResource));
 	
-	DC->Map(vertexBuffer->GetResource(), 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedSubResource);
-	{
-		for (auto& vertex : vertices)
+	DC->Map
+	(
+		vertexBuffer->GetResource(),
+		0,
+		D3D11_MAP_WRITE_DISCARD,
+		0,
+		&mappedSubResource
+	);
+
+	for (auto& vertex : vertices)
 			vertex.color = color;
 
-		memcpy(mappedSubResource.pData, vertices.data(), sizeof(vertices[0]) * vertices.size());
-	}
+	memcpy(mappedSubResource.pData, vertices.data(), sizeof(VertexColor) * vertices.size());
 
 	DC->Unmap(vertexBuffer->GetResource(), 0);*/
 }

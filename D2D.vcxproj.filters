@@ -49,6 +49,9 @@
     <ClCompile Include="Component\WorldComponent.cpp">
       <Filter>Component</Filter>
     </ClCompile>
+    <ClCompile Include="Objects\Line.cpp" />
+    <ClCompile Include="Objects\Circle.cpp" />
+    <ClCompile Include="Objects\FilledCircle.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Program.h" />
@@ -108,6 +111,9 @@
     <ClInclude Include="Component\WorldComponent.h">
       <Filter>Component</Filter>
     </ClInclude>
+    <ClInclude Include="Objects\Line.h" />
+    <ClInclude Include="Objects\Circle.h" />
+    <ClInclude Include="Objects\FilledCircle.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Systems">

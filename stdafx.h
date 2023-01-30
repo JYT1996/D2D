@@ -133,3 +133,6 @@ extern float gWinHeight;
 #include "Objects/Object.h"
 #include "Objects/Drawable.h"
 #include "Objects/ColorRect.h"
+#include "Objects/Line.h"
+#include "Objects/Circle.h"
+#include "Objects/FilledCircle.h"

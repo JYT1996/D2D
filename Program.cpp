@@ -8,6 +8,9 @@ Program::Program()
 	SetGlobalBuffer();
 
 	rect = make_unique<ColorRect>(Vector2(WIN_CENTER_X, WIN_CENTER_Y), Vector2(100,100), 30.0f);
+	line = make_unique<Line>(Vector2(WIN_CENTER_X, WIN_CENTER_Y), Vector2(100, 100), 30.0f);
+	circle = make_unique<Circle>(Vector2(WIN_CENTER_X, WIN_CENTER_Y), Vector2(100, 100), 0.0f);
+	filledCircle = make_unique<FilledCircle>(Vector2(WIN_CENTER_X, WIN_CENTER_Y), Vector2(100, 100), 0.0f);
 }
 
 void Program::SetGlobalBuffer()
@@ -22,23 +25,23 @@ void Program::SetGlobalBuffer()
 void Program::Update()
 {
 	if (INPUT->Press('W'))		
-		rect->GetWorld()->Move(Vector2(0, 300));
+		filledCircle->GetWorld()->Move(Vector2(0, 300));
 	if (INPUT->Press('S'))
-		rect->GetWorld()->Move(Vector2(0, -300));
+		filledCircle->GetWorld()->Move(Vector2(0, -300));
 	if (INPUT->Press('A'))
-		rect->GetWorld()->Move(Vector2(-300, 0));
+		filledCircle->GetWorld()->Move(Vector2(-300, 0));
 	if (INPUT->Press('D'))
-		rect->GetWorld()->Move(Vector2(300, 0));
+		filledCircle->GetWorld()->Move(Vector2(300, 0));
 	
 	if (INPUT->Press('Q'))
-		rect->GetWorld()->Rotat(-100);
+		filledCircle->GetWorld()->Rotat(-100);
 	if (INPUT->Press('E'))
-		rect->GetWorld()->Rotat(100);
+		filledCircle->GetWorld()->Rotat(100);
 
 	if (INPUT->Press('F'))
-		rect->GetWorld()->Scale(Vector2(100,100));
+		filledCircle->GetWorld()->Scale(Vector2(100,100));
 	if (INPUT->Press('G'))
-		rect->GetWorld()->Scale(Vector2(-100,-100));
+		filledCircle->GetWorld()->Scale(Vector2(-100,-100));
 
 	if (INPUT->Press('Z'))
 	{
@@ -57,15 +60,22 @@ void Program::Update()
 		else if (rect->GetColor() == WHITE)
 			rect->SetColor(BLACK);
 		else if (rect->GetColor() == BLACK)
-			rect->SetColor(RED);
+			rect->SetColor(RED);		
 	}
 
-	rect->Update();
+	
+	//rect->Update();
+	//line->Updata();
+	//circle->Updata();
+	filledCircle->Updata();
 }
 
 void Program::Render()
 {	
-	rect->Render();
+	//rect->Render();
+	//line->Render();
+	//circle->Render();
+	filledCircle->Render();
 	VPBuffer.get()->SetVSBuffer(1);
 	//·»´õ
 }

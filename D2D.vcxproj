@@ -20,8 +20,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Objects\Circle.cpp" />
     <ClCompile Include="Objects\ColorRect.cpp" />
     <ClCompile Include="Objects\Drawable.cpp" />
+    <ClCompile Include="Objects\FilledCircle.cpp" />
+    <ClCompile Include="Objects\Line.cpp" />
     <ClCompile Include="Objects\Object.cpp" />
     <ClCompile Include="Component\WorldComponent.cpp" />
     <ClCompile Include="Program.cpp" />
@@ -45,8 +48,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Component\Component.h" />
+    <ClInclude Include="Objects\Circle.h" />
     <ClInclude Include="Objects\ColorRect.h" />
     <ClInclude Include="Objects\Drawable.h" />
+    <ClInclude Include="Objects\FilledCircle.h" />
+    <ClInclude Include="Objects\Line.h" />
     <ClInclude Include="Objects\Object.h" />
     <ClInclude Include="Component\WorldComponent.h" />
     <ClInclude Include="Renders\Resources\ConstantBuffer.h" />
