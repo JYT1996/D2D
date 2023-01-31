@@ -44,3 +44,24 @@ public:
 private:
 	WorldSViewProjectionStruct data;
 };
+
+//색이라는 값을 넘겨주기 위해 ConstantBuffer의 파생클래스 ColorBuffer로 값을 넘겨줄 것이다.
+class ColorBuffer : public ConstantBuffer
+{	
+	struct ColorStruct
+	{
+		//RGBA folat 값이 4개.
+		Color color;
+	};
+
+public:
+	ColorBuffer() : ConstantBuffer(&data, sizeof(ColorStruct)) {}
+	
+	void SetColor(const Color& color)
+	{
+		data.color = color;
+	}
+
+private:
+	ColorStruct data;
+};

@@ -9,7 +9,7 @@ Input::Input()
 }
 Input::~Input() {}
 
-void Input::Updata()
+void Input::Update()
 {
 	memcpy(keyOldState, keyState, sizeof(keyOldState));
 

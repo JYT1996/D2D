@@ -7,10 +7,10 @@ Program::Program()
 	VPBuffer = make_unique<ViewProjectiondBuffer>();	
 	SetGlobalBuffer();
 
-	rect = make_unique<ColorRect>(Vector2(WIN_CENTER_X, WIN_CENTER_Y), Vector2(100,100), 30.0f);
-	line = make_unique<Line>(Vector2(WIN_CENTER_X, WIN_CENTER_Y), Vector2(100, 100), 30.0f);
-	circle = make_unique<Circle>(Vector2(WIN_CENTER_X, WIN_CENTER_Y), Vector2(100, 100), 0.0f);
-	filledCircle = make_unique<FilledCircle>(Vector2(WIN_CENTER_X, WIN_CENTER_Y), Vector2(100, 100), 0.0f);
+	rect = make_unique<ColorRect>(WIN_CENTER, Vector2(100.0f, 100.0f), 0.0f, RED);
+	line = make_unique<Line>(WIN_CENTER, 300.0f, 0.0f, MAGENTA);
+	circle = make_unique<Circle>(WIN_CENTER, Vector2(100, 100), 0.0f, RED);
+	filledCircle = make_unique<FilledCircle>(WIN_CENTER, Vector2(100, 100), 0.0f, RED);
 }
 
 void Program::SetGlobalBuffer()
@@ -25,56 +25,57 @@ void Program::SetGlobalBuffer()
 void Program::Update()
 {
 	if (INPUT->Press('W'))		
-		filledCircle->GetWorld()->Move(Vector2(0, 300));
+		line->GetWorld()->Move(Vector2(0, 300));
 	if (INPUT->Press('S'))
-		filledCircle->GetWorld()->Move(Vector2(0, -300));
+		line->GetWorld()->Move(Vector2(0, -300));
 	if (INPUT->Press('A'))
-		filledCircle->GetWorld()->Move(Vector2(-300, 0));
+		line->GetWorld()->Move(Vector2(-300, 0));
 	if (INPUT->Press('D'))
-		filledCircle->GetWorld()->Move(Vector2(300, 0));
+		line->GetWorld()->Move(Vector2(300, 0));
 	
 	if (INPUT->Press('Q'))
-		filledCircle->GetWorld()->Rotat(-100);
+		line->GetWorld()->Rotat(-100);
 	if (INPUT->Press('E'))
-		filledCircle->GetWorld()->Rotat(100);
+		line->GetWorld()->Rotat(100);
 
 	if (INPUT->Press('F'))
-		filledCircle->GetWorld()->Scale(Vector2(100,100));
+		line->GetWorld()->Scale(Vector2(100,100));
 	if (INPUT->Press('G'))
-		filledCircle->GetWorld()->Scale(Vector2(-100,-100));
+		line->GetWorld()->Scale(Vector2(-100,-100));
 
 	if (INPUT->Press('Z'))
 	{
-		if(filledCircle->GetColor() == RED)
-			filledCircle->SetColor(GREEN);
-		else if(filledCircle->GetColor() == GREEN)
-			filledCircle->SetColor(BLUE);
-		else if (filledCircle->GetColor() == BLUE)
-			filledCircle->SetColor(YELLOW);
-		else if (filledCircle->GetColor() == YELLOW)
-			filledCircle->SetColor(MAGENTA);
-		else if (filledCircle->GetColor() == MAGENTA)
-			filledCircle->SetColor(CYAN);
-		else if (filledCircle->GetColor() == CYAN)
-			filledCircle->SetColor(WHITE);
-		else if (filledCircle->GetColor() == WHITE)
-			filledCircle->SetColor(BLACK);
-		else if (filledCircle->GetColor() == BLACK)
-			filledCircle->SetColor(RED);
+		if(line->GetColorComp()->GetColor() == RED)
+			line->GetColorComp()->SetColor(GREEN);
+		else if(line->GetColorComp()->GetColor() == GREEN)
+			line->GetColorComp()->SetColor(BLUE);
+		else if (line->GetColorComp()->GetColor() == BLUE)
+			line->GetColorComp()->SetColor(YELLOW);
+		else if (line->GetColorComp()->GetColor() == YELLOW)
+			line->GetColorComp()->SetColor(MAGENTA);
+		else if (line->GetColorComp()->GetColor() == MAGENTA)
+			line->GetColorComp()->SetColor(CYAN);
+		else if (line->GetColorComp()->GetColor() == CYAN)
+			line->GetColorComp()->SetColor(WHITE);
+		else if (line->GetColorComp()->GetColor() == WHITE)
+			line->GetColorComp()->SetColor(BLACK);
+		else if (line->GetColorComp()->GetColor() == BLACK)
+			line->GetColorComp()->SetColor(RED);
 	}
 	
-	//rect->Update();
-	//line->Updata();
+	rect->Update();
+	line->Update();
 	//circle->Updata();
-	filledCircle->Updata();
+	//filledCircle->Updata();
 }
 
 void Program::Render()
 {	
-	//rect->Render();
-	//line->Render();
-	//circle->Render();
-	filledCircle->Render();
 	VPBuffer.get()->SetVSBuffer(1);
+
+	rect->Render();
+	line->Render();
+	//circle->Render();
+	//filledCircle->Render();
 	//·»´õ
 }

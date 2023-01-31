@@ -20,7 +20,7 @@ public:
 	void Rotat(const float& rotation) { this->rotation += XMConvertToRadians(rotation) * TIME->GetDeltaTime(); }
 
 public:
-	void Updata() override;
+	void Update() override;
 	void Render() override;
 
 protected:

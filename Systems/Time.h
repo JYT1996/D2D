@@ -14,7 +14,7 @@ class Time
 //프레임을 많이 나왔다 해서 움직인 거리가 긴 것을 방지하고 프레임이 적게 나왔다 해서 움직인 거리가 짧지 않게 된다.
 
 public:
-	void Updata();
+	void Update();
 
 	float GetDeltaTime() { return (float)deltaTime; }
 	UINT GetFPS() { return fps; }

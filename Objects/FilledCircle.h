@@ -3,19 +3,16 @@
 class FilledCircle : public Drawable
 {
 public:
-	FilledCircle(const Vector2& position, const Vector2& scale, const float& rotation, Color color = RED);
+	FilledCircle(const Vector2& position, const Vector2& scale, const float& rotation, const Color& color = RED);
+
+public:
+	shared_ptr<ColorComponent> GetColorComp() { return GetComponent<ColorComponent>("Color"); }
 
 public:
 	void Update();
 	void Render();
 
-public:
-	Color GetColor() const { return color; }
-	void SetColor(Color color);
-
 private:
-	vector<VertexColor> vertices;
+	vector<Vertex> vertices;
 	vector<UINT> indices;
-
-	Color color;
 };

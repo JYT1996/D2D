@@ -3,19 +3,15 @@
 class Line : public Drawable
 {
 public:
-	Line(const Vector2& position, const Vector2& scale, const float& rotation, Color color = RED);
+	Line(const Vector2& position, const float& length, const float& rotation, const Color& color = RED);
 
 public:
-	void Update();
-	void Render();
+	shared_ptr<ColorComponent> GetColorComp() { return GetComponent<ColorComponent>("Color"); }
 
 public:
-	Color GetColor() const { return color; }
-	void SetColor(Color color);
+	void Update() override;
+	void Render() override;
 
 private:
-	vector<VertexColor> vertices;
-	vector<UINT> indices;
-
-	Color color;
+	vector<Vertex> vertices;
 };

@@ -3,19 +3,16 @@
 class Circle : public Drawable
 {
 public:
-	Circle(const Vector2& position, const Vector2& scale, const float& rotation, Color color = RED);
+	Circle(const Vector2& position, const Vector2& scale, const float& rotation, const size_t& segaments, Color color = RED);
 
 public:
-	void Update();
-	void Render();
+	shared_ptr<ColorComponent> GetColorComp() { return GetComponent<ColorComponent>("Color"); }
 
 public:
-	Color GetColor() const { return color; }
-	void SetColor(Color color);
+	void Update() override;
+	void Render() override;
 
 private:
-	vector<VertexColor> vertices;
-	vector<UINT> indices;
-
-	Color color;
+	vector<Vertex> vertices;
+	size_t segments;
 };

@@ -85,8 +85,8 @@ WPARAM Window::Run()
 		}
 		else
 		{
-			INPUT->Updata();
-			TIME->Updata();
+			INPUT->Update();
+			TIME->Update();
 			program->Update();
 
 			GRAPHICS->Begin();

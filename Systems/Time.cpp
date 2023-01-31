@@ -11,7 +11,7 @@ Time::Time()
 
 Time::~Time() {}
 
-void Time::Updata()
+void Time::Update()
 {
 	//현재 시간을 대입한다
 	currentTime = chrono::steady_clock::now();

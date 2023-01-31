@@ -7,7 +7,7 @@ WorldComponent::WorldComponent(const Vector2& position, const Vector2& scale, co
 	worldBuffer = make_unique<WorldBuffer>();
 }
 
-void WorldComponent::Updata()
+void WorldComponent::Update()
 {
 	S = XMMatrixScalingFromVector(scale);
 	R = XMMatrixRotationZ(-rotation);

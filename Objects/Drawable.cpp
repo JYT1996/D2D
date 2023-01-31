@@ -25,9 +25,9 @@ Drawable::Drawable(const string& name, const Vector2& position, const Vector2& s
 //	return *this;
 //}
 
-void Drawable::Updata()
+void Drawable::Update()
 {
-	SUPER::Updata();
+	SUPER::Update();
 
 	vertexBuffer->SetIA();
 	indexBuffer->SetIA();

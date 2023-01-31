@@ -19,7 +19,7 @@ public:
 		return dynamic_pointer_cast<T>(components.at(componentName));		
 	}
 
-	virtual void Updata();
+	virtual void Update();
 	virtual void Render();	
 
 protected:

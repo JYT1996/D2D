@@ -10,10 +10,10 @@ void Object::AddComponent(const shared_ptr<Component>& component)
 	components.emplace(component->GetName(), component);
 }
 
-void Object::Updata()
+void Object::Update()
 {
 	for (const auto& comp : components)
-		comp.second->Updata();
+		comp.second->Update();
 }
 
 void Object::Render()

@@ -16,7 +16,7 @@ public:
 	void SetOwner(Object* obj) { owner = obj; }
 
 public:
-	virtual void Updata() = 0;
+	virtual void Update() = 0;
 	virtual void Render() = 0;
 
 protected:

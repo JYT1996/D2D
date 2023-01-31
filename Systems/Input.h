@@ -6,7 +6,7 @@ class Input
 	DECLARE_SINGLETON(Input);
 
 public:
-	void Updata();
+	void Update();
 
 	void InputProc(UINT message, LPARAM lParam);
 

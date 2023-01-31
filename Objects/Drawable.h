@@ -11,7 +11,7 @@ public:
 	shared_ptr<WorldComponent> GetWorld() const { return GetComponent<WorldComponent>("World"); }
 
 public:
-	void Updata() override;
+	void Update() override;
 	void Render() override;
 
 	void DrawCall(const D3D11_PRIMITIVE_TOPOLOGY& topology, const bool& indexed = true);
