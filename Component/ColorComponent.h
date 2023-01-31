@@ -3,6 +3,7 @@
 class ColorComponent : public Component
 {
 public:
+	ColorComponent(const string& name = "Color");
 	
 public:
 

@@ -49,9 +49,18 @@
     <ClCompile Include="Component\WorldComponent.cpp">
       <Filter>Component</Filter>
     </ClCompile>
-    <ClCompile Include="Objects\Line.cpp" />
-    <ClCompile Include="Objects\Circle.cpp" />
-    <ClCompile Include="Objects\FilledCircle.cpp" />
+    <ClCompile Include="Component\ColorComponent.cpp">
+      <Filter>Component</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\Circle.cpp">
+      <Filter>Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\FilledCircle.cpp">
+      <Filter>Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\Line.cpp">
+      <Filter>Objects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Program.h" />
@@ -111,9 +120,18 @@
     <ClInclude Include="Component\WorldComponent.h">
       <Filter>Component</Filter>
     </ClInclude>
-    <ClInclude Include="Objects\Line.h" />
-    <ClInclude Include="Objects\Circle.h" />
-    <ClInclude Include="Objects\FilledCircle.h" />
+    <ClInclude Include="Component\ColorComponent.h">
+      <Filter>Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Circle.h">
+      <Filter>Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\FilledCircle.h">
+      <Filter>Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Line.h">
+      <Filter>Objects</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Systems">
