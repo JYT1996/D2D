@@ -9,16 +9,16 @@ public:
 	void SetGlobalBuffer();
 
 public:
+	void Init();
+
 	void Update();
 	void Render();	
 
-public:
-	unique_ptr<ColorRect> rect;
-	unique_ptr<Line> line;
-	unique_ptr<Circle> circle;
-	unique_ptr<FilledCircle> filledCircle;
-
 private:
 	unique_ptr<ViewProjectiondBuffer> VPBuffer;
-	Matrix view, projection;	
+
+	Matrix view, projection;
+
+	vector<shared_ptr<Scene>> sceneList;
+	shared_ptr<Scene> currentScene;
 };

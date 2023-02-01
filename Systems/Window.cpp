@@ -70,6 +70,7 @@ WPARAM Window::Run()
 	MSG msg = { 0 };
 
 	program = make_unique<Program>();
+	program->Init();
 
 	while (true)
 	{

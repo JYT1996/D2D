@@ -1,24 +1,29 @@
 #include "stdafx.h"
 #include "FilledCircle.h"
 
-FilledCircle::FilledCircle(const Vector2& position, const Vector2& scale, const float& rotation, const Color& color)
-	: Drawable("FilledCircle", position, scale, rotation, L"_Shaders/Vertex.hlsl")
+FilledCircle::FilledCircle(const Vector2& position, const Vector2& scale, const float& rotation, const size_t& segments, const Color& color)
+	: Drawable("FilledCircle", position, scale, rotation, L"_Shaders/Vertex.hlsl"), segments(segments)
 {
-	vertices.assign(20, Vertex());
-	vertices[vertices.size() - 1].position = Vector2(0.0f, 0.0f);
+	vertices.assign(segments + 1, Vertex());
+	vertices[0].position = Vector2();
 
-	for (int i = 0; i < vertices.size() - 1; i++)
+	for (size_t i = 1; i <= segments; i++)
 	{
-		vertices[i].position = Vector2(0.5f * cosf(XMConvertToRadians(360.0f - (360.0f / (vertices.size() - 1)) * i)), 0.5f * sinf(XMConvertToRadians(360.0f - (360.0f / (vertices.size() - 1)) * i)));
+		float theta = 2 * XM_PI * i / segments;
+
+		vertices[i].position = Vector2(cosf(theta), -sinf(theta)) / 2.0f;
 	}
 
-	for (int i = 0, j = 1; i < vertices.size() - 1; i++, j++)
+	indices.assign(segments * 3, sizeof(UINT));
+
+	for (size_t i = 0; i < segments; i++)
 	{
-		if (i == vertices.size() - 2)
-			j = 0;
-		indices.emplace_back(i);
-		indices.emplace_back(j);
-		indices.emplace_back(vertices.size() - 1);
+		indices[i * 3] = 0;
+		indices[i * 3 + 1] = (UINT)i + 1;
+		if(i == segments - 1)
+			indices[i * 3 + 2] = 1;
+		else
+			indices[i * 3 + 2] = (UINT)i + 2;
 	}
 
 	vertexBuffer->Create(vertices, D3D11_USAGE_IMMUTABLE);

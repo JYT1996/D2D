@@ -137,3 +137,6 @@ extern float gWinHeight;
 #include "Objects/Line.h"
 #include "Objects/Circle.h"
 #include "Objects/FilledCircle.h"
+
+//Scene
+#include "Scenes/Scene.h"

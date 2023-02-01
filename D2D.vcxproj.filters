@@ -61,6 +61,9 @@
     <ClCompile Include="Objects\Line.cpp">
       <Filter>Objects</Filter>
     </ClCompile>
+    <ClCompile Include="Scenes\Scene1_Geometry.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Program.h" />
@@ -132,6 +135,15 @@
     <ClInclude Include="Objects\Line.h">
       <Filter>Objects</Filter>
     </ClInclude>
+    <ClInclude Include="Scenes\Scene.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Scenes\Scene1_Geometry.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Scenes\SceneList.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Systems">
@@ -154,6 +166,9 @@
     </Filter>
     <Filter Include="Component">
       <UniqueIdentifier>{bfcf20a1-5aa9-4854-b4b6-df24ef72ceb4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scenes">
+      <UniqueIdentifier>{79fe333a-b928-4705-b624-46d9c8bff8bf}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
