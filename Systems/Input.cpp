@@ -42,9 +42,9 @@ void Input::Update()
 
 			if (oldState == 0 && state == 1)
 				keyMap[i] = KEY_INPUT_STATUS_DOWN;
-			if (oldState == 1 && state == 0)
+			else if (oldState == 1 && state == 0)
 				keyMap[i] = KEY_INPUT_STATUS_UP;
-			if (oldState == 1 && state == 1)
+			else if (oldState == 1 && state == 1)
 				keyMap[i] = KEY_INPUT_STATUS_PRESS;
 			else
 				keyMap[i] = KEY_INPUT_STATUS_NONE;

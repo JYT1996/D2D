@@ -38,7 +38,7 @@ void Scene1::Update()
 	if (INPUT->Press('G'))
 		circle->GetWorld()->Scale(Vector2(-100, -100));
 
-	if (INPUT->Press('Z'))
+	if (INPUT->Down('Z'))
 	{
 		if (circle->GetColorComp()->GetColor() == RED)
 			circle->GetColorComp()->SetColor(GREEN);
