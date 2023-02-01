@@ -28,7 +28,10 @@ Drawable::Drawable(const string& name, const Vector2& position, const Vector2& s
 void Drawable::Update()
 {
 	SUPER::Update();
+}
 
+void Drawable::Render()
+{
 	vertexBuffer->SetIA();
 	indexBuffer->SetIA();
 	inputLayout->SetIA();
@@ -36,10 +39,7 @@ void Drawable::Update()
 	vertexShader->SetShader();
 
 	pixelShader->SetShader();
-}
 
-void Drawable::Render()
-{
 	SUPER::Render();
 }
 
