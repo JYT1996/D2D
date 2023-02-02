@@ -35,6 +35,6 @@ void Time::Update()
 		frameCount = 0;			//넣어주고 다시 fps를 계산하기 위해 0을 넣어준다.
 		fpsTimeElapsed = 0.0;	//다음 1초를 계산하기 위해 0을 넣어준다.
 		
-		CheckTime();			//콘솔창으로 보기 편하기 때문에 콘솔창에 출력한다.
+		//CheckTime();			//콘솔창으로 보기 편하기 때문에 콘솔창에 출력한다.
 	}
 }

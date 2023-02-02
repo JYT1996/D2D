@@ -37,6 +37,7 @@
     <ClCompile Include="Renders\Shaders\PixelShader.cpp" />
     <ClCompile Include="Renders\Shaders\VertexShader.cpp" />
     <ClCompile Include="Scenes\Scene1_Geometry.cpp" />
+    <ClCompile Include="Scenes\Scene2_Clock.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
@@ -70,6 +71,7 @@
     <ClInclude Include="Renders\Shaders\VertexShader.h" />
     <ClInclude Include="Scenes\Scene.h" />
     <ClInclude Include="Scenes\Scene1_Geometry.h" />
+    <ClInclude Include="Scenes\Scene2_Clock.h" />
     <ClInclude Include="Scenes\SceneList.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Systems\Graphics.h" />

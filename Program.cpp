@@ -22,8 +22,9 @@ void Program::SetGlobalBuffer()
 void Program::Init()
 {
 	sceneList.push_back(make_shared<Scene1>());
+	sceneList.push_back(make_shared<Scene2>());
 
-	currentScene = sceneList[0];
+	currentScene = sceneList[1];
 	//생성자에서 따로 init을 빼서 활용하면,
 	//초기화를 원할 때 사용할 수 있다.
 	currentScene->Init();
@@ -36,6 +37,13 @@ void Program::Update()
 		currentScene->Destroy();
 		
 		currentScene = sceneList[0];
+		currentScene->Init();
+	}
+	else if (INPUT->Down(VK_F2))
+	{
+		currentScene->Destroy();
+
+		currentScene = sceneList[1];
 		currentScene->Init();
 	}
 
