@@ -3,28 +3,24 @@
 
 void Scene2::Init()
 {
-	hourLine = make_unique<Line>(WIN_CENTER, 150, 270, RED);
-	minLine = make_unique<Line>(WIN_CENTER, 220, 270, BLUE);
-	secLine = make_unique<Line>(WIN_CENTER, 280, 270, GREEN);
-	clockCircle = make_unique<Circle>(WIN_CENTER, Vector2(650, 650), 0, 100, WHITE);
-
+	clockCircle = make_unique<Circle>(WIN_CENTER, Vector2(gWinHeight / 1.15f, gWinHeight / 1.15f), 0.0f, 100.0f, WHITE);
+	hourLine = make_unique<Line>(WIN_CENTER, gWinHeight / 4.0f, 0.0f, RED);
+	minLine = make_unique<Line>(WIN_CENTER, gWinHeight / 3.0f, 0.0f, GREEN);
+	secLine = make_unique<Line>(WIN_CENTER, gWinHeight / 2.5f, 0.0f, BLUE);
 }
 
 void Scene2::Destroy()
 {
-	clockCircle.reset();
 	secLine.reset();
-	minLine.reset();
+	minLine.reset();	
 	hourLine.reset();
+
+	clockCircle.reset();
 }
 
 void Scene2::Update()
 {
 	GetLocalTime(&time);
-
-	hourLine->GetWorld()->Rotat( 0.1 / 12);
-	minLine->GetWorld()->Rotat( 0.1 );
-	secLine->GetWorld()->Rotat( 6 );
 
 	cout << time.wYear << "년 ";
 	cout << time.wMonth << "월 ";
@@ -59,23 +55,22 @@ void Scene2::Update()
 	cout << time.wSecond << "초 ";
 	cout << time.wMilliseconds << "밀리초" << '\n';
 
-	if (INPUT->Down('Z'))
-	{
-		hourLine->GetWorld()->SetRotation((time.wHour % 12) * 30 + time.wMinute * 0.5 + time.wSecond * 0.5 / 60 + 270);
-		minLine->GetWorld()->SetRotation(time.wMinute * 6 + time.wSecond * 0.1 + 270);
-		secLine->GetWorld()->SetRotation(time.wSecond * 6 + 270);
-	}
+	hourLine->GetWorld()->SetRotation(time.wHour * 30.0f + time.wMinute * 30.0f / 60.0f + time.wSecond * 30.0f / 60.0f / 60.0f + time.wMilliseconds * 30.0f / 60.0f / 60.0f / 1000.f - 90);	
+	minLine->GetWorld()->SetRotation(time.wMinute * 6.0f + time.wSecond * 6.0f / 60.0f + time.wMilliseconds * 6.0f / 60.0f / 1000.0f + - 90);
+	secLine->GetWorld()->SetRotation(time.wSecond * 6.0f + time.wMilliseconds * 6.0f / 1000.0f + -90);
+
+	clockCircle->Update();
 
 	hourLine->Update();
 	minLine->Update();
 	secLine->Update();
-	clockCircle->Update();
 }
 
 void Scene2::Render()
 {
+	clockCircle->Render();
+
 	hourLine->Render();
 	minLine->Render();
 	secLine->Render();
-	clockCircle->Render();
 }
