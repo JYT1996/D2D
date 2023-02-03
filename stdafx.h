@@ -125,6 +125,9 @@ extern float gWinHeight;
 #include "Renders/Resources/ConstantBuffer.h"
 #include "Renders//Resources/GlobalBuffer.h"
 
+//Utilities
+#include "Utilities/Collision.h"
+
 //Components
 #include "Component/Component.h"
 #include "Component/WorldComponent.h"

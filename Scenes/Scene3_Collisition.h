@@ -1,6 +1,6 @@
 #pragma once
 
-class Scene1 : public Scene
+class Scene3 : public Scene
 {
 public:
 	void Init() override;
@@ -10,8 +10,8 @@ public:
 	void Render() override;
 
 private:
-	unique_ptr<ColorRect> rect;
-	unique_ptr<Line> rect2;
+	unique_ptr<ColorRect> rect1;
+	unique_ptr<ColorRect> rect2;
 	unique_ptr<Circle> circle;
 	unique_ptr<FilledCircle> filledCircle;
 };

@@ -4,7 +4,7 @@
 void Scene1::Init()
 {
 	rect = make_unique<ColorRect>(WIN_CENTER, Vector2(100.0f, 100.0f), 0.0f);
-	line = make_unique<Line>(WIN_CENTER, 300.0f, 0.0f, MAGENTA);
+	rect2 = make_unique<Line>(WIN_CENTER, 300.0f, 0.0f, MAGENTA);
 	circle = make_unique<Circle>(WIN_CENTER, Vector2(100, 100), 0.0f, 100, YELLOW);
 	filledCircle = make_unique<FilledCircle>(WIN_CENTER - Vector2(0, 100), Vector2(100, 100), 0.0f, 100, CYAN);
 }
@@ -13,7 +13,7 @@ void Scene1::Destroy()
 {
 	filledCircle.reset();
 	circle.reset();
-	line.reset();
+	rect2.reset();
 	rect.reset();
 }
 
@@ -59,7 +59,7 @@ void Scene1::Update()
 	}
 
 	rect->Update();
-	line->Update();
+	rect2->Update();
 	circle->Update();
 	filledCircle->Update();
 }
@@ -67,7 +67,7 @@ void Scene1::Update()
 void Scene1::Render()
 {
 	rect->Render();
-	line->Render();
+	rect2->Render();
 	circle->Render();
 	filledCircle->Render();
 }

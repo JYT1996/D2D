@@ -38,6 +38,7 @@
     <ClCompile Include="Renders\Shaders\VertexShader.cpp" />
     <ClCompile Include="Scenes\Scene1_Geometry.cpp" />
     <ClCompile Include="Scenes\Scene2_Clock.cpp" />
+    <ClCompile Include="Scenes\Scene3_Collisition.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
@@ -48,6 +49,7 @@
     <ClCompile Include="Systems\Input.cpp" />
     <ClCompile Include="Systems\Time.cpp" />
     <ClCompile Include="Systems\Window.cpp" />
+    <ClCompile Include="Utilities\Collision.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Component\ColorComponent.h" />
@@ -72,6 +74,7 @@
     <ClInclude Include="Scenes\Scene.h" />
     <ClInclude Include="Scenes\Scene1_Geometry.h" />
     <ClInclude Include="Scenes\Scene2_Clock.h" />
+    <ClInclude Include="Scenes\Scene3_Collisition.h" />
     <ClInclude Include="Scenes\SceneList.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Systems\Graphics.h" />
@@ -79,6 +82,7 @@
     <ClInclude Include="Systems\Time.h" />
     <ClInclude Include="Systems\Window.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="Utilities\Collision.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

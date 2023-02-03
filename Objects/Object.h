@@ -18,7 +18,10 @@ public:
 
 		return dynamic_pointer_cast<T>(components.at(componentName));		
 	}
+public:
+	shared_ptr<WorldComponent> GetWorld() const { return GetComponent<WorldComponent>("World"); }
 
+public:
 	virtual void Update();
 	virtual void Render();	
 
