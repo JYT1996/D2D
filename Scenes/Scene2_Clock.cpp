@@ -61,8 +61,8 @@ void Scene2::Update()
 
 	if (INPUT->Down('Z'))
 	{
-		hourLine->GetWorld()->SetRotation((time.wHour % 12) * 30 + 270);
-		minLine->GetWorld()->SetRotation(time.wMinute * 6 + 270);
+		hourLine->GetWorld()->SetRotation((time.wHour % 12) * 30 + time.wMinute * 0.5 + time.wSecond * 0.5 / 60 + 270);
+		minLine->GetWorld()->SetRotation(time.wMinute * 6 + time.wSecond * 0.1 + 270);
 		secLine->GetWorld()->SetRotation(time.wSecond * 6 + 270);
 	}
 
