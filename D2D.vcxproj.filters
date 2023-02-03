@@ -64,7 +64,9 @@
     <ClCompile Include="Scenes\Scene1_Geometry.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="Scenes\Scene2_Clock.cpp" />
+    <ClCompile Include="Scenes\Scene2_Clock.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Program.h" />
@@ -145,7 +147,9 @@
     <ClInclude Include="Scenes\SceneList.h">
       <Filter>Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="Scenes\Scene2_Clock.h" />
+    <ClInclude Include="Scenes\Scene2_Clock.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Systems">
