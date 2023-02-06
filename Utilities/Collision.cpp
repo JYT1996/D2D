@@ -5,9 +5,9 @@ namespace Collision
 {
 	RECT::RECT(Vector2 position, Vector2 scale)
 	{
-		//좌상
+		//좌하
 		min = position - scale * 0.5f;
-		//우하단
+		//우상
 		max = position + scale * 0.5f;
 	}
 	//원으로 가정하고 만든다.
@@ -50,10 +50,22 @@ namespace Collision
 	}
 	//내적을 이용해서 값을 구한다.
 	//회전된 도형들의 거리벡터를 구한다.
-	//
 	bool IntersectRectRect(const Object& object1, const Object& object2)
 	{
+		Vector2 rect1Pivot = object1.GetWorld()->GetPosition();
+		Vector2 rect2Pivot = object2.GetWorld()->GetPosition();
+		Vector2 distance = rect2Pivot - rect1Pivot;
 
+		Vector2 rect1Up = object1.GetWorld()->GetUpVector() * object1.GetWorld()->GetScale().y * 0.5;
+		Vector2 rect1Right = object1.GetWorld()->GetRightVector() * object1.GetWorld()->GetScale().x * 0.5;
+
+		Vector2 rect2Up = object2.GetWorld()->GetUpVector() * object2.GetWorld()->GetScale().y * 0.5;
+		Vector2 rect2Right = object2.GetWorld()->GetRightVector() * object2.GetWorld()->GetScale().x * 0.5;
+		if (distance.Length() <  &&
+			distance.Length() < )
+		{
+			return true;
+		}
 		return false;
 	}
 

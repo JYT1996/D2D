@@ -10,6 +10,8 @@ public:
 	Vector2 GetScale() const { return scale; }
 	float GetRotation() const { return rotation; }
 	float GetRotationDegree() const { return XMConvertToDegrees(rotation); }
+	Vector2 GetUpVector() const { return Vector2((R * T)._21, (R * T)._22); }
+	Vector2 GetRightVector() const { return Vector2((R * T)._11, (R * T)._12); }
 
 	void SetPosition(const Vector2& position) { this->position = position; }
 	void SetScale(const Vector2& scale) { this->scale = scale; }
