@@ -12,6 +12,9 @@ public:
 	float GetRotationDegree() const { return XMConvertToDegrees(rotation); }
 	Vector2 GetUpVector() const { return Vector2((R * T)._21, (R * T)._22); }
 	Vector2 GetRightVector() const { return Vector2((R * T)._11, (R * T)._12); }
+	Matrix GetS() const { return S; }
+	Matrix GetR() const { return R; }
+	Matrix GetT() const { return T; }
 
 	void SetPosition(const Vector2& position) { this->position = position; }
 	void SetScale(const Vector2& scale) { this->scale = scale; }

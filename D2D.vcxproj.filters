@@ -67,6 +67,9 @@
     <ClCompile Include="Scenes\Scene2_Clock.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
+    <ClCompile Include="Scenes\Scene3_Collisition.cpp" />
+    <ClCompile Include="Utilities\Collision.cpp" />
+    <ClCompile Include="Component\ColliderComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Program.h" />
@@ -150,6 +153,9 @@
     <ClInclude Include="Scenes\Scene2_Clock.h">
       <Filter>Scenes</Filter>
     </ClInclude>
+    <ClInclude Include="Scenes\Scene3_Collisition.h" />
+    <ClInclude Include="Utilities\Collision.h" />
+    <ClInclude Include="Component\ColliderComponent.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Systems">

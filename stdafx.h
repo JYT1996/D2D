@@ -21,6 +21,7 @@
 #include <iostream>
 #include <vector>
 #include <map>
+#include <array>
 using namespace std;
 
 //DirectX D3D11
@@ -114,6 +115,10 @@ extern float gWinHeight;
 #define WHITE Color(1, 1, 1, 1)
 #define BLACK Color(0, 0, 0, 1)
  
+//VectorMacros
+#define RIGHT Vector2(1.0f, 0.0f)
+#define UP Vector2(0.0f, 1.0f)
+
 //Headers
 #include "Renders/Resources/VertexType.h"
 #include "Renders/IA/VertexBuffer.h"

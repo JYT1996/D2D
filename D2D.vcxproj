@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Component\ColliderComponent.cpp" />
     <ClCompile Include="Component\ColorComponent.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Objects\Circle.cpp" />
@@ -52,6 +53,7 @@
     <ClCompile Include="Utilities\Collision.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Component\ColliderComponent.h" />
     <ClInclude Include="Component\ColorComponent.h" />
     <ClInclude Include="Component\Component.h" />
     <ClInclude Include="Objects\Circle.h" />
