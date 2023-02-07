@@ -67,9 +67,15 @@
     <ClCompile Include="Scenes\Scene2_Clock.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="Scenes\Scene3_Collisition.cpp" />
-    <ClCompile Include="Utilities\Collision.cpp" />
-    <ClCompile Include="Component\ColliderComponent.cpp" />
+    <ClCompile Include="Scenes\Scene3_Collisition.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Component\ColliderComponent.cpp">
+      <Filter>Component</Filter>
+    </ClCompile>
+    <ClCompile Include="Utilities\Collision.cpp">
+      <Filter>Utillity</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Program.h" />
@@ -153,9 +159,15 @@
     <ClInclude Include="Scenes\Scene2_Clock.h">
       <Filter>Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="Scenes\Scene3_Collisition.h" />
-    <ClInclude Include="Utilities\Collision.h" />
-    <ClInclude Include="Component\ColliderComponent.h" />
+    <ClInclude Include="Scenes\Scene3_Collisition.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Component\ColliderComponent.h">
+      <Filter>Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Utilities\Collision.h">
+      <Filter>Utillity</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Systems">
@@ -181,6 +193,9 @@
     </Filter>
     <Filter Include="Scenes">
       <UniqueIdentifier>{79fe333a-b928-4705-b624-46d9c8bff8bf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utillity">
+      <UniqueIdentifier>{fa84f807-d474-4d67-92ad-324b43ccbba7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
