@@ -18,6 +18,7 @@ ColorRect::ColorRect(const Vector2& position, const Vector2& scale, const float&
 	inputLayout->Create(Vertex::descs, Vertex::count, vertexShader->GetBlob());
 	//Color를 담당할 Component를 추가한다. ColorComponent는 생성할 때 색상과 슬릇의 번호를 필요로 한다.
 	AddComponent(make_shared<ColorComponent>(color, 0));
+	AddComponent(make_shared<ColliderComponent>(ColliderType::RECT));
 }
 
 void ColorRect::Update()

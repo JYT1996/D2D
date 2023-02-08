@@ -20,6 +20,7 @@ public:
 	}
 public:
 	shared_ptr<WorldComponent> GetWorld() const { return GetComponent<WorldComponent>("World"); }
+	shared_ptr<ColliderComponent> GetCollider() const { return GetComponent<ColliderComponent>("Collider"); }
 
 public:
 	virtual void Update();

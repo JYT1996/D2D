@@ -58,6 +58,24 @@ void Scene3::Update()
 	if (INPUT->Press(VK_RIGHT))
 		rect1->GetWorld()->Rotat(200.0f);
 
+	if (rect1->GetCollider()->intersect(rect2->GetCollider()))
+		rect2->GetColorComp()->SetColor(MAGENTA);
+	else
+		rect2->GetColorComp()->SetColor(RED);
+
+	if (circle->GetCollider()->intersect(rect1->GetCollider()))
+		circle->GetColorComp()->SetColor(YELLOW);
+	else
+		circle->GetColorComp()->SetColor(GREEN);
+
+	if (rect1->GetCollider()->intersect(filledCircle->GetCollider()))
+		filledCircle->GetColorComp()->SetColor(WHITE);
+	else
+		filledCircle->GetColorComp()->SetColor(CYAN);
+
+	if (INPUT->Press(VK_LBUTTON) && rect1->GetCollider()->intersect(INPUT->GetMousePosition()))
+		rect1->GetWorld()->SetPosition(INPUT->GetMousePosition());
+
 	rect1->Update();
 	rect2->Update();
 	circle->Update();

@@ -31,6 +31,7 @@ FilledCircle::FilledCircle(const Vector2& position, const Vector2& scale, const 
 	inputLayout->Create(Vertex::descs, Vertex::count, vertexShader->GetBlob());
 	
 	AddComponent(make_shared<ColorComponent>(color, 0));
+	AddComponent(make_shared<ColliderComponent>(ColliderType::CIRCLE));
 }
 
 void FilledCircle::Update()

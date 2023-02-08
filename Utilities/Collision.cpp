@@ -144,16 +144,4 @@ namespace Collision
 
 		return false;
 	}
-
-	bool IntersectRectCircle2(const RECT& rect, const CIRCLE& circle)
-	{
-		Vector2 rectPivot = (rect.min + rect.max) * 0.5f;
-		Vector2 rectScale = rect.max - rect.min;
-		RECT cRect(rectPivot, rectScale + Vector2(circle.radius * 2.0f, circle.radius * 2.0f));
-
-		if (IntersectRectCoord(cRect, circle.pivot))
-			return true;
-
-		return false;
-	}
 }

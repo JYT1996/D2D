@@ -98,7 +98,7 @@ bool ColliderComponent::intersect(const shared_ptr<ColliderComponent>& other)
 				Vector2 circlePivot = Vector2::Transform(position, rectInverse);
 
 				Collision::RECT rect(Vector2(0, 0), otherScale);
-				Collision::CIRCLE circle(position, scale);
+				Collision::CIRCLE circle(circlePivot, scale);
 
 				return Collision::IntersectRectCircle(rect, circle);
 			}
