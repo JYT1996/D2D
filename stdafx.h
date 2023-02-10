@@ -138,6 +138,7 @@ extern float gWinHeight;
 #include "Component/WorldComponent.h"
 #include "Component//ColorComponent.h"
 #include "Component/ColliderComponent.h"
+#include "Component/TextureComponent.h"
 
 //Object
 #include "Objects/Object.h"
@@ -146,6 +147,7 @@ extern float gWinHeight;
 #include "Objects/Line.h"
 #include "Objects/Circle.h"
 #include "Objects/FilledCircle.h"
+#include "Objects/TextureRect.h"
 
 //Scene
 #include "Scenes/Scene.h"

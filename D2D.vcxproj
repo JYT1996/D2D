@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="Component\ColliderComponent.cpp" />
     <ClCompile Include="Component\ColorComponent.cpp" />
+    <ClCompile Include="Component\TextureComponent.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Objects\Circle.cpp" />
     <ClCompile Include="Objects\ColorRect.cpp" />
@@ -29,6 +30,7 @@
     <ClCompile Include="Objects\Line.cpp" />
     <ClCompile Include="Objects\Object.cpp" />
     <ClCompile Include="Component\WorldComponent.cpp" />
+    <ClCompile Include="Objects\TextureRect.cpp" />
     <ClCompile Include="Program.cpp" />
     <ClCompile Include="Renders\IA\IndexBuffer.cpp" />
     <ClCompile Include="Renders\IA\InputLayout.cpp" />
@@ -40,6 +42,7 @@
     <ClCompile Include="Scenes\Scene1_Geometry.cpp" />
     <ClCompile Include="Scenes\Scene2_Clock.cpp" />
     <ClCompile Include="Scenes\Scene3_Collisition.cpp" />
+    <ClCompile Include="Scenes\Scene4_Texture.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
@@ -56,6 +59,7 @@
     <ClInclude Include="Component\ColliderComponent.h" />
     <ClInclude Include="Component\ColorComponent.h" />
     <ClInclude Include="Component\Component.h" />
+    <ClInclude Include="Component\TextureComponent.h" />
     <ClInclude Include="Objects\Circle.h" />
     <ClInclude Include="Objects\ColorRect.h" />
     <ClInclude Include="Objects\Drawable.h" />
@@ -63,6 +67,7 @@
     <ClInclude Include="Objects\Line.h" />
     <ClInclude Include="Objects\Object.h" />
     <ClInclude Include="Component\WorldComponent.h" />
+    <ClInclude Include="Objects\TextureRect.h" />
     <ClInclude Include="Renders\Resources\ConstantBuffer.h" />
     <ClInclude Include="Program.h" />
     <ClInclude Include="Renders\IA\IndexBuffer.h" />
@@ -77,6 +82,7 @@
     <ClInclude Include="Scenes\Scene1_Geometry.h" />
     <ClInclude Include="Scenes\Scene2_Clock.h" />
     <ClInclude Include="Scenes\Scene3_Collisition.h" />
+    <ClInclude Include="Scenes\Scene4_Texture.h" />
     <ClInclude Include="Scenes\SceneList.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Systems\Graphics.h" />
