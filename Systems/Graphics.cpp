@@ -3,110 +3,18 @@
 
 Graphics::Graphics()
 {
-	Init();
+	EnumerateAdapters();
+	CreateSwapChain();
 }
 
 Graphics::~Graphics()
-{	
-}
-
-void Graphics::Init()
 {
-	DXGI_SWAP_CHAIN_DESC desc;
-	ZeroMemory(&desc, sizeof(DXGI_SWAP_CHAIN_DESC));
-
-	desc.BufferDesc.Width = 0;
-	desc.BufferDesc.Height = 0;
-	desc.BufferDesc.RefreshRate.Numerator = 60;	
-	desc.BufferDesc.RefreshRate.Denominator = 1;
-	desc.BufferDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
-	desc.BufferDesc.ScanlineOrdering = DXGI_MODE_SCANLINE_ORDER_UNSPECIFIED;
-	desc.BufferDesc.Scaling = DXGI_MODE_SCALING_UNSPECIFIED;
-	
-	desc.SampleDesc.Count = 1;	
-	desc.SampleDesc.Quality = 0;
-	
-	desc.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
-	desc.BufferCount = 1;
-	
-	desc.OutputWindow = gHandle;
-	
-	desc.Windowed = true;
-	
-	desc.SwapEffect = DXGI_SWAP_EFFECT_DISCARD;
-	
-	vector<D3D_FEATURE_LEVEL> featureLevel
-	{
-		D3D_FEATURE_LEVEL_11_1,
-		D3D_FEATURE_LEVEL_11_0,
-		D3D_FEATURE_LEVEL_10_1,
-		D3D_FEATURE_LEVEL_10_0
-	};
-	D3D_FEATURE_LEVEL currentFeature;
-
-	HRESULT hr = D3D11CreateDeviceAndSwapChain
-	(
-		nullptr,
-		D3D_DRIVER_TYPE_HARDWARE,
-		nullptr,
-		0,
-		featureLevel.data(),
-		(UINT)featureLevel.size(),
-		D3D11_SDK_VERSION,
-		&desc,
-		&swapChain,
-		&device,
-		&currentFeature,
-		&deviceContext
-	);
-
-	CHECK(hr);
-	CreateBackBuffer();
-}
-
-void Graphics::CreateBackBuffer()
-{	
-	HRESULT hr = swapChain->ResizeBuffers
-	(
-		0,
-		(UINT)gWinWidth,
-		(UINT)gWinHeight,
-		DXGI_FORMAT_UNKNOWN,
-		0
-	);
-	CHECK(hr);
-
-	ComPtr<ID3D11Texture2D> backBuffer = nullptr;
-
-	hr = swapChain->GetBuffer
-	(
-		0,
-		__uuidof(ID3D11Texture2D),
-		(void**)&backBuffer
-	);
-	CHECK(hr);
-
-	hr = device->CreateRenderTargetView
-	(
-		backBuffer.Get(),
-		nullptr,
-		&rtv
-	);
-	CHECK(hr);
-
-	viewport.TopLeftX = 0.0f;
-	viewport.TopLeftY = 0.0f;
-	viewport.Width = gWinWidth;
-	viewport.Height = gWinHeight;
-	viewport.MinDepth = 0.0f;
-	viewport.MaxDepth = 1.0f;
 }
 
 void Graphics::Begin()
 {
-	deviceContext->RSSetViewports(1, &viewport);
-	deviceContext->OMSetRenderTargets(1, rtv.GetAddressOf(), nullptr);
-	deviceContext->ClearRenderTargetView(rtv.Get(), clearColor);
+	SetViewport();
+	SetBackBufferToRTV();
 }
 
 
@@ -117,19 +25,46 @@ void Graphics::End()
 }
 
 void Graphics::Resize(const float& width, const float& height)
-{
+{	
+	DeleteSuface();
+	{
+		HRESULT hr = swapChain->ResizeBuffers
+		(
+			0,
+			(UINT)width,
+			(UINT)height,
+			DXGI_FORMAT_UNKNOWN,
+			0
+		);
+		CHECK(hr);
+	}
+	CreateRenderTargetView();	
+	//viewport는 struct로 값만 넣어줘도 렌더링 파이프라인에 프레임마다 들어가기 때문에 상관이 없다.
+	SetViewport(width, height);
+	//SetBackBufferToRTV();
+
+	cout << width << " X " << height << '\n';
 }
 
 void Graphics::SetViewport(const float& width, const float& height)
 {
+	viewport.TopLeftX = 0.0f;
+	viewport.TopLeftY = 0.0f;
+	viewport.Width = width;
+	viewport.Height = height;
+	viewport.MinDepth = 0.0f;
+	viewport.MaxDepth = 1.0f;
 }
 
 void Graphics::SetViewport()
 {
+	deviceContext->RSSetViewports(1, &viewport);
 }
 
 void Graphics::SetBackBufferToRTV()
 {
+	deviceContext->OMSetRenderTargets(1, rtv.GetAddressOf(), nullptr);
+	deviceContext->ClearRenderTargetView(rtv.Get(), clearColor);
 }
 //adapter를 열거한다.
 void Graphics::EnumerateAdapters()
@@ -162,7 +97,7 @@ void Graphics::EnumerateAdapters()
 	}
 }
 //Adapter의 연결된 것을 열거한다
-bool Graphics::EnumerateAdapterOuput(const shared_ptr<D3DEnumAdapterInfo> &adapterInfo)
+bool Graphics::EnumerateAdapterOuput(const shared_ptr<D3DEnumAdapterInfo>& adapterInfo)
 {
 	ComPtr<IDXGIOutput> output;
 	//sturct 안에 있는 adapterInfo의 adapter에 연결된 디스플레이를 받아 왔다.
@@ -201,7 +136,7 @@ bool Graphics::EnumerateAdapterOuput(const shared_ptr<D3DEnumAdapterInfo> &adapt
 			//보통 마지막에 최대 주사율이 위치한다.
 			outputInfo->numerator = displayModes[i].RefreshRate.Numerator;
 			outputInfo->denominator = displayModes[i].RefreshRate.Denominator;
-		}		
+		}
 	}
 
 	for (const Vector2& res : resolutionList)
@@ -214,9 +149,10 @@ bool Graphics::EnumerateAdapterOuput(const shared_ptr<D3DEnumAdapterInfo> &adapt
 
 void Graphics::CreateSwapChain()
 {
-	device.Reset();
+	//ComPtr라서 자동으로 해제가 된다.
+	/*device.Reset();
 	deviceContext.Reset();
-	swapChain.Reset();
+	swapChain.Reset();*/
 
 	DXGI_SWAP_CHAIN_DESC desc;
 	ZeroMemory(&desc, sizeof(DXGI_SWAP_CHAIN_DESC));
@@ -232,11 +168,23 @@ void Graphics::CreateSwapChain()
 			selectedAdapterIndex = i;
 			maxVideoMemory = (UINT)adapterInfos[i]->adapterDesc.DedicatedVideoMemory;
 		}
-
 	}
 
-	desc.BufferDesc.RefreshRate.Numerator = 60;
-	desc.BufferDesc.RefreshRate.Denominator = 1;
+	const auto& adapterInfo = adapterInfos[selectedAdapterIndex];
+
+	if (bVsync)
+	{
+		desc.BufferDesc.RefreshRate.Numerator = adapterInfo->outputInfo->numerator;
+		desc.BufferDesc.RefreshRate.Denominator = adapterInfo->outputInfo->denominator;
+	}
+	else
+	{
+		//수직동기화를 해제하면 프레임의 제한을 없애면 된다.
+		//분모가 1 분자 0이면 제한이 없다는 뜻이다.
+		desc.BufferDesc.RefreshRate.Numerator = 0;
+		desc.BufferDesc.RefreshRate.Denominator = 1;
+	}
+
 	desc.BufferDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
 	desc.BufferDesc.ScanlineOrdering = DXGI_MODE_SCANLINE_ORDER_UNSPECIFIED;
 	desc.BufferDesc.Scaling = DXGI_MODE_SCALING_UNSPECIFIED;
@@ -277,14 +225,47 @@ void Graphics::CreateSwapChain()
 		&currentFeature,
 		&deviceContext
 	);
-
 	CHECK(hr);
+
+	numerator = adapterInfo->outputInfo->numerator;
+	denominator = adapterInfo->outputInfo->denominator;
+
+	gpuMemorySize = (UINT)adapterInfo->adapterDesc.DedicatedVideoMemory / 1024 / 1024;
+	gpuDescription = adapterInfo->adapterDesc.Description;
+
+	cout << "DedicatedVideoMemory : " << gpuMemorySize << '\n';
+	wcout << "GPU Description : " << gpuDescription << '\n';
+
+	cout << "Numerator : " << numerator << '\n';
+	cout << "Denominator : " << denominator << '\n';
+	cout << "RefreshRate : " << numerator / denominator << '\n';
+
+	Resize(gWinWidth, gWinHeight);
 }
 
 void Graphics::CreateRenderTargetView()
 {
+	ComPtr<ID3D11Texture2D> backBuffer = nullptr;
+
+
+	HRESULT hr = swapChain->GetBuffer
+	(
+		0,
+		__uuidof(ID3D11Texture2D),
+		(void**)&backBuffer
+	);
+	CHECK(hr);
+
+	hr = device->CreateRenderTargetView
+	(
+		backBuffer.Get(),
+		nullptr,
+		&rtv
+	);
+	CHECK(hr);
 }
 
 void Graphics::DeleteSuface()
 {
+	rtv.Reset();
 }

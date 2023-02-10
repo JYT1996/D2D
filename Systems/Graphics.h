@@ -7,10 +7,7 @@ class Graphics
 {
 	DECLARE_SINGLETON(Graphics);
 
-public:
-	void Init();
-	void CreateBackBuffer();
-	
+public:	
 	ComPtr<ID3D11Device> GetDevice() const { return device; }
 	ComPtr<ID3D11DeviceContext> GetDC() const {return deviceContext; }
 
@@ -41,7 +38,7 @@ private:
 	Color clearColor = { 0.4f, 0.4f, 0.4f, 1.0f };
 
 	UINT numerator = 0;
-	UINT donominator = 1;
+	UINT denominator = 1;
 
 	UINT gpuMemorySize = 0;
 	wstring gpuDescription = L"";
