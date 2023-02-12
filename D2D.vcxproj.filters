@@ -76,9 +76,15 @@
     <ClCompile Include="Utilities\Collision.cpp">
       <Filter>Utillity</Filter>
     </ClCompile>
-    <ClCompile Include="Objects\TextureRect.cpp" />
-    <ClCompile Include="Component\TextureComponent.cpp" />
-    <ClCompile Include="Scenes\Scene4_Texture.cpp" />
+    <ClCompile Include="Scenes\Scene4_Texture.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Component\TextureComponent.cpp">
+      <Filter>Component</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\TextureRect.cpp">
+      <Filter>Objects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Program.h" />
@@ -171,9 +177,15 @@
     <ClInclude Include="Utilities\Collision.h">
       <Filter>Utillity</Filter>
     </ClInclude>
-    <ClInclude Include="Objects\TextureRect.h" />
-    <ClInclude Include="Component\TextureComponent.h" />
-    <ClInclude Include="Scenes\Scene4_Texture.h" />
+    <ClInclude Include="Scenes\Scene4_Texture.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Component\TextureComponent.h">
+      <Filter>Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\TextureRect.h">
+      <Filter>Objects</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Systems">
