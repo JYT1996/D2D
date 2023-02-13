@@ -85,6 +85,9 @@
     <ClCompile Include="Objects\TextureRect.cpp">
       <Filter>Objects</Filter>
     </ClCompile>
+    <ClCompile Include="Utilities\RenderTexture.cpp">
+      <Filter>Utillity</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Program.h" />
@@ -185,6 +188,9 @@
     </ClInclude>
     <ClInclude Include="Objects\TextureRect.h">
       <Filter>Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Utilities\RenderTexture.h">
+      <Filter>Utillity</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
