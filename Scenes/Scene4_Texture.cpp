@@ -4,10 +4,12 @@
 void Scene4::Init()
 {
 	rect1 = make_unique<TextureRect>(WIN_CENTER, Vector2(200.0f, 200.0f), 0.0f, L"_Textures/bk.bmp");
+	rect2 = make_unique<TextureRect>(*rect1);
 }
 
 void Scene4::Destroy()
 {	
+	rect2.reset();
 	rect1.reset();
 }
 
@@ -36,9 +38,11 @@ void Scene4::Update()
 		rect1->GetWorld()->SetPosition(INPUT->GetMousePosition());
 
 	rect1->Update();
+	rect2->Update();
 }
 
 void Scene4::Render()
 {
 	rect1->Render();
+	rect2->Render();
 }

@@ -4,6 +4,7 @@ class Object
 {
 public:
 	Object(const string& name) : name(name) {}
+	Object(const Object& other) : Object(other.name) {}
 	virtual ~Object() = default;
 
 public:
@@ -12,7 +13,6 @@ public:
 	template<typename T>
 	shared_ptr<T> GetComponent(const string& componentName) const
 	{
-		//원소들의 갯수를 반환 해준다.
 		if (!components.count(componentName))
 			return nullptr;
 

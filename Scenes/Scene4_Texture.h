@@ -10,5 +10,6 @@ public:
 	void Render() override;
 
 private:
-	unique_ptr<TextureRect> rect1;	
+	unique_ptr<TextureRect> rect1;
+	unique_ptr<TextureRect> rect2;
 };
