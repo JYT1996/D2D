@@ -60,8 +60,8 @@ using namespace SimpleMath;
 #define WIN_DEFAULT_WIDTH 1280.0f
 #define WIN_DEFAULT_HEIGHT 720.0f
 
-#define WIN_CENTER_X ( gWinWidth / 2 )
-#define WIN_CENTER_Y ( gWinHeight / 2 )
+#define WIN_CENTER_X ( WIN_DEFAULT_WIDTH / 2 )
+#define WIN_CENTER_Y ( WIN_DEFAULT_HEIGHT / 2 )
 #define WIN_CENTER ( Vector2 ( WIN_CENTER_X, WIN_CENTER_Y ))
 
 #define CHECK(hr) { assert(SUCCEEDED(hr)); }
@@ -132,6 +132,7 @@ extern float gWinHeight;
 
 //Utilities
 #include "Utilities/Collision.h"
+#include "Utilities/RenderTexture.h"
 
 //Components
 #include "Component/Component.h"

@@ -89,10 +89,12 @@ WPARAM Window::Run()
 			INPUT->Update();
 			TIME->Update();
 			program->Update();
-
+			//다른 도화지에 그림을 그리는 것이다.
+			program->PreRender();
 			GRAPHICS->Begin();
 			{
 				program->Render();
+				program->PostRender();
 			}
 			GRAPHICS->End();
 		}

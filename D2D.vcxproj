@@ -54,6 +54,7 @@
     <ClCompile Include="Systems\Time.cpp" />
     <ClCompile Include="Systems\Window.cpp" />
     <ClCompile Include="Utilities\Collision.cpp" />
+    <ClCompile Include="Utilities\RenderTexture.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Component\ColliderComponent.h" />
@@ -91,6 +92,7 @@
     <ClInclude Include="Systems\Window.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Utilities\Collision.h" />
+    <ClInclude Include="Utilities\RenderTexture.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

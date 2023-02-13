@@ -10,6 +10,7 @@ class Graphics
 public:	
 	ComPtr<ID3D11Device> GetDevice() const { return device; }
 	ComPtr<ID3D11DeviceContext> GetDC() const {return deviceContext; }
+	Color GetClearColor() const { return clearColor; }
 
 	void Begin();
 	void End();

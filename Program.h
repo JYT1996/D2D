@@ -12,7 +12,9 @@ public:
 	void Init();
 
 	void Update();
-	void Render();	
+	void PreRender();
+	void Render();
+	void PostRender();
 
 private:
 	unique_ptr<ViewProjectiondBuffer> VPBuffer;

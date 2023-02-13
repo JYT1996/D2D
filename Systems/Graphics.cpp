@@ -179,8 +179,6 @@ void Graphics::CreateSwapChain()
 	}
 	else
 	{
-		//수직동기화를 해제하면 프레임의 제한을 없애면 된다.
-		//분모가 1 분자 0이면 제한이 없다는 뜻이다.
 		desc.BufferDesc.RefreshRate.Numerator = 0;
 		desc.BufferDesc.RefreshRate.Denominator = 1;
 	}
@@ -246,7 +244,6 @@ void Graphics::CreateSwapChain()
 void Graphics::CreateRenderTargetView()
 {
 	ComPtr<ID3D11Texture2D> backBuffer = nullptr;
-
 
 	HRESULT hr = swapChain->GetBuffer
 	(

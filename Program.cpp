@@ -59,9 +59,19 @@ void Program::Update()
 	currentScene->Update();
 }
 
+void Program::PreRender()
+{
+	currentScene->PreRender();
+}
+
 void Program::Render()
 {	
 	VPBuffer.get()->SetVSBuffer(1);
 
 	currentScene->Render();
+}
+
+void Program::PostRender()
+{
+	currentScene->PostRender();
 }

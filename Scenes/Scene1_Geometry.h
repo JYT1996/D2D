@@ -7,7 +7,9 @@ public:
 	void Destroy() override;
 
 	void Update() override;
+	void PreRender() override {}
 	void Render() override;
+	void PostRender() override {}
 
 private:
 	unique_ptr<ColorRect> rect;

@@ -5,10 +5,19 @@ void Scene4::Init()
 {
 	rect1 = make_unique<TextureRect>(WIN_CENTER, Vector2(200.0f, 200.0f), 0.0f, L"_Textures/bk.bmp");
 	rect2 = make_unique<TextureRect>(*rect1);
+
+	RTT = make_unique<RenderTexture>();
+	RTT->Initialize();
+
+	renderingTexture = make_unique<TextureRect>(WIN_CENTER, WIN_CENTER * 2, 0);
+	renderingTexture->GetTexture()->SetSRV(RTT->GetSRV());	
 }
 
 void Scene4::Destroy()
 {	
+	renderingTexture.reset();
+	RTT.reset();
+
 	rect2.reset();
 	rect1.reset();
 }
@@ -39,10 +48,20 @@ void Scene4::Update()
 
 	rect1->Update();
 	rect2->Update();
+
+	renderingTexture->Update();
+}
+
+void Scene4::PreRender()
+{
+	RTT->RenderToTexture();
+	{
+		rect1->Render();
+		rect2->Render();
+	}	
 }
 
 void Scene4::Render()
 {
-	rect1->Render();
-	rect2->Render();
+	renderingTexture->Render();
 }
