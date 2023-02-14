@@ -140,6 +140,7 @@ extern float gWinHeight;
 #include "Component//ColorComponent.h"
 #include "Component/ColliderComponent.h"
 #include "Component/TextureComponent.h"
+#include "Component/SelectionComponent.h"
 
 //Object
 #include "Objects/Object.h"

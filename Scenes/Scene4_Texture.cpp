@@ -50,6 +50,9 @@ void Scene4::Update()
 	rect2->Update();
 
 	renderingTexture->Update();
+
+	if (INPUT->Down(VK_F11))
+		RTT->SaveTexture(L"_ScreenShots/ScreenShot.bmp");
 }
 
 void Scene4::PreRender()

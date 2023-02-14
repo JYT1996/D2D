@@ -19,8 +19,8 @@ void VertexShader::Create(const wstring& path, const string& entryName)
 
 void VertexShader::Clear()
 {
-	shader.ReleaseAndGetAddressOf();
-	blob.ReleaseAndGetAddressOf();
+	shader.Reset();
+	blob.Reset();
 }
 
 void VertexShader::SetShader()

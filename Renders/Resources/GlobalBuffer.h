@@ -45,12 +45,10 @@ private:
 	WorldSViewProjectionStruct data;
 };
 
-//색이라는 값을 넘겨주기 위해 ConstantBuffer의 파생클래스 ColorBuffer로 값을 넘겨줄 것이다.
 class ColorBuffer : public ConstantBuffer
 {	
 	struct ColorStruct
 	{
-		//RGBA folat 값이 4개.
 		Color color;
 	};
 
@@ -64,4 +62,26 @@ public:
 
 private:
 	ColorStruct data;
+};
+
+class SelectionBuffer : public ConstantBuffer
+{
+	struct SelectionStruct
+	{
+		//shader는 16byte단위로 데이터를 전달받는다. 
+		//그래서 16byte가 되게끔 dummy 자료형을 넣는다.
+		UINT selection = 1;
+		Vector3 dummy;
+	};
+
+public:
+	SelectionBuffer() : ConstantBuffer(&data, sizeof(SelectionBuffer)) {}
+
+	void SetSelection(const UINT& selection)
+	{
+		data.selection = selection;
+	}
+
+private:
+	SelectionStruct data;
 };

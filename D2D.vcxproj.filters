@@ -88,6 +88,12 @@
     <ClCompile Include="Utilities\RenderTexture.cpp">
       <Filter>Utillity</Filter>
     </ClCompile>
+    <ClCompile Include="Scenes\Scene5_TextureInverse.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Component\SelectionComponent.cpp">
+      <Filter>Component</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Program.h" />
@@ -191,6 +197,12 @@
     </ClInclude>
     <ClInclude Include="Utilities\RenderTexture.h">
       <Filter>Utillity</Filter>
+    </ClInclude>
+    <ClInclude Include="Scenes\Scene5_TextureInverse.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Component\SelectionComponent.h">
+      <Filter>Component</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

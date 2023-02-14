@@ -19,8 +19,8 @@ void PixelShader::Create(const wstring& path, const string& entryName)
 
 void PixelShader::Clear()
 {
-	shader.ReleaseAndGetAddressOf();
-	blob.ReleaseAndGetAddressOf();
+	shader.Reset();
+	blob.Reset();
 }
 
 void PixelShader::SetShader()

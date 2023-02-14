@@ -43,6 +43,15 @@ void Drawable::Render()
 	SUPER::Render();
 }
 
+void Drawable::SetShader(const wstring& shaderPath)
+{
+	this->shaderPath = shaderPath;
+	vertexShader->Clear();
+	vertexShader->Create(shaderPath, "VS");
+	pixelShader->Clear();
+	pixelShader->Create(shaderPath, "PS");
+}
+
 void Drawable::DrawCall(const D3D11_PRIMITIVE_TOPOLOGY& topology, const bool& indexed)
 {
 	DC->IASetPrimitiveTopology(topology);
