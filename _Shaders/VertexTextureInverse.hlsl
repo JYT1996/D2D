@@ -45,30 +45,45 @@ cbuffer SelectionBuffer : register(b0)
 
 float4 PS(PixelInput input) : SV_Target
 {
-    //아무것도 하지 않을 경우 나가는 값.
     float4 color = srcTex.Sample(samp, input.uv);
     
     if (_selection == 1)
         ;
     else if (_selection == 2)
-        color = srcTex.Sample(samp, float2(1 - input.uv.x, input.uv.y));
+        color = srcTex.Sample(samp, float2(1 - input.uv.x, input.uv.y));    
     else if (_selection == 3)
-    {   
-        if (input.uv.x <= 0.5f)
-            ;
-        else        
-            color = srcTex.Sample(samp, float2(0.5f - (input.uv.x - 0.5f), input.uv.y));
-    }
+    {
+        float4 l = srcTex.Sample(samp, input.uv);
+        float4 r = srcTex.Sample(samp, float2(input.uv.x - 0.5f, input.uv.y));
+        
+        if (input.uv.x < 0.5f)
+            color = l;
+        if (input.uv.x > 0.5f)
+            color = r;
+        
+        if (input.uv.x > 0.499f && input.uv.x < 0.501f)
+            color = float4(1, 1, 1, 1);
+    }    
     else if (_selection == 4)
     {
-        if (input.uv.y <= 0.5f && input.uv.x <= 0.5f)
-            color = srcTex.Sample(samp, float2(input.uv.x, 0.5f - input.uv.y) * 2.0f);
-        else if (input.uv.y >= 0.5f && input.uv.x <= 0.5f)
-            color = srcTex.Sample(samp, float2(input.uv.x, input.uv.y - 0.5f) * 2.0f);
-        else if (input.uv.y <= 0.5f && input.uv.x >= 0.5f)
-            color = srcTex.Sample(samp, float2(0.5f - (input.uv.x - 0.5f), 0.5f - input.uv.y) * 2.0f);
-        else if (input.uv.y >= 0.5f && input.uv.x >= 0.5f)
-            color = srcTex.Sample(samp, float2(0.5f - (input.uv.x - 0.5f), input.uv.y - 0.5f) * 2.0f);
-    }    
+        float4 lt = srcTex.Sample(samp, 2 * input.uv);
+        float4 rt = srcTex.Sample(samp, 2 * float2(1 - input.uv.x, input.uv.y));
+        float4 lb = srcTex.Sample(samp, 2 * float2(input.uv.x, 1 - input.uv.y));
+        float4 rb = srcTex.Sample(samp, 2 * float2(1 - input.uv.x, 1 - input.uv.y));
+        
+        if (input.uv.x < 0.5f && input.uv.y < 0.5f)
+            color = lt; 
+        if (input.uv.x > 0.5f && input.uv.y < 0.5f)
+            color = rt;
+        if (input.uv.x < 0.5f && input.uv.y > 0.5f)
+            color = lb;
+        if (input.uv.x > 0.5f && input.uv.y > 0.5f)
+            color = rb;
+        
+        if (input.uv.x > 0.499f && input.uv.x < 0.501f)
+            color = float4(1, 1, 1, 1);
+        if (input.uv.y > 0.499f && input.uv.y < 0.501f)
+            color = float4(1, 1, 1, 1);
+    }
     return color;
 }
