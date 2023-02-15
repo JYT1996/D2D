@@ -5,3 +5,4 @@
 #include "Scene3_Collisition.h"
 #include "Scene4_Texture.h"
 #include "Scene5_TextureInverse.h"
+#include "Scene6_TextureEffect.h"

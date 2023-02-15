@@ -23,9 +23,10 @@ void Program::Init()
 {
 	//sceneList.push_back(make_shared<Scene1>());
 	//sceneList.push_back(make_shared<Scene2>());
-	sceneList.push_back(make_shared<Scene3>());
+	//sceneList.push_back(make_shared<Scene3>());
 	sceneList.push_back(make_shared<Scene4>());
 	sceneList.push_back(make_shared<Scene5>());
+	sceneList.push_back(make_shared<Scene6>());
 
 	currentScene = sceneList[2];
 	//생성자에서 따로 init을 빼서 활용하면,
