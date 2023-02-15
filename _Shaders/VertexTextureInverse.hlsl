@@ -52,10 +52,14 @@ float4 PS(PixelInput input) : SV_Target
     if (_selection == 1)
         ;
     else if (_selection == 2)
-        color = srcTex.Sample(samp, float2(1 - input.uv.x, input.uv.y));
+		color = srcTex.Sample(samp, float2(1 - input.uv.x, input.uv.y));
     else if (_selection == 3)
-        color = srcTex.Sample(samp, float2(input.uv.x, 1 - input.uv.y));
-    else if (_selection == 4)
-        color = srcTex.Sample(samp, float2(1 - input.uv.x, 1 - input.uv.y));
-        return color;
+    {        
+        color = srcTex.Sample(samp, float2(input.uv.x , input.uv.y));
+        float4 color2 = srcTex.Sample(samp, float2(1 - input.uv.x, input.uv.y));
+    }
+    
+        
+    
+    return color;
 }
