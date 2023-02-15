@@ -3,7 +3,7 @@ struct VertexInput
     float4 position : POSITION0;
     float2 uv : TEXCOORD0;
 };
-//값을 넣어진 순서대로 쉐이더에서 받아줘야 한다.
+
 cbuffer World : register(b0)
 {
     matrix _world;
@@ -21,7 +21,6 @@ struct PixelInput
     float2 uv : TEXCOORD0;
 };
 
-//진입점을 VS로 잡아서 컴파일할 것이다.
 PixelInput VS(VertexInput input)
 {
     PixelInput output;
