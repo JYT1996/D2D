@@ -16,5 +16,5 @@ private:
 	unique_ptr<ColorRect> rect2;
 
 	unique_ptr<RenderTexture> RTT;
-	unique_ptr<TextureRect> renderingTexture;	
+	unique_ptr<TextureRect> renderingTexture;
 };

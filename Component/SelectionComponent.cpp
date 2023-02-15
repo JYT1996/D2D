@@ -15,9 +15,7 @@ void SelectionComponent::Update()
 	else if (INPUT->Down('2'))
 		SetSelection(2);
 	else if (INPUT->Down('3'))
-	{
 		SetSelection(3);
-	}
 	else if (INPUT->Down('4'))
 		SetSelection(4);
 	else if (INPUT->Down('5'))

@@ -71,6 +71,6 @@ void Scene5::PreRender()
 }
 
 void Scene5::Render()
-{
+{	
 	renderingTexture->Render();
 }
