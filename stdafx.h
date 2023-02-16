@@ -133,6 +133,7 @@ extern float gWinHeight;
 //Utilities
 #include "Utilities/Collision.h"
 #include "Utilities/RenderTexture.h"
+#include "Utilities/String.h"
 
 //Components
 #include "Component/Component.h"
