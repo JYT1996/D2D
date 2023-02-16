@@ -12,8 +12,10 @@ void Scene6::Init()
 	renderingTexture = make_unique<TextureRect>(WIN_CENTER, WIN_CENTER * 2, 0);
 	renderingTexture->GetTexture()->SetSRV(RTT->GetSRV());	
 	//renderingTexture->SetShader(L"_Shaders/VertexTextureInverse.hlsl");
-	renderingTexture->SetShader(L"_Shaders/Grayscale.hlsl");
-	renderingTexture->AddComponent(make_shared<SelectionComponent>());
+	//renderingTexture->SetShader(L"_Shaders/Grayscale.hlsl");
+	renderingTexture->SetShader(L"_Shaders/Vignette.hlsl");
+	//renderingTexture->SetShader(L"_Shaders/Blur.hlsl");
+	renderingTexture->AddComponent(make_shared<SelectionComponent>(1));
 }
 
 void Scene6::Destroy()

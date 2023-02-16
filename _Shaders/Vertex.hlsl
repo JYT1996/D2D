@@ -1,18 +1,9 @@
+#include "CBuffers.hlsl"
+
 struct VertexInput
 {
     float4 position : POSITION0;
 };
-
-cbuffer World : register(b0)
-{
-    matrix _world;    
-}
-
-cbuffer ViewProjection : register(b1)
-{
-    matrix _view;
-    matrix _proj;
-}
 
 struct PixelInput
 {
@@ -28,11 +19,6 @@ PixelInput VS(VertexInput input)
     output.position = mul(output.position, _proj);
     
     return output;	
-}
-
-cbuffer ColorBuffer : register(b0)
-{
-    float4 _color;
 }
 
 float4 PS(PixelInput input) : SV_Target

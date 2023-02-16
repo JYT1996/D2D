@@ -68,10 +68,9 @@ class SelectionBuffer : public ConstantBuffer
 {
 	struct SelectionStruct
 	{
-		//shader는 16byte단위로 데이터를 전달받는다. 
-		//그래서 16byte가 되게끔 dummy 자료형을 넣는다.
 		UINT selection = 1;
-		Vector3 dummy;
+		Vector2 textureSize = { gWinWidth, gWinHeight };
+		UINT dummy = 0;
 	};
 
 public:
@@ -80,6 +79,10 @@ public:
 	void SetSelection(const UINT& selection)
 	{
 		data.selection = selection;
+	}
+	void SetTextureSize(const Vector2& size)
+	{
+		data.textureSize = size;
 	}
 
 private:

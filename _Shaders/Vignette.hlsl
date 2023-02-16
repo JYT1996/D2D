@@ -2,8 +2,8 @@
 
 struct VertexInput
 {
-	float4 position : POSITION0;
-	float2 uv : TEXCOORD0;
+    float4 position : POSITION0;
+    float2 uv : TEXCOORD0;
 };
 
 struct PixelInput
@@ -22,8 +22,9 @@ PixelInput VS(VertexInput input)
     
     output.uv = input.uv;
     
-    return output;	
+    return output;
 }
+
 Texture2D srcTex : register(t0);
 SamplerState samp : register(s0);
 
@@ -31,8 +32,22 @@ float4 PS(PixelInput input) : SV_Target
 {
     float4 color = srcTex.Sample(samp, input.uv);
     
-    if (color.a == 0.0f)
-        discard;
+    float2 dist = input.uv - 0.5f;
+    
+    if (_selection == 1)
+        ;
+    else if (_selection == 2)
+    {
+        color.rgb *= 1 - dot(dist, dist) * 5;
+    }
+    else if (_selection == 3)
+    {
+        color.rgb *= 1 - dot(dist, dist) * 10;
+    }
+    else if (_selection == 4)
+    {
+        color.rgb *= 1 - dot(dist, dist) * 15;
+    }
     
     return color;
 }

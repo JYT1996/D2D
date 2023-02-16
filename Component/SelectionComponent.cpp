@@ -1,11 +1,12 @@
 #include "stdafx.h"
 #include "SelectionComponent.h"
 
-SelectionComponent::SelectionComponent(const UINT& selection, const UINT& slot)
+SelectionComponent::SelectionComponent(const UINT& slot, const UINT& selection, const Vector2& size)
 	:Component("Selection"), slot(slot)
 {
 	SB = make_unique<SelectionBuffer>();
 	SetSelection(selection);
+	SetTextureSize(size);
 }
 
 void SelectionComponent::Update()
@@ -27,7 +28,3 @@ void SelectionComponent::Render()
 	SB->SetPSBuffer(slot);
 }
 
-void SelectionComponent::SetSelection(const UINT& selection)
-{
-	SB->SetSelection(selection);
-}

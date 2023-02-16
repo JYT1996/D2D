@@ -8,7 +8,7 @@ void IShader::CompileShader(const wstring& path, const string& entryName, const 
 	(
 		path.c_str(),
 		nullptr,
-		nullptr,
+		D3D_COMPILE_STANDARD_FILE_INCLUDE,
 		entryName.c_str(),
 		profile.c_str(),
 		D3DCOMPILE_ENABLE_STRICTNESS,

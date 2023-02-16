@@ -1,19 +1,10 @@
+#include "CBuffers.hlsl"
+
 struct VertexInput
 {
     float4 position : POSITION0;
     float2 uv : TEXCOORD0;
 };
-
-cbuffer World : register(b0)
-{
-    matrix _world;
-}
-
-cbuffer ViewProjection : register(b1)
-{
-    matrix _view;
-    matrix _proj;
-}
 
 struct PixelInput
 {
@@ -37,15 +28,9 @@ PixelInput VS(VertexInput input)
 Texture2D srcTex : register(t0);
 SamplerState samp : register(s0);
 
-cbuffer SelectionBuffer : register(b0)
-{
-    uint _selection;
-}
-
 float4 PS(PixelInput input) : SV_Target
 {
     float4 color = srcTex.Sample(samp, input.uv);
-    float4 color2 = 0;
     float3 grayscale = 0;
     float3 sepia = 0;
     
@@ -95,9 +80,9 @@ float4 PS(PixelInput input) : SV_Target
             sepia.g = dot(color.rgb, float3(0.349f, 0.686f, 0.168f));
             sepia.b = dot(color.rgb, float3(0.272f, 0.534f, 0.131f));
             color = float4(sepia.rgb, 1);
-        }       
+        }
         if (input.uv.x > 0.5f && input.uv.y > 0.5f)
-        {           
+        {
             if (input.uv.x < 0.75f && input.uv.y < 0.75f)
             {
                 color = rblt;
@@ -120,7 +105,7 @@ float4 PS(PixelInput input) : SV_Target
             {
                 color = rbrb;
             }
-        } 
+        }
         
         if (input.uv.x > 0.499f && input.uv.x < 0.501f)
             color = float4(1, 1, 1, 1);

@@ -12,7 +12,7 @@ void Scene5::Init()
 	renderingTexture = make_unique<TextureRect>(WIN_CENTER, WIN_CENTER * 2, 0);
 	renderingTexture->GetTexture()->SetSRV(RTT->GetSRV());	
 	renderingTexture->SetShader(L"_Shaders/VertexTextureInverse.hlsl");
-	renderingTexture->AddComponent(make_shared<SelectionComponent>());
+	renderingTexture->AddComponent(make_shared<SelectionComponent>(1));
 }
 
 void Scene5::Destroy()

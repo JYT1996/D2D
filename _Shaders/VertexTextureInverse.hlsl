@@ -1,19 +1,10 @@
+#include "CBuffers.hlsl"
+
 struct VertexInput
 {
     float4 position : POSITION0;
     float2 uv : TEXCOORD0;
 };
-
-cbuffer World : register(b0)
-{
-    matrix _world;
-}
-
-cbuffer ViewProjection : register(b1)
-{
-    matrix _view;
-    matrix _proj;
-}
 
 struct PixelInput
 {
@@ -36,11 +27,6 @@ PixelInput VS(VertexInput input)
 
 Texture2D srcTex : register(t0);
 SamplerState samp : register(s0);
-
-cbuffer SelectionBuffer : register(b0)
-{
-    uint _selection;
-}
 
 float4 PS(PixelInput input) : SV_Target
 {
