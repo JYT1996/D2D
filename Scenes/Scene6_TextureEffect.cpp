@@ -3,7 +3,7 @@
 
 void Scene6::Init()
 {
-	rect1 = make_unique<ColorRect>(Vector2(200, 200), Vector2(100.0f, 100.0f), 0.0f, CYAN);
+	rect1 = make_unique<ColorRect>(Vector2(0, 0), Vector2(100.0f, 100.0f), 0.0f, CYAN);
 	rect2 = make_unique<ColorRect>(Vector2(400, 400), Vector2(100.0f, 100.0f), 0.0f);
 
 	RTT = make_unique<RenderTexture>();
@@ -13,8 +13,8 @@ void Scene6::Init()
 	renderingTexture->GetTexture()->SetSRV(RTT->GetSRV());	
 	//renderingTexture->SetShader(L"_Shaders/VertexTextureInverse.hlsl");
 	//renderingTexture->SetShader(L"_Shaders/Grayscale.hlsl");
-	renderingTexture->SetShader(L"_Shaders/Vignette.hlsl");
-	//renderingTexture->SetShader(L"_Shaders/Blur.hlsl");
+	//renderingTexture->SetShader(L"_Shaders/Vignette.hlsl");
+	renderingTexture->SetShader(L"_Shaders/Blur.hlsl");
 	renderingTexture->AddComponent(make_shared<SelectionComponent>(1));
 }
 

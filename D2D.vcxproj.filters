@@ -94,6 +94,9 @@
     <ClCompile Include="Component\SelectionComponent.cpp">
       <Filter>Component</Filter>
     </ClCompile>
+    <ClCompile Include="Scenes\Scene6_TextureEffect.cpp" />
+    <ClCompile Include="Utilities\String.cpp" />
+    <ClCompile Include="Utilities\Path.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Program.h" />
@@ -204,6 +207,9 @@
     <ClInclude Include="Component\SelectionComponent.h">
       <Filter>Component</Filter>
     </ClInclude>
+    <ClInclude Include="Scenes\Scene6_TextureEffect.h" />
+    <ClInclude Include="Utilities\String.h" />
+    <ClInclude Include="Utilities\Path.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Systems">
