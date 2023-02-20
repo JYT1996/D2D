@@ -72,7 +72,7 @@ bool String::Contain(const wstring& str, const wstring& comp)
 	return found != wstring::npos;
 }
 //대체 특정 문자열을 comp str에서 찾아 rep로 대체한다.
-void String::Replace(string str, const string& comp, const string& rep)
+void String::Replace(string& str, const string& comp, const string& rep)
 {
 	size_t startPos = 0;
 	while ((startPos = str.find(comp, startPos)) != string::npos)
@@ -82,7 +82,7 @@ void String::Replace(string str, const string& comp, const string& rep)
 	}
 }
 
-void String::Replace(wstring str, const wstring& comp, const wstring& rep)
+void String::Replace(wstring& str, const wstring& comp, const wstring& rep)
 {
 	size_t startPos = 0;
 	while ((startPos = str.find(comp, startPos)) != wstring::npos)

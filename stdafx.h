@@ -11,6 +11,7 @@
 // Windows 헤더 파일
 #include <windows.h>
 #include <windowsx.h>
+#include <commdlg.h>
 
 // C 런타임 헤더 파일입니다.
 #include <cassert>

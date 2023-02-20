@@ -12,8 +12,8 @@ public:
 	static bool Contain(const string& str, const string& comp);
 	static bool Contain(const wstring& str, const wstring& comp);
 
-	static void Replace(string str, const string& comp, const string& rep);
-	static void Replace(wstring str, const wstring& comp, const wstring& rep);
+	static void Replace(string& str, const string& comp, const string& rep);
+	static void Replace(wstring& str, const wstring& comp, const wstring& rep);
 
 	static string ToString(const Vector2& vec2);
 

@@ -29,6 +29,4 @@ namespace Collision
 	bool IntersectCircleCircle(const CIRCLE& circle1, const CIRCLE& circle2);
 
 	bool IntersectRectCircle(const RECT& rect, const CIRCLE& circle);
-
-	bool IntersectRectCircle2(const RECT& rect, const CIRCLE& circle);
 }

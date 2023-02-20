@@ -15,14 +15,14 @@ public:
 	static string Combine(vector<string>& paths);
 	static wstring Combine(vector<wstring>& paths);
 
-	static string GetDirectoryName(const string& path);
-	static wstring GetDirectoryName(const wstring& path);
+	static string GetDirectoryName(string path);
+	static wstring GetDirectoryName(wstring path);
 
-	static string GetExtension(const string& path);
-	static wstring GetExtension(const wstring& path);
+	static string GetExtension(string path);
+	static wstring GetExtension(wstring path);
 
-	static string GetFileName(const string& path);
-	static wstring GetFileName(const wstring& path);
+	static string GetFileName(string path);
+	static wstring GetFileName(wstring path);
 
 	static string GetFileNameWithoutExtension(const string& path);
 	static wstring GetFileNameWithoutExtension(const wstring& path);
@@ -41,5 +41,5 @@ public:
 	static void CreateFolder(const wstring& path);
 
 	static void CreateFolders(const string& path);
-	static void CreateFolders(const wstring& path);
+	static void CreateFolders(wstring path);
 };
