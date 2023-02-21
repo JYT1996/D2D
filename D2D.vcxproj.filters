@@ -94,9 +94,17 @@
     <ClCompile Include="Component\SelectionComponent.cpp">
       <Filter>Component</Filter>
     </ClCompile>
-    <ClCompile Include="Scenes\Scene6_TextureEffect.cpp" />
     <ClCompile Include="Utilities\String.cpp" />
     <ClCompile Include="Utilities\Path.cpp" />
+    <ClCompile Include="Scenes\Scene6_TextureEffect.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Systems\Gui.cpp">
+      <Filter>Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="Scenes\Scene7_ImGui.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Program.h" />
@@ -207,9 +215,15 @@
     <ClInclude Include="Component\SelectionComponent.h">
       <Filter>Component</Filter>
     </ClInclude>
-    <ClInclude Include="Scenes\Scene6_TextureEffect.h" />
     <ClInclude Include="Utilities\String.h" />
     <ClInclude Include="Utilities\Path.h" />
+    <ClInclude Include="Scenes\Scene6_TextureEffect.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Systems\Gui.h" />
+    <ClInclude Include="Scenes\Scene7_ImGui.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Systems">

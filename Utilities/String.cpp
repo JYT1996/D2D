@@ -7,7 +7,7 @@ void String::SplitString(vector<string>& result, string origin, const string& to
 	//자를 위치
 	int cutAt = 0;
 	//npos = no position 못찾을 경우 npos가 나온다.
-	while ((cutAt = (int)origin.find_first_of(tok) != origin.npos))
+	while ((cutAt = (int)origin.find_first_of(tok)) != origin.npos)
 	{
 		if (cutAt > 0)
 			result.push_back(origin.substr(0, cutAt));
@@ -25,7 +25,7 @@ void String::SplitString(vector<wstring>& result, wstring origin, const wstring&
 	//자를 위치
 	int cutAt = 0;
 	//npos = no position 못찾을 경우 npos가 나온다.
-	while ((cutAt = (int)origin.find_first_of(tok) != origin.npos))
+	while ((cutAt = (int)origin.find_first_of(tok)) != origin.npos)
 	{
 		if (cutAt > 0)
 			result.push_back(origin.substr(0, cutAt));

@@ -36,8 +36,6 @@ Window::Window(WinDesc initDesc)
 	UpdateWindow(_desc.handle);
 
 	ShowCursor(true);
-
-	isWindowCreated = true;
 }
 
 Window::~Window()
@@ -79,8 +77,6 @@ WPARAM Window::Run()
 			if (msg.message == WM_QUIT)
 				break;
 
-			INPUT->InputProc(msg.message, msg.lParam);
-
 			TranslateMessage(&msg);
 			DispatchMessage(&msg);
 		}
@@ -88,6 +84,9 @@ WPARAM Window::Run()
 		{
 			INPUT->Update();
 			TIME->Update();
+
+			IMGUI->Update();
+
 			program->Update();
 			//다른 도화지에 그림을 그리는 것이다.
 			program->PreRender();
@@ -95,6 +94,7 @@ WPARAM Window::Run()
 			{
 				program->Render();
 				program->PostRender();
+				IMGUI->Render();
 			}
 			GRAPHICS->End();
 		}
@@ -104,10 +104,19 @@ WPARAM Window::Run()
 
 LRESULT Window::WndProc(HWND handle, UINT message, WPARAM wParam, LPARAM lParam)
 {
+	if (isWindowCreated)
+	{
+		INPUT->InputProc(message, lParam);
+		//IMGUI에서 메시지가 처리가 되었다면 WndProc에 접근할 이유가 없으니 return을 해준다.
+		if (IMGUI->MsgProc(handle, message, wParam, lParam))
+			return true;
+	}
+
 	switch (message)
 	{
 	case WM_CREATE:
 		gHandle = handle;
+		isWindowCreated = true;
 		break;
 	case WM_SIZE:
 		gWinWidth = LOWORD(lParam);

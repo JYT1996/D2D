@@ -34,8 +34,8 @@ public:
 	static void OpenFileDialog(const wstring& file, const WCHAR* filter, const wstring& folder, function<void(wstring)>& func, const HWND& hwnd = nullptr);
 	static void SaveFileDialog(const wstring& file, const WCHAR* filter, const wstring& folder, function<void(wstring)>& func, const HWND& hwnd = nullptr);
 
-	static void GetFiles(vector<string> files, const string& path, const string& filter, const bool& bFindSubFolder);
-	static void GetFiles(vector<wstring> files, const wstring& path, const wstring& filter, const bool& bFindSubFolder);
+	static void GetFiles(vector<string>& files, const string& path, const string& filter, const bool& bFindSubFolder);
+	static void GetFiles(vector<wstring>& files, const wstring& path, const wstring& filter, const bool& bFindSubFolder);
 
 	static void CreateFolder(const string& path);
 	static void CreateFolder(const wstring& path);

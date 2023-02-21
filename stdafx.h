@@ -45,18 +45,26 @@ using namespace SimpleMath;
 //DirectXTex
 #include "_Libraries/DirectXTex/DirectXTex.h"
 #ifdef _M_X64
-	#ifdef _DEBUG
-		#pragma comment(lib, "_Libraries/DirectXTex/x64/Debug/DirectXTex.lib")
-	#elif NDEBUG
-		#pragma comment(lib, "_Libraries/DirectXTex/x64/Release/DirectXTex.lib")
-	#endif
-#elif _M_IX86
-	#ifdef _DEBUG
-		#pragma comment(lib, "_Libraries/DirectXTex/Win32/Debug/DirectXTex.lib")
-	#elif NDEBUG
-		#pragma comment(lib, "_Libraries/DirectXTex/Win32/Release/DirectXTex.lib")
-	#endif
+#ifdef _DEBUG
+#pragma comment(lib, "_Libraries/DirectXTex/x64/Debug/DirectXTex.lib")
+#elif NDEBUG
+#pragma comment(lib, "_Libraries/DirectXTex/x64/Release/DirectXTex.lib")
 #endif
+#elif _M_IX86
+#ifdef _DEBUG
+#pragma comment(lib, "_Libraries/DirectXTex/Win32/Debug/DirectXTex.lib")
+#elif NDEBUG
+#pragma comment(lib, "_Libraries/DirectXTex/Win32/Release/DirectXTex.lib")
+#endif
+#endif
+
+//ImGui
+#include "_Libraries/ImGui/imgui.h"
+#include "_Libraries/ImGui/imgui_internal.h"
+#include "_LiBraries/ImGui/imgui_impl_dx11.h"
+#include "_Libraries/ImGui/imgui_impl_win32.h"
+#pragma comment(lib, "_Libraries/ImGui/ImGui.lib")
+
 //Meacros
 #define WIN_DEFAULT_WIDTH 1280.0f
 #define WIN_DEFAULT_HEIGHT 720.0f
@@ -98,6 +106,7 @@ extern float gWinHeight;
 #include "Systems/Input.h"
 #include "Systems/Time.h"
 #include "Systems/Graphics.h"
+#include "Systems/Gui.h"
 
 //GetSingletonInstance
 #define INPUT Input::Get()
@@ -105,6 +114,7 @@ extern float gWinHeight;
 #define GRAPHICS Graphics::Get()
 #define DEVICE GRAPHICS->GetDevice()
 #define DC GRAPHICS->GetDC()
+#define IMGUI Gui::Get()
 
 //ColorMacros
 #define RED Color(1, 0, 0, 1)
@@ -115,7 +125,7 @@ extern float gWinHeight;
 #define CYAN Color(0, 1, 1, 1)
 #define WHITE Color(1, 1, 1, 1)
 #define BLACK Color(0, 0, 0, 1)
- 
+
 //VectorMacros
 #define RIGHT Vector2(1.0f, 0.0f)
 #define UP Vector2(0.0f, 1.0f)

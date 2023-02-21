@@ -23,6 +23,8 @@
     <ClCompile Include="Component\ColorComponent.cpp" />
     <ClCompile Include="Component\SelectionComponent.cpp" />
     <ClCompile Include="Component\TextureComponent.cpp" />
+    <ClCompile Include="Scenes\Scene7_ImGui.cpp" />
+    <ClCompile Include="Systems\Gui.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Objects\Circle.cpp" />
     <ClCompile Include="Objects\ColorRect.cpp" />
@@ -67,6 +69,8 @@
     <ClInclude Include="Component\Component.h" />
     <ClInclude Include="Component\SelectionComponent.h" />
     <ClInclude Include="Component\TextureComponent.h" />
+    <ClInclude Include="Scenes\Scene7_ImGui.h" />
+    <ClInclude Include="Systems\Gui.h" />
     <ClInclude Include="Objects\Circle.h" />
     <ClInclude Include="Objects\ColorRect.h" />
     <ClInclude Include="Objects\Drawable.h" />
