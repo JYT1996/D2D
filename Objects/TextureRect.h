@@ -11,9 +11,19 @@ public:
 	void Render() override;
 
 public:
+	void GUI(int ordinal);
+	
+public:
 	shared_ptr<TextureComponent> GetTexture() const { return GetComponent<TextureComponent>("Texture"); }
+
+private:
+	void ChangeImageFunc(const wstring& path = L"");
+	void ChangeShaderFunc(const wstring& path = L"");
+	void SaveTextAsFile(const string& text, const wstring& path = L"");
 
 private:
 	vector<VertexTexture> vertices;
 	vector<UINT> indices;
+
+	char text[50] = "";
 };

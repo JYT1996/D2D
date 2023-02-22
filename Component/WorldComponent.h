@@ -27,6 +27,9 @@ public:
 public:
 	void Update() override;
 	void Render() override;
+	
+public:
+	void GUI();
 
 protected:
 	unique_ptr<WorldBuffer> worldBuffer;

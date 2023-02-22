@@ -19,12 +19,6 @@ Drawable::Drawable(const string& name, const Vector2& position, const Vector2& s
 	AddComponent(make_shared<WorldComponent>(position, scale, rotation));
 }
 
-//Drawable& Drawable::operator=(const Drawable& other)
-//{
-//	// TODO: 여기에 return 문을 삽입합니다.
-//	return *this;
-//}
-
 void Drawable::Update()
 {
 	SUPER::Update();
@@ -50,6 +44,11 @@ void Drawable::SetShader(const wstring& shaderPath)
 	vertexShader->Create(shaderPath, "VS");
 	pixelShader->Clear();
 	pixelShader->Create(shaderPath, "PS");
+}
+
+void Drawable::GUI()
+{
+	GetWorld()->GUI();
 }
 
 void Drawable::DrawCall(const D3D11_PRIMITIVE_TOPOLOGY& topology, const bool& indexed)

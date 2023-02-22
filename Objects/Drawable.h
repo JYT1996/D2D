@@ -14,6 +14,10 @@ public:
 public:
 	void SetShader(const wstring& shaderPath);
 
+public:
+	void GUI();
+
+public:
 	void DrawCall(const D3D11_PRIMITIVE_TOPOLOGY& topology, const bool& indexed = true);
 
 protected:

@@ -21,3 +21,11 @@ void WorldComponent::Render()
 {
 	worldBuffer->SetVSBuffer(0);
 }
+
+void WorldComponent::GUI()
+{
+	//sliderFloat2 색을 표현할 때 쓰던 것을 두로 표현하게 한다.
+	ImGui::SliderFloat2("Translation", (float*)&position, 0, gWinWidth, "%.2f");
+	ImGui::SliderFloat2("Scale", (float*)&scale, 1, gWinWidth, "%.2f");
+	ImGui::SliderAngle("Rotation", &rotation);
+}

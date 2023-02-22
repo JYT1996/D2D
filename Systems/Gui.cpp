@@ -59,3 +59,16 @@ void Gui::Render()
 	ImGui::Render();
 	ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
 }
+
+void Gui::TextureRectGUIS(vector<shared_ptr<class TextureRect>>& trVec, const char* name)
+{
+	if (trVec.size() <= 0) return;
+	
+	bool temp = true;
+	if (ImGui::Begin(name, &temp))
+	{		
+		for (size_t i = 0; i < trVec.size(); ++i)
+			trVec[i]->GUI(i);
+	}
+	ImGui::End();
+}

@@ -12,8 +12,9 @@ public:
 	void Update() override;
 	void PreRender() override;
 	void Render() override;
-	void PostRender() override {}
+	void PostRender() override;
 
 private:
 	vector<wstring> paths;
+	vector<shared_ptr<TextureRect>> trVec;
 };

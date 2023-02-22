@@ -22,20 +22,35 @@ void Scene7::Init()
 }
 
 void Scene7::Destroy()
-{	
-	
+{
+	trVec.clear();
 }
 
 void Scene7::Update()
 {
+	if (INPUT->Down(VK_SPACE))
+	{
+		trVec.push_back(make_shared<TextureRect>(INPUT->GetMousePosition(), Vector2(300, 300), 0.0f));
+		ImGui::GetWindowPos();
+	}
 	
+
+	for (const auto& tr : trVec)
+		tr->Update();
 }
 
 void Scene7::PreRender()
 {
-	
+
 }
 
 void Scene7::Render()
+{ 
+	for (const auto& tr : trVec)
+		tr->Render();
+}
+
+void Scene7::PostRender()
 {
+	IMGUI->TextureRectGUIS(trVec, "TextureRects");
 }

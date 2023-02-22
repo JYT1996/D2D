@@ -121,6 +121,7 @@ LRESULT Window::WndProc(HWND handle, UINT message, WPARAM wParam, LPARAM lParam)
 	case WM_SIZE:
 		gWinWidth = LOWORD(lParam);
 		gWinHeight = HIWORD(lParam);
+		GRAPHICS->Resize(gWinWidth, gWinHeight);
 		//cout << "X : " << gWinWidth << ", Y : " << gWinHeight << '\n';
 		break;
 	case WM_CLOSE:
