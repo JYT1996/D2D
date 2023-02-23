@@ -54,6 +54,9 @@ void TextureRect::GUI(int ordinal)
 		if (ImGui::Button("ChangeImage", ImVec2(100, 30)))
 			ChangeImageFunc();
 
+		if (ImGui::Button("ChangeShader", ImVec2(100, 30)))
+			ChangeShaderFunc();
+
 		SUPER::GUI();
 
 		ImGui::EndMenu();
@@ -78,6 +81,15 @@ void TextureRect::ChangeImageFunc(const wstring& path)
 
 void TextureRect::ChangeShaderFunc(const wstring& path)
 {
+	if (path.length() < 1)
+	{
+		function<void(wstring)> func = bind(&TextureRect::ChangeShaderFunc, this, placeholders::_1);
+		Path::OpenFileDialog(L"", Path::ShaderFilter, L"_Shaders/", func, gHandle);
+	}
+	else
+	{
+		this->SetShader(path);
+	}
 }
 
 void TextureRect::SaveTextAsFile(const string& text, const wstring& path)
