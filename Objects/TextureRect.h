@@ -25,5 +25,7 @@ private:
 	vector<VertexTexture> vertices;
 	vector<UINT> indices;
 
+	ComPtr<ID3D11BlendState> blendState;
+
 	char text[50] = "";
 };

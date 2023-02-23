@@ -33,7 +33,10 @@ void Scene7::Update()
 		trVec.push_back(make_shared<TextureRect>(INPUT->GetMousePosition(), Vector2(300, 300), 0.0f));
 		ImGui::GetWindowPos();
 	}
-	
+	if (INPUT->Down('Q') && trVec.size() != 0)
+	{
+		trVec.erase(trVec.end() - 1);
+	}
 
 	for (const auto& tr : trVec)
 		tr->Update();

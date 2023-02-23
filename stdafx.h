@@ -23,6 +23,7 @@
 #include <vector>
 #include <map>
 #include <array>
+#include <fstream>
 using namespace std;
 
 //DirectX D3D11

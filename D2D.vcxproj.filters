@@ -220,9 +220,11 @@
     <ClInclude Include="Scenes\Scene6_TextureEffect.h">
       <Filter>Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="Systems\Gui.h" />
     <ClInclude Include="Scenes\Scene7_ImGui.h">
       <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Systems\Gui.h">
+      <Filter>Systems</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

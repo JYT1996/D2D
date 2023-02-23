@@ -21,8 +21,32 @@ TextureRect::TextureRect(const Vector2& position, const Vector2& scale, const fl
 
 	inputLayout->Create(VertexTexture::descs, VertexTexture::count, vertexShader->GetBlob());
 
+	//CreateBlendState
+	{
+		D3D11_BLEND_DESC desc;
+		ZeroMemory(&desc, sizeof(desc));
+
+		desc.AlphaToCoverageEnable = false;
+		desc.IndependentBlendEnable = false;
+
+		desc.RenderTarget[0].BlendEnable = true;
+		desc.RenderTarget[0].SrcBlend = D3D11_BLEND_SRC_ALPHA;
+		desc.RenderTarget[0].DestBlend = D3D11_BLEND_INV_SRC_ALPHA;
+		desc.RenderTarget[0].BlendOp = D3D11_BLEND_OP_ADD;
+
+		desc.RenderTarget[0].SrcBlendAlpha = D3D11_BLEND_ONE;
+		desc.RenderTarget[0].DestBlendAlpha = D3D11_BLEND_ZERO;
+		desc.RenderTarget[0].BlendOpAlpha = D3D11_BLEND_OP_ADD;
+
+		desc.RenderTarget[0].RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_ALL;
+
+		HRESULT hr = DEVICE->CreateBlendState(&desc, &blendState);
+		CHECK(hr);
+	}
+
 	AddComponent(make_shared<ColliderComponent>(ColliderType::RECT));
 	AddComponent(make_shared<TextureComponent>(texturePath));
+	AddComponent(make_shared<SelectionComponent>(1));
 }
 
 void TextureRect::Update()
@@ -35,7 +59,12 @@ void TextureRect::Render()
 {
 	SUPER::Render();
 
+	if (Path::GetExtension(GetTexture()->GetPath()) == L"png")
+		DC->OMSetBlendState(blendState.Get(), nullptr, 0xFFFFFFFF);
+		
 	DrawCall(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+
+	DC->OMSetBlendState(nullptr, nullptr, 0xFFFFFFFF);
 }
 
 void TextureRect::GUI(int ordinal)
@@ -57,10 +86,13 @@ void TextureRect::GUI(int ordinal)
 		if (ImGui::Button("ChangeShader", ImVec2(100, 30)))
 			ChangeShaderFunc();
 
+		if(ImGui::InputText("InputText", text, sizeof(text), ImGuiInputTextFlags_EnterReturnsTrue))
+			SaveTextAsFile(text);
+
 		SUPER::GUI();
 
 		ImGui::EndMenu();
-	}
+	}	
 }
 
 void TextureRect::ChangeImageFunc(const wstring& path)
@@ -88,10 +120,25 @@ void TextureRect::ChangeShaderFunc(const wstring& path)
 	}
 	else
 	{
-		this->SetShader(path);
+		SetShader(path);
 	}
 }
 
 void TextureRect::SaveTextAsFile(const string& text, const wstring& path)
 {
+	if (path.length() < 1)
+	{
+		function<void(wstring)> func = bind(&TextureRect::SaveTextAsFile, this, text, placeholders::_1);
+		Path::SaveFileDialog(L"", Path::TextFilter, L"./", func, gHandle);
+	}
+	else
+	{
+		ofstream writeFile(path.c_str());
+		if (writeFile.is_open())
+		{
+			writeFile << text << '\n';
+			writeFile.clear();
+		}
+		writeFile.close();
+	}
 }

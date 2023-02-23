@@ -38,7 +38,7 @@ void Gui::PrintFrame()
 {
 	bool temp = true;
 	ImGui::SetNextWindowPos({ gWinWidth - 150, 0 });
-	if (ImGui::Begin("FrameRate", &temp, ImGuiWindowFlags_NoBackground | ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize));
+	if (ImGui::Begin("FrameRate", &temp, ImGuiWindowFlags_NoBackground | ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize))
 	{
 		//정수로 보는 것이 보기 좋아서 (int)로 형변환을 해주고 string한 것이다.
 		string frameStr = "Frame Rate : " + to_string((int)ImGui::GetIO().Framerate);
