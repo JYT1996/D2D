@@ -46,7 +46,7 @@ TextureRect::TextureRect(const Vector2& position, const Vector2& scale, const fl
 
 	AddComponent(make_shared<ColliderComponent>(ColliderType::RECT));
 	AddComponent(make_shared<TextureComponent>(texturePath));
-	AddComponent(make_shared<SelectionComponent>(1));
+	//AddComponent(make_shared<SelectionComponent>(1));
 }
 
 void TextureRect::Update()
