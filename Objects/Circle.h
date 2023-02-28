@@ -8,12 +8,12 @@ public:
 
 public:
 	shared_ptr<ColorComponent> GetColorComp() const { return GetComponent<ColorComponent>("Color"); }
-
+	
 public:
 	void Update() override;
 	void Render() override;
 
 private:
 	vector<Vertex> vertices;
-	size_t segments;
+	size_t segments = 0;
 };

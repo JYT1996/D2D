@@ -119,7 +119,7 @@ wstring Path::GetFileNameWithoutExtension(const wstring& path)
 	return fileName.substr(0, index);
 }
 
-const WCHAR* Path::ImageFilter = L"Image\0*.png;*.bmp;*.jpg;";
+const WCHAR* Path::ImageFilter = L"Image\0*.png;*.bmp;*.jpg";
 const WCHAR* Path::ShaderFilter = L"HLSL File\0*.hlsl";
 const WCHAR* Path::TextFilter = L"Text File\0*.txt";
 const WCHAR* Path::SoundFilter = L"Sound File\0*.mp3;*.wav;*.flac";

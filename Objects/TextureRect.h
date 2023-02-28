@@ -12,7 +12,7 @@ public:
 
 public:
 	void GUI(int ordinal);
-	
+
 public:
 	shared_ptr<TextureComponent> GetTexture() const { return GetComponent<TextureComponent>("Texture"); }
 

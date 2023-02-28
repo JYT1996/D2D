@@ -8,7 +8,7 @@ class Component
 public:
 	Component(const string& compName) : name(compName) {}
 	virtual ~Component() = default;
-	
+
 public:
 	Object* GetOwner() const { return owner; }
 	string GetName() const { return name; }

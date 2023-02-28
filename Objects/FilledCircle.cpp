@@ -6,8 +6,7 @@ FilledCircle::FilledCircle(const Vector2& position, const Vector2& scale, const 
 {
 	vertices.assign(segments + 1, Vertex());
 	vertices[0].position = Vector2();
-
-	for (size_t i = 1; i <= segments; i++)
+	for (size_t i = 1; i <= segments; ++i)
 	{
 		float theta = 2 * XM_PI * i / segments;
 
@@ -15,8 +14,7 @@ FilledCircle::FilledCircle(const Vector2& position, const Vector2& scale, const 
 	}
 
 	indices.assign(segments * 3, sizeof(UINT));
-
-	for (size_t i = 0; i < segments; i++)
+	for (size_t i = 0; i < segments; ++i)
 	{
 		indices[i * 3] = 0;
 		indices[i * 3 + 1] = (UINT)i + 1;
@@ -26,10 +24,10 @@ FilledCircle::FilledCircle(const Vector2& position, const Vector2& scale, const 
 			indices[i * 3 + 2] = (UINT)i + 2;
 	}
 
-	vertexBuffer->Create(vertices, D3D11_USAGE_IMMUTABLE);
-	indexBuffer->Create(indices, D3D11_USAGE_IMMUTABLE);
-	inputLayout->Create(Vertex::descs, Vertex::count, vertexShader->GetBlob());
-	
+	VB->Create(vertices, D3D11_USAGE_IMMUTABLE);
+	IB->Create(indices, D3D11_USAGE_IMMUTABLE);
+	IL->Create(Vertex::descs, Vertex::count, VS->GetBlob());
+
 	AddComponent(make_shared<ColorComponent>(color, 0));
 	AddComponent(make_shared<ColliderComponent>(ColliderType::CIRCLE));
 }

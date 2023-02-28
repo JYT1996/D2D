@@ -5,12 +5,12 @@ Line::Line(const Vector2& position, const float& length, const float& rotation, 
 	: Drawable("Line", position, Vector2(length, 0), rotation, L"_Shaders/Vertex.hlsl")
 {
 	vertices.assign(2, Vertex());
-	vertices[0].position = Vector2( 0, 0);
-	vertices[1].position = Vector2( 1, 0);
+	vertices[0].position = Vector2(0, 0);
+	vertices[1].position = Vector2(1, 0);
 
-	vertexBuffer->Create(vertices, D3D11_USAGE_IMMUTABLE);
+	VB->Create(vertices, D3D11_USAGE_IMMUTABLE);
 
-	inputLayout->Create(Vertex::descs, Vertex::count, vertexShader->GetBlob());
+	IL->Create(Vertex::descs, Vertex::count, VS->GetBlob());
 
 	AddComponent(make_shared<ColorComponent>(color, 0));
 }

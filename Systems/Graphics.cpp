@@ -9,6 +9,7 @@ Graphics::Graphics()
 
 Graphics::~Graphics()
 {
+
 }
 
 void Graphics::Begin()
@@ -16,7 +17,6 @@ void Graphics::Begin()
 	SetViewport();
 	SetBackBufferToRTV();
 }
-
 
 void Graphics::End()
 {

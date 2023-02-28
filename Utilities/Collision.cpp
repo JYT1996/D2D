@@ -118,7 +118,6 @@ namespace Collision
 		RECT wRect(rectPivot, rectScale + Vector2(circle.radius * 2.0f, 0.0f));
 		if (IntersectRectCoord(wRect, circle.pivot))
 			return true;
-
 		RECT hRect(rectPivot, rectScale + Vector2(0.0f, circle.radius * 2.0f));
 		if (IntersectRectCoord(wRect, circle.pivot))
 			return true;

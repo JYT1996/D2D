@@ -3,7 +3,7 @@
 struct Vertex
 {
 	Vertex() = default;
-	Vertex(const Vector2& position)	: position(position) {}
+	Vertex(const Vector2& position) : position(position) {}
 
 	Vector2 position;
 

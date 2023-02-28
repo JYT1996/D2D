@@ -52,5 +52,5 @@ inline void VertexBuffer::Create(const vector<T>& vertices, const D3D11_USAGE& u
 	subData.pSysMem = vertices.data();
 
 	HRESULT hr = DEVICE->CreateBuffer(&desc, &subData, &buffer);
-	CHECK(hr)
+	CHECK(hr);
 }

@@ -75,7 +75,7 @@ class SelectionBuffer : public ConstantBuffer
 	};
 
 public:
-	SelectionBuffer() : ConstantBuffer(&data, sizeof(SelectionBuffer)) {}
+	SelectionBuffer() : ConstantBuffer(&data, sizeof(SelectionStruct)) {}
 
 	void SetSelection(const UINT& selection)
 	{

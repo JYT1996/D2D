@@ -18,7 +18,7 @@ public:
 
 private:
 	unique_ptr<ViewProjectiondBuffer> VPBuffer;
-
+	
 	Matrix view, projection;
 
 	vector<shared_ptr<Scene>> sceneList;

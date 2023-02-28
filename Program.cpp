@@ -4,7 +4,7 @@
 
 Program::Program()
 {
-	VPBuffer = make_unique<ViewProjectiondBuffer>();	
+	VPBuffer = make_unique<ViewProjectiondBuffer>();
 
 	SetGlobalBuffers();
 }
@@ -59,7 +59,7 @@ void Program::PreRender()
 }
 
 void Program::Render()
-{	
+{
 	VPBuffer->SetVSBuffer(1);
 
 	currentScene->Render();

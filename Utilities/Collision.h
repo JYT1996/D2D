@@ -11,8 +11,7 @@ namespace Collision
 		Vector2 min;
 		Vector2 max;
 	};
-
-	struct	CIRCLE
+	struct CIRCLE
 	{
 		CIRCLE(Vector2 position, Vector2 scale);
 

@@ -63,7 +63,7 @@ using namespace SimpleMath;
 //ImGui
 #include "_Libraries/ImGui/imgui.h"
 #include "_Libraries/ImGui/imgui_internal.h"
-#include "_LiBraries/ImGui/imgui_impl_dx11.h"
+#include "_Libraries/ImGui/imgui_impl_dx11.h"
 #include "_Libraries/ImGui/imgui_impl_win32.h"
 #ifdef _M_X64
 #ifdef _DEBUG
@@ -91,31 +91,31 @@ using namespace SimpleMath;
 #define WIN_DEFAULT_WIDTH 1280.0f
 #define WIN_DEFAULT_HEIGHT 720.0f
 
-#define WIN_CENTER_X ( WIN_DEFAULT_WIDTH / 2.0f )
-#define WIN_CENTER_Y ( WIN_DEFAULT_HEIGHT / 2.0f )
-#define WIN_CENTER ( Vector2 ( WIN_CENTER_X, WIN_CENTER_Y ))
+#define WIN_CENTER_X (WIN_DEFAULT_WIDTH / 2.0f)
+#define WIN_CENTER_Y (WIN_DEFAULT_HEIGHT / 2.0f)
+#define WIN_CENTER (Vector2(WIN_CENTER_X, WIN_CENTER_Y))
 
 #define CHECK(hr) { assert(SUCCEEDED(hr)); }
 #define SUPER __super
 
 #define SAFE_DELETE(p) { if (p) { delete(p); p = nullptr; } }
 #define SAFE_DELETE_ARRAY(p) { if (p) { delete[](p); p = nullptr; } }
-#define SAFE_RELEASE(p) { if (p) { p->Release(); p = nullptr; } }
+#define SAFE_RELEASE(p) { if(p) { p->Release(); p = nullptr; } }
 
-#define DECLARE_SINGLETON(CLASS_NAME)							\
-private:														\
-CLASS_NAME();													\
-~CLASS_NAME();													\
-public:															\
-CLASS_NAME(const CLASS_NAME& other) = delete;					\
-CLASS_NAME& operator=(const CLASS_NAME& other) = delete;		\
-CLASS_NAME(const CLASS_NAME&& other) = delete;					\
-CLASS_NAME& operator=(const CLASS_NAME&& other) = delete;		\
-public:															\
-static CLASS_NAME* Get()										\
-{																\
-	static CLASS_NAME instance;									\
-	return &instance;											\
+#define DECLARE_SINGLETON(CLASS_NAME)						\
+private:													\
+CLASS_NAME();												\
+~CLASS_NAME();												\
+public:														\
+CLASS_NAME(const CLASS_NAME& other) = delete;				\
+CLASS_NAME& operator=(const CLASS_NAME& other) = delete;	\
+CLASS_NAME(const CLASS_NAME&& other) = delete;				\
+CLASS_NAME& operator=(const CLASS_NAME&& other) = delete;	\
+public:														\
+static CLASS_NAME* Get()									\
+{															\
+	static CLASS_NAME instance;								\
+	return &instance;										\
 }
 
 //ExternGlobal

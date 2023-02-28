@@ -2,7 +2,7 @@
 #include "SelectionComponent.h"
 
 SelectionComponent::SelectionComponent(const UINT& slot, const UINT& selection, const Vector2& size)
-	:Component("Selection"), slot(slot)
+	: Component("Selection"), slot(slot)
 {
 	SB = make_unique<SelectionBuffer>();
 	SetSelection(selection);
@@ -27,4 +27,3 @@ void SelectionComponent::Render()
 {
 	SB->SetPSBuffer(slot);
 }
-

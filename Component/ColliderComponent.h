@@ -10,7 +10,7 @@ enum class ColliderType
 class ColliderComponent : public Component
 {
 public:
-	ColliderComponent(const ColliderType& type = ColliderType::NONE, const string& name = "Collider") : Component(name), type(type)	{}
+	ColliderComponent(const ColliderType& type = ColliderType::NONE, const string& name = "Collider") : Component(name), type(type) {}
 
 public:
 	bool Intersect(const Vector2& coord);

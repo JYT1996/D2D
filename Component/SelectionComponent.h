@@ -10,7 +10,7 @@ public:
 	void Render() override;
 
 public:
-	void SetSelection(const UINT& selection) { SB->SetSelection(selection);	}
+	void SetSelection(const UINT& selection) { SB->SetSelection(selection); }
 	void SetTextureSize(const Vector2& size) { SB->SetTextureSize(size); }
 
 private:

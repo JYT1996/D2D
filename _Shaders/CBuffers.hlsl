@@ -1,23 +1,23 @@
-///////////////////////////VertexShader///////////////////////////
+////////////////////////VertexShader//////////////////////
 cbuffer World : register(b0)
 {
-    matrix _world;
+	matrix _world;
 }
 
 cbuffer ViewProjection : register(b1)
 {
-    matrix _view;
-    matrix _proj;
+	matrix _view;
+	matrix _proj;
 }
 
-///////////////////////////PixelShader///////////////////////////
+////////////////////////PixelShader//////////////////////
 cbuffer ColorBuffer : register(b0)
 {
-    float4 _color;
+	float4 _color;
 }
 
 cbuffer SelectionBuffer : register(b1)
 {
-    uint _selection;
-    float2 _textureSize;
+	uint _selection;
+	float2 _textureSize;
 }

@@ -16,11 +16,11 @@ TextureRect::TextureRect(const Vector2& position, const Vector2& scale, const fl
 
 	indices = { 0, 1, 2, 2, 1, 3 };
 
-	vertexBuffer->Create(vertices, D3D11_USAGE_IMMUTABLE);
+	VB->Create(vertices, D3D11_USAGE_IMMUTABLE);
 
-	indexBuffer->Create(indices, D3D11_USAGE_IMMUTABLE);
+	IB->Create(indices, D3D11_USAGE_IMMUTABLE);
 
-	inputLayout->Create(VertexTexture::descs, VertexTexture::count, vertexShader->GetBlob());
+	IL->Create(VertexTexture::descs, VertexTexture::count, VS->GetBlob());
 
 	//CreateBlendState
 	{
@@ -61,7 +61,7 @@ void TextureRect::Render()
 
 	if (Path::GetExtension(GetTexture()->GetPath()) == L"png")
 		DC->OMSetBlendState(blendState.Get(), nullptr, 0xFFFFFFFF);
-		
+
 	DrawCall(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 
 	DC->OMSetBlendState(nullptr, nullptr, 0xFFFFFFFF);
@@ -78,7 +78,7 @@ void TextureRect::GUI(int ordinal)
 		ImGui::Text(objName.c_str());
 		ImGui::Text(imgName.c_str());
 		ImGui::Text(shaderName.c_str());
-		
+
 		if (ImGui::Button("ChangeImage", ImVec2(100, 30)))
 			ChangeImageFunc();
 		if (ImGui::Button("ChangeShader", ImVec2(100, 30)))
@@ -89,7 +89,7 @@ void TextureRect::GUI(int ordinal)
 		SUPER::GUI();
 
 		ImGui::EndMenu();
-	}	
+	}
 }
 
 void TextureRect::ChangeImageFunc(const wstring& path)

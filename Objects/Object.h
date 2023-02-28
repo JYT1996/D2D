@@ -16,7 +16,7 @@ public:
 		if (!components.count(componentName))
 			return nullptr;
 
-		return dynamic_pointer_cast<T>(components.at(componentName));		
+		return dynamic_pointer_cast<T>(components.at(componentName));
 	}
 
 public:
@@ -25,7 +25,7 @@ public:
 
 public:
 	virtual void Update();
-	virtual void Render();	
+	virtual void Render();
 
 protected:
 	string name;

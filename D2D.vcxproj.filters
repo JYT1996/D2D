@@ -16,10 +16,10 @@
     <ClCompile Include="Systems\Graphics.cpp">
       <Filter>Systems</Filter>
     </ClCompile>
-    <ClCompile Include="Renders\IA\VertexBuffer.cpp">
+    <ClCompile Include="Renders\Resources\VertexType.cpp">
       <Filter>Renders\Resources</Filter>
     </ClCompile>
-    <ClCompile Include="Renders\Resources\VertexType.cpp">
+    <ClCompile Include="Renders\IA\VertexBuffer.cpp">
       <Filter>Renders\IA</Filter>
     </ClCompile>
     <ClCompile Include="Renders\Shaders\IShader.cpp">
@@ -31,9 +31,6 @@
     <ClCompile Include="Renders\IA\IndexBuffer.cpp">
       <Filter>Renders\IA</Filter>
     </ClCompile>
-    <ClCompile Include="Renders\IA\InputLayout.cpp">
-      <Filter>Renders\IA</Filter>
-    </ClCompile>
     <ClCompile Include="Renders\Shaders\PixelShader.cpp">
       <Filter>Renders\Shaders</Filter>
     </ClCompile>
@@ -43,22 +40,25 @@
     <ClCompile Include="Objects\Object.cpp">
       <Filter>Objects</Filter>
     </ClCompile>
+    <ClCompile Include="Renders\IA\InputLayout.cpp">
+      <Filter>Renders\IA</Filter>
+    </ClCompile>
     <ClCompile Include="Objects\Drawable.cpp">
       <Filter>Objects</Filter>
     </ClCompile>
-    <ClCompile Include="Component\WorldComponent.cpp">
-      <Filter>Component</Filter>
-    </ClCompile>
     <ClCompile Include="Component\ColorComponent.cpp">
-      <Filter>Component</Filter>
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Component\WorldComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\Line.cpp">
+      <Filter>Objects</Filter>
     </ClCompile>
     <ClCompile Include="Objects\Circle.cpp">
       <Filter>Objects</Filter>
     </ClCompile>
     <ClCompile Include="Objects\FilledCircle.cpp">
-      <Filter>Objects</Filter>
-    </ClCompile>
-    <ClCompile Include="Objects\Line.cpp">
       <Filter>Objects</Filter>
     </ClCompile>
     <ClCompile Include="Scenes\Scene1_Geometry.cpp">
@@ -70,44 +70,44 @@
     <ClCompile Include="Scenes\Scene3_Collision.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="Component\ColliderComponent.cpp">
-      <Filter>Component</Filter>
-    </ClCompile>
     <ClCompile Include="Utilities\Collision.cpp">
-      <Filter>Utillity</Filter>
+      <Filter>Utilities</Filter>
     </ClCompile>
-    <ClCompile Include="Scenes\Scene4_Texture.cpp">
-      <Filter>Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="Component\TextureComponent.cpp">
-      <Filter>Component</Filter>
+    <ClCompile Include="Component\ColliderComponent.cpp">
+      <Filter>Components</Filter>
     </ClCompile>
     <ClCompile Include="Objects\TextureRect.cpp">
       <Filter>Objects</Filter>
     </ClCompile>
+    <ClCompile Include="Component\TextureComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Scenes\Scene4_Texture.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
     <ClCompile Include="Utilities\RenderTexture.cpp">
-      <Filter>Utillity</Filter>
+      <Filter>Utilities</Filter>
     </ClCompile>
     <ClCompile Include="Scenes\Scene5_TextureInverse.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
     <ClCompile Include="Component\SelectionComponent.cpp">
-      <Filter>Component</Filter>
+      <Filter>Components</Filter>
     </ClCompile>
     <ClCompile Include="Scenes\Scene6_TextureEffect.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
+    <ClCompile Include="Utilities\String.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
     <ClCompile Include="Systems\Gui.cpp">
       <Filter>Systems</Filter>
     </ClCompile>
+    <ClCompile Include="Utilities\Path.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
     <ClCompile Include="Scenes\Scene7_ImGui.cpp">
       <Filter>Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="Utilities\Path.cpp">
-      <Filter>Utillity</Filter>
-    </ClCompile>
-    <ClCompile Include="Utilities\String.cpp">
-      <Filter>Utillity</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -126,58 +126,58 @@
     <ClInclude Include="Systems\Graphics.h">
       <Filter>Systems</Filter>
     </ClInclude>
-    <ClInclude Include="Renders\IA\VertexBuffer.h">
+    <ClInclude Include="Renders\Resources\VertexType.h">
       <Filter>Renders\Resources</Filter>
     </ClInclude>
-    <ClInclude Include="Renders\Resources\VertexType.h">
+    <ClInclude Include="Renders\IA\VertexBuffer.h">
       <Filter>Renders\IA</Filter>
     </ClInclude>
-    <ClInclude Include="Renders\Shaders\IShader.h">
+    <ClInclude Include="Renders\Shaders\VertexShader.h">
       <Filter>Renders\Shaders</Filter>
     </ClInclude>
-    <ClInclude Include="Renders\Shaders\VertexShader.h">
+    <ClInclude Include="Renders\Shaders\IShader.h">
       <Filter>Renders\Shaders</Filter>
     </ClInclude>
     <ClInclude Include="Renders\IA\IndexBuffer.h">
       <Filter>Renders\IA</Filter>
     </ClInclude>
-    <ClInclude Include="Renders\IA\InputLayout.h">
-      <Filter>Renders\IA</Filter>
+    <ClInclude Include="Renders\Resources\ConstantBuffer.h">
+      <Filter>Renders\Resources</Filter>
     </ClInclude>
     <ClInclude Include="Renders\Shaders\PixelShader.h">
       <Filter>Renders\Shaders</Filter>
     </ClInclude>
-    <ClInclude Include="Renders\Resources\ConstantBuffer.h">
-      <Filter>Renders\Resources</Filter>
-    </ClInclude>
     <ClInclude Include="Objects\ColorRect.h">
       <Filter>Objects</Filter>
-    </ClInclude>
-    <ClInclude Include="Renders\Resources\GlobalBuffers.h">
-      <Filter>Renders\Resources</Filter>
     </ClInclude>
     <ClInclude Include="Objects\Object.h">
       <Filter>Objects</Filter>
     </ClInclude>
     <ClInclude Include="Component\Component.h">
-      <Filter>Component</Filter>
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Renders\Resources\GlobalBuffers.h">
+      <Filter>Renders\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="Renders\IA\InputLayout.h">
+      <Filter>Renders\IA</Filter>
     </ClInclude>
     <ClInclude Include="Objects\Drawable.h">
       <Filter>Objects</Filter>
     </ClInclude>
-    <ClInclude Include="Component\WorldComponent.h">
-      <Filter>Component</Filter>
-    </ClInclude>
     <ClInclude Include="Component\ColorComponent.h">
-      <Filter>Component</Filter>
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Component\WorldComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Line.h">
+      <Filter>Objects</Filter>
     </ClInclude>
     <ClInclude Include="Objects\Circle.h">
       <Filter>Objects</Filter>
     </ClInclude>
     <ClInclude Include="Objects\FilledCircle.h">
-      <Filter>Objects</Filter>
-    </ClInclude>
-    <ClInclude Include="Objects\Line.h">
       <Filter>Objects</Filter>
     </ClInclude>
     <ClInclude Include="Scenes\Scene.h">
@@ -195,73 +195,73 @@
     <ClInclude Include="Scenes\Scene3_Collision.h">
       <Filter>Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="Component\ColliderComponent.h">
-      <Filter>Component</Filter>
-    </ClInclude>
     <ClInclude Include="Utilities\Collision.h">
-      <Filter>Utillity</Filter>
+      <Filter>Utilities</Filter>
     </ClInclude>
-    <ClInclude Include="Scenes\Scene4_Texture.h">
-      <Filter>Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="Component\TextureComponent.h">
-      <Filter>Component</Filter>
+    <ClInclude Include="Component\ColliderComponent.h">
+      <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="Objects\TextureRect.h">
       <Filter>Objects</Filter>
     </ClInclude>
+    <ClInclude Include="Component\TextureComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Scenes\Scene4_Texture.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
     <ClInclude Include="Utilities\RenderTexture.h">
-      <Filter>Utillity</Filter>
+      <Filter>Utilities</Filter>
     </ClInclude>
     <ClInclude Include="Scenes\Scene5_TextureInverse.h">
       <Filter>Scenes</Filter>
     </ClInclude>
     <ClInclude Include="Component\SelectionComponent.h">
-      <Filter>Component</Filter>
+      <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="Scenes\Scene6_TextureEffect.h">
       <Filter>Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="Scenes\Scene7_ImGui.h">
-      <Filter>Scenes</Filter>
+    <ClInclude Include="Utilities\String.h">
+      <Filter>Utilities</Filter>
     </ClInclude>
     <ClInclude Include="Systems\Gui.h">
       <Filter>Systems</Filter>
     </ClInclude>
     <ClInclude Include="Utilities\Path.h">
-      <Filter>Utillity</Filter>
+      <Filter>Utilities</Filter>
     </ClInclude>
-    <ClInclude Include="Utilities\String.h">
-      <Filter>Utillity</Filter>
+    <ClInclude Include="Scenes\Scene7_ImGui.h">
+      <Filter>Scenes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Systems">
-      <UniqueIdentifier>{653e8031-b48c-489b-b62a-34e90060652c}</UniqueIdentifier>
+      <UniqueIdentifier>{0584c821-0c85-4703-bd2a-2b424e1efffa}</UniqueIdentifier>
     </Filter>
     <Filter Include="Renders">
-      <UniqueIdentifier>{8ae728ae-aa37-4d10-8998-17d79b922131}</UniqueIdentifier>
+      <UniqueIdentifier>{aaed8eb1-df7c-4f80-8e68-24ec1db21147}</UniqueIdentifier>
     </Filter>
     <Filter Include="Renders\Resources">
-      <UniqueIdentifier>{3f7fe885-8ee5-4bfb-9057-0602141a1109}</UniqueIdentifier>
+      <UniqueIdentifier>{4b4214d4-95e4-4a98-b7f2-82f468054df8}</UniqueIdentifier>
     </Filter>
     <Filter Include="Renders\IA">
-      <UniqueIdentifier>{1470f833-38bf-4703-b475-6f17bdb2e9a3}</UniqueIdentifier>
+      <UniqueIdentifier>{63e37ecd-ea6e-4677-b662-262e1388616b}</UniqueIdentifier>
     </Filter>
     <Filter Include="Renders\Shaders">
-      <UniqueIdentifier>{6bafc57f-a830-47c3-8d22-8a19f41918d2}</UniqueIdentifier>
+      <UniqueIdentifier>{25c13789-792e-4355-904f-46ed68695424}</UniqueIdentifier>
     </Filter>
     <Filter Include="Objects">
-      <UniqueIdentifier>{ea9e0b65-92c4-42f5-9c91-57819fe22bf8}</UniqueIdentifier>
+      <UniqueIdentifier>{d937b527-3072-4a6b-8467-8ac4a540c7fc}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Component">
-      <UniqueIdentifier>{bfcf20a1-5aa9-4854-b4b6-df24ef72ceb4}</UniqueIdentifier>
+    <Filter Include="Components">
+      <UniqueIdentifier>{fd228ace-77a1-4dfd-911b-bc4b2e38d014}</UniqueIdentifier>
     </Filter>
     <Filter Include="Scenes">
-      <UniqueIdentifier>{79fe333a-b928-4705-b624-46d9c8bff8bf}</UniqueIdentifier>
+      <UniqueIdentifier>{174f0315-c142-43ae-8f03-77b8383e1cc5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Utillity">
-      <UniqueIdentifier>{fa84f807-d474-4d67-92ad-324b43ccbba7}</UniqueIdentifier>
+    <Filter Include="Utilities">
+      <UniqueIdentifier>{de538316-603b-4634-b073-a97104a2dbb0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -23,8 +23,7 @@
     <ClCompile Include="Component\ColorComponent.cpp" />
     <ClCompile Include="Component\SelectionComponent.cpp" />
     <ClCompile Include="Component\TextureComponent.cpp" />
-    <ClCompile Include="Scenes\Scene7_ImGui.cpp" />
-    <ClCompile Include="Systems\Gui.cpp" />
+    <ClCompile Include="Component\WorldComponent.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Objects\Circle.cpp" />
     <ClCompile Include="Objects\ColorRect.cpp" />
@@ -32,7 +31,6 @@
     <ClCompile Include="Objects\FilledCircle.cpp" />
     <ClCompile Include="Objects\Line.cpp" />
     <ClCompile Include="Objects\Object.cpp" />
-    <ClCompile Include="Component\WorldComponent.cpp" />
     <ClCompile Include="Objects\TextureRect.cpp" />
     <ClCompile Include="Program.cpp" />
     <ClCompile Include="Renders\IA\IndexBuffer.cpp" />
@@ -48,6 +46,7 @@
     <ClCompile Include="Scenes\Scene4_Texture.cpp" />
     <ClCompile Include="Scenes\Scene5_TextureInverse.cpp" />
     <ClCompile Include="Scenes\Scene6_TextureEffect.cpp" />
+    <ClCompile Include="Scenes\Scene7_ImGui.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
@@ -55,6 +54,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Systems\Graphics.cpp" />
+    <ClCompile Include="Systems\Gui.cpp" />
     <ClCompile Include="Systems\Input.cpp" />
     <ClCompile Include="Systems\Time.cpp" />
     <ClCompile Include="Systems\Window.cpp" />
@@ -69,21 +69,19 @@
     <ClInclude Include="Component\Component.h" />
     <ClInclude Include="Component\SelectionComponent.h" />
     <ClInclude Include="Component\TextureComponent.h" />
-    <ClInclude Include="Scenes\Scene7_ImGui.h" />
-    <ClInclude Include="Systems\Gui.h" />
+    <ClInclude Include="Component\WorldComponent.h" />
     <ClInclude Include="Objects\Circle.h" />
     <ClInclude Include="Objects\ColorRect.h" />
     <ClInclude Include="Objects\Drawable.h" />
     <ClInclude Include="Objects\FilledCircle.h" />
     <ClInclude Include="Objects\Line.h" />
     <ClInclude Include="Objects\Object.h" />
-    <ClInclude Include="Component\WorldComponent.h" />
     <ClInclude Include="Objects\TextureRect.h" />
-    <ClInclude Include="Renders\Resources\ConstantBuffer.h" />
     <ClInclude Include="Program.h" />
     <ClInclude Include="Renders\IA\IndexBuffer.h" />
     <ClInclude Include="Renders\IA\InputLayout.h" />
     <ClInclude Include="Renders\IA\VertexBuffer.h" />
+    <ClInclude Include="Renders\Resources\ConstantBuffer.h" />
     <ClInclude Include="Renders\Resources\GlobalBuffers.h" />
     <ClInclude Include="Renders\Resources\VertexType.h" />
     <ClInclude Include="Renders\Shaders\IShader.h" />
@@ -96,9 +94,11 @@
     <ClInclude Include="Scenes\Scene4_Texture.h" />
     <ClInclude Include="Scenes\Scene5_TextureInverse.h" />
     <ClInclude Include="Scenes\Scene6_TextureEffect.h" />
+    <ClInclude Include="Scenes\Scene7_ImGui.h" />
     <ClInclude Include="Scenes\SceneList.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Systems\Graphics.h" />
+    <ClInclude Include="Systems\Gui.h" />
     <ClInclude Include="Systems\Input.h" />
     <ClInclude Include="Systems\Time.h" />
     <ClInclude Include="Systems\Window.h" />
@@ -111,7 +111,7 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{e6e32c15-6d2a-4fda-a2d1-053aaad6a1f4}</ProjectGuid>
+    <ProjectGuid>{36e8b970-bdf2-4b34-9e3b-70452802afbf}</ProjectGuid>
     <RootNamespace>D2D</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
@@ -161,20 +161,20 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>.\Build\x64\</OutDir>
-    <IntDir>.\Build\x64\Debug\Obj\</IntDir>
+    <OutDir>$(SolutionDir)Build\$(ProjectName)\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)Build\$(ProjectName)\$(Platform)\$(Configuration)\Obj\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>.\Build\x64\</OutDir>
-    <IntDir>.\Build\x64\Debug\Obj\</IntDir>
+    <OutDir>$(SolutionDir)Build\$(ProjectName)\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)Build\$(ProjectName)\$(Platform)\$(Configuration)\Obj\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <OutDir>.\Build\x64\</OutDir>
-    <IntDir>.\Build\x64\Debug\Obj\</IntDir>
+    <OutDir>$(SolutionDir)Build\$(ProjectName)\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)Build\$(ProjectName)\$(Platform)\$(Configuration)\Obj\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <OutDir>.\Build\x64\</OutDir>
-    <IntDir>.\Build\x64\Debug\Obj\</IntDir>
+    <OutDir>$(SolutionDir)Build\$(ProjectName)\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)Build\$(ProjectName)\$(Platform)\$(Configuration)\Obj\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

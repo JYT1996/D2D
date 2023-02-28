@@ -27,12 +27,12 @@ public:
 public:
 	void Update() override;
 	void Render() override;
-	
+
 public:
 	void GUI();
 
 private:
-	unique_ptr<WorldBuffer> worldBuffer;
+	unique_ptr<WorldBuffer> WB;
 	Matrix world, S, R, T;
 
 	Vector2 position, scale;

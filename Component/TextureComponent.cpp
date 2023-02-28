@@ -15,10 +15,10 @@ void TextureComponent::SetSRV(const wstring& texturePath)
 	LoadFromWICFile(texturePath.c_str(), WIC_FLAGS_NONE, nullptr, image);
 
 	HRESULT hr = CreateShaderResourceView(DEVICE.Get(), image.GetImages(), image.GetImageCount(), image.GetMetadata(), &srv);
-	CHECK(hr);	
+	CHECK(hr);
 }
 
 void TextureComponent::Render()
-{	
+{
 	DC->PSSetShaderResources(slot, 1, srv.GetAddressOf());
 }

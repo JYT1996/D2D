@@ -11,12 +11,12 @@ ColorRect::ColorRect(const Vector2& position, const Vector2& scale, const float&
 	vertices[3].position = Vector2(0.5f, 0.5f);
 
 	indices = { 0, 1, 2, 2, 1, 3 };
+
+	VB->Create(vertices, D3D11_USAGE_IMMUTABLE);
+
+	IB->Create(indices, D3D11_USAGE_IMMUTABLE);
 	
-	vertexBuffer->Create(vertices, D3D11_USAGE_IMMUTABLE);
-
-	indexBuffer->Create(indices, D3D11_USAGE_IMMUTABLE);
-
-	inputLayout->Create(Vertex::descs, Vertex::count, vertexShader->GetBlob());
+	IL->Create(Vertex::descs, Vertex::count, VS->GetBlob());
 
 	AddComponent(make_shared<ColorComponent>(color, 0));
 	AddComponent(make_shared<ColliderComponent>(ColliderType::RECT));
@@ -28,7 +28,7 @@ void ColorRect::Update()
 }
 
 void ColorRect::Render()
-{		
+{
 	SUPER::Render();
 
 	DrawCall(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);

@@ -4,7 +4,7 @@
 WorldComponent::WorldComponent(const Vector2& position, const Vector2& scale, const float& rotation, const string& name)
 	: Component(name), position(position), scale(scale), rotation(XMConvertToRadians(rotation))
 {
-	worldBuffer = make_unique<WorldBuffer>();
+	WB = make_unique<WorldBuffer>();
 }
 
 void WorldComponent::Update()
@@ -15,12 +15,12 @@ void WorldComponent::Update()
 
 	world = S * R * T;
 
-	worldBuffer->SetWorld(world);
+	WB->SetWorld(world);
 }
 
 void WorldComponent::Render()
 {
-	worldBuffer->SetVSBuffer(0);
+	WB->SetVSBuffer(0);
 }
 
 void WorldComponent::GUI()

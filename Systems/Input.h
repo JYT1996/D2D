@@ -1,4 +1,5 @@
 #pragma once
+
 #define MAX_INPUT_KEY 256
 
 class Input
@@ -23,6 +24,7 @@ private:
 	unsigned char keyState[MAX_INPUT_KEY] = { 0 };
 	unsigned char keyOldState[MAX_INPUT_KEY] = { 0 };
 	unsigned char keyMap[MAX_INPUT_KEY] = { 0 };
+
 	bool isDblClk = false;
 
 	enum

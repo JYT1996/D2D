@@ -13,9 +13,9 @@ Circle::Circle(const Vector2& position, const Vector2& scale, const float& rotat
 		vertices[i].position = Vector2(cosf(theta), -sinf(theta)) / 2.0f;
 	}
 
-	vertexBuffer->Create(vertices, D3D11_USAGE_IMMUTABLE);
+	VB->Create(vertices, D3D11_USAGE_IMMUTABLE);
 
-	inputLayout->Create(Vertex::descs, Vertex::count, vertexShader->GetBlob());
+	IL->Create(Vertex::descs, Vertex::count, VS->GetBlob());
 
 	AddComponent(make_shared<ColorComponent>(color, 0));
 	AddComponent(make_shared<ColliderComponent>(ColliderType::CIRCLE));
