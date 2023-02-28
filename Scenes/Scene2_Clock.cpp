@@ -3,7 +3,7 @@
 
 void Scene2::Init()
 {
-	clockCircle = make_unique<Circle>(WIN_CENTER, Vector2(gWinHeight / 1.15f, gWinHeight / 1.15f), 0.0f, 100.0f, WHITE);
+	clockCircle = make_unique<Circle>(WIN_CENTER, Vector2(gWinHeight / 1.15f, gWinHeight / 1.15f), 0.0f, 100, WHITE);
 	hourLine = make_unique<Line>(WIN_CENTER, gWinHeight / 4.0f, 0.0f, RED);
 	minLine = make_unique<Line>(WIN_CENTER, gWinHeight / 3.0f, 0.0f, GREEN);
 	secLine = make_unique<Line>(WIN_CENTER, gWinHeight / 2.5f, 0.0f, BLUE);

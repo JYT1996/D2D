@@ -9,7 +9,7 @@ void Scene6::Init()
 	RTT = make_unique<RenderTexture>();
 	RTT->Initialize();
 
-	renderingTexture = make_unique<TextureRect>(WIN_CENTER, WIN_CENTER * 2, 0);
+	renderingTexture = make_unique<TextureRect>(WIN_CENTER, WIN_CENTER * 2, 0.0f);
 	renderingTexture->GetTexture()->SetSRV(RTT->GetSRV());	
 	//renderingTexture->SetShader(L"_Shaders/VertexTextureInverse.hlsl");
 	//renderingTexture->SetShader(L"_Shaders/Grayscale.hlsl");
