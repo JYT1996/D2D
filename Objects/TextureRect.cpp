@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "TextureRect.h"
 TextureRect::TextureRect(const Vector2& position, const Vector2& scale, const float& rotation, const wstring& texturePath)
-	: Drawable("Texture", position, scale, rotation, L"_Shaders/VertexTexture.hlsl")
+	: Drawable("TextureRect", position, scale, rotation, L"_Shaders/VertexTexture.hlsl")
 {
 	vertices.assign(4, VertexTexture());
 	vertices[0].position = Vector2(-0.5f, -0.5f);
