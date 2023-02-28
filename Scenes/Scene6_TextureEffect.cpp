@@ -3,8 +3,8 @@
 
 void Scene6::Init()
 {
-	rect1 = make_unique<ColorRect>(Vector2(200, 200), Vector2(100.0f, 100.0f), 0.0f, CYAN);
-	rect2 = make_unique<ColorRect>(Vector2(400, 400), Vector2(100.0f, 100.0f), 0.0f);
+	rect1 = make_unique<ColorRect>(Vector2(200, 200), Vector2(100, 100), 0.0f, CYAN);
+	rect2 = make_unique<ColorRect>(Vector2(400, 400), Vector2(100, 100), 0.0f);
 
 	RTT = make_unique<RenderTexture>();
 	RTT->Initialize();
@@ -21,6 +21,7 @@ void Scene6::Init()
 void Scene6::Destroy()
 {	
 	renderingTexture.reset();
+
 	RTT.reset();
 
 	rect2.reset();
@@ -37,22 +38,23 @@ void Scene6::Update()
 		rect1->GetWorld()->Move(Vector2(-300, 0));
 	if (INPUT->Press('D'))
 		rect1->GetWorld()->Move(Vector2(300, 0));
+
 	if (INPUT->Press(VK_DOWN))
 		rect1->GetWorld()->Scale(Vector2(-150, -150));
 	if (INPUT->Press(VK_UP))
 		rect1->GetWorld()->Scale(Vector2(150, 150));
 
 	if (INPUT->Press(VK_LEFT))
-		rect1->GetWorld()->Rotat(-200.0f);
+		rect1->GetWorld()->Rotate(-200.0f);
 	if (INPUT->Press(VK_RIGHT))
-		rect1->GetWorld()->Rotat(200.0f);
+		rect1->GetWorld()->Rotate(200.0f);
 
-	if (rect1->GetCollider()->intersect(rect2->GetCollider()))
+	if (rect1->GetCollider()->Intersect(rect2->GetCollider()))
 		rect2->GetColorComp()->SetColor(GREEN);
 	else
 		rect2->GetColorComp()->SetColor(RED);
 
-	if (INPUT->Press(VK_LBUTTON) && rect1->GetCollider()->intersect(INPUT->GetMousePosition()))
+	if (INPUT->Press(VK_LBUTTON) && rect1->GetCollider()->Intersect(INPUT->GetMousePosition()))
 		rect1->GetWorld()->SetPosition(INPUT->GetMousePosition());
 
 	rect1->Update();

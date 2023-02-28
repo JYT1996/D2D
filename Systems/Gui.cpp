@@ -5,7 +5,6 @@ extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg
 
 Gui::Gui()
 {
-	//imgui를 초기화하는 과정
 	IMGUI_CHECKVERSION();
 	ImGui::CreateContext();
 
@@ -40,7 +39,6 @@ void Gui::PrintFrame()
 	ImGui::SetNextWindowPos({ gWinWidth - 150, 0 });
 	if (ImGui::Begin("FrameRate", &temp, ImGuiWindowFlags_NoBackground | ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize))
 	{
-		//정수로 보는 것이 보기 좋아서 (int)로 형변환을 해주고 string한 것이다.
 		string frameStr = "Frame Rate : " + to_string((int)ImGui::GetIO().Framerate);
 		ImGui::TextColored(ImVec4(1, 1, 1, 1), frameStr.c_str());
 	}
@@ -68,7 +66,7 @@ void Gui::TextureRectGUIS(vector<shared_ptr<class TextureRect>>& trVec, const ch
 	if (ImGui::Begin(name, &temp))
 	{		
 		for (size_t i = 0; i < trVec.size(); ++i)
-			trVec[i]->GUI(i);
+			trVec[i]->GUI((int)i);
 	}
 	ImGui::End();
 }

@@ -3,7 +3,7 @@
 class Circle : public Drawable
 {
 public:
-	Circle(const Vector2& position, const Vector2& scale, const float& rotation, const size_t& segaments, Color color = RED);
+	Circle(const Vector2& position, const Vector2& scale, const float& rotation, const size_t& segments, const Color& color = RED);
 	Circle(const Circle& other) : Circle(other.GetWorld()->GetPosition(), other.GetWorld()->GetScale(), other.GetWorld()->GetRotation(), other.segments, other.GetColorComp()->GetColor()) {}
 
 public:

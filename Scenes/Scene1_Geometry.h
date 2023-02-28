@@ -13,7 +13,7 @@ public:
 
 private:
 	unique_ptr<ColorRect> rect;
-	unique_ptr<Line> rect2;
+	unique_ptr<Line> line;
 	unique_ptr<Circle> circle;
 	unique_ptr<FilledCircle> filledCircle;
 };

@@ -26,7 +26,7 @@ void IShader::CheckShaderError(const HRESULT& hr, const ComPtr<ID3DBlob>& error)
 		if (error.Get())
 		{
 			const string& str = (const char*)error->GetBufferPointer();
-			MessageBoxA(nullptr, str.c_str(), "Shader Error!", MB_OK| MB_OKCANCEL);
+			MessageBoxA(nullptr, str.c_str(), "Shader Error!", MB_OK);
 		}
 		assert(false);
 	}

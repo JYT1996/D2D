@@ -1,6 +1,5 @@
 #pragma once
-//PS에서 색이 결정되기 때문에 정점에서 색이 필요하지 않는다.
-//PS단계에서 원하는 색을 넣기만 하면 된다.
+
 struct Vertex
 {
 	Vertex() = default;
@@ -39,4 +38,3 @@ struct VertexTexture
 	static D3D11_INPUT_ELEMENT_DESC descs[];
 	static constexpr UINT count = 2;
 };
-

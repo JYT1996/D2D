@@ -30,6 +30,7 @@ public:
 	const static WCHAR* ImageFilter;
 	const static WCHAR* ShaderFilter;
 	const static WCHAR* TextFilter;
+	const static WCHAR* SoundFilter;
 
 	static void OpenFileDialog(const wstring& file, const WCHAR* filter, const wstring& folder, function<void(wstring)>& func, const HWND& hwnd = nullptr);
 	static void SaveFileDialog(const wstring& file, const WCHAR* filter, const wstring& folder, function<void(wstring)>& func, const HWND& hwnd = nullptr);

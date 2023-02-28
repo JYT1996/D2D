@@ -1,5 +1,5 @@
 #pragma once
-//interface
+
 class Scene
 {
 public:

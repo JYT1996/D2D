@@ -3,7 +3,7 @@
 
 void Scene4::Init()
 {
-	rect1 = make_unique<TextureRect>(WIN_CENTER, Vector2(200.0f, 200.0f), 0.0f, L"_Textures/bk.bmp");
+	rect1 = make_unique<TextureRect>(WIN_CENTER, Vector2(200, 200), 0.0f, L"_Textures/bk.bmp");
 	rect2 = make_unique<TextureRect>(*rect1);
 
 	RTT = make_unique<RenderTexture>();
@@ -16,6 +16,7 @@ void Scene4::Init()
 void Scene4::Destroy()
 {	
 	renderingTexture.reset();
+
 	RTT.reset();
 
 	rect2.reset();
@@ -39,11 +40,11 @@ void Scene4::Update()
 		rect1->GetWorld()->Scale(Vector2(150, 150));
 
 	if (INPUT->Press(VK_LEFT))
-		rect1->GetWorld()->Rotat(-200.0f);
+		rect1->GetWorld()->Rotate(-200.0f);
 	if (INPUT->Press(VK_RIGHT))
-		rect1->GetWorld()->Rotat(200.0f);
+		rect1->GetWorld()->Rotate(200.0f);
 
-	if (INPUT->Press(VK_LBUTTON) && rect1->GetCollider()->intersect(INPUT->GetMousePosition()))
+	if (INPUT->Press(VK_LBUTTON) && rect1->GetCollider()->Intersect(INPUT->GetMousePosition()))
 		rect1->GetWorld()->SetPosition(INPUT->GetMousePosition());
 
 	rect1->Update();

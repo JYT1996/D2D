@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Main.cpp" />
     <ClCompile Include="Program.cpp" />
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="Systems\Input.cpp">
@@ -67,7 +67,7 @@
     <ClCompile Include="Scenes\Scene2_Clock.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="Scenes\Scene3_Collisition.cpp">
+    <ClCompile Include="Scenes\Scene3_Collision.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
     <ClCompile Include="Component\ColliderComponent.cpp">
@@ -153,7 +153,7 @@
     <ClInclude Include="Objects\ColorRect.h">
       <Filter>Objects</Filter>
     </ClInclude>
-    <ClInclude Include="Renders\Resources\GlobalBuffer.h">
+    <ClInclude Include="Renders\Resources\GlobalBuffers.h">
       <Filter>Renders\Resources</Filter>
     </ClInclude>
     <ClInclude Include="Objects\Object.h">
@@ -192,7 +192,7 @@
     <ClInclude Include="Scenes\Scene2_Clock.h">
       <Filter>Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="Scenes\Scene3_Collisition.h">
+    <ClInclude Include="Scenes\Scene3_Collision.h">
       <Filter>Scenes</Filter>
     </ClInclude>
     <ClInclude Include="Component\ColliderComponent.h">

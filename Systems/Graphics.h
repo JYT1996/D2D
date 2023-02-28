@@ -9,7 +9,7 @@ class Graphics
 
 public:	
 	ComPtr<ID3D11Device> GetDevice() const { return device; }
-	ComPtr<ID3D11DeviceContext> GetDC() const {return deviceContext; }
+	ComPtr<ID3D11DeviceContext> GetDC() const { return deviceContext; }
 	Color GetClearColor() const { return clearColor; }
 
 	void Begin();
@@ -23,7 +23,7 @@ public:
 
 private:
 	void EnumerateAdapters();
-	bool EnumerateAdapterOuput(const shared_ptr<D3DEnumAdapterInfo> &adapterInfo);
+	bool EnumerateAdapterOutput(const shared_ptr<D3DEnumAdapterInfo>& adapterInfo);
 
 private:
 	void CreateSwapChain();
@@ -43,11 +43,11 @@ private:
 
 	UINT gpuMemorySize = 0;
 	wstring gpuDescription = L"";
-	//수직동기화
-	bool bVsync = true;
 
 	vector<shared_ptr<D3DEnumAdapterInfo>> adapterInfos;
 	UINT selectedAdapterIndex = 0;
+
+	bool bVsync = true;
 
 	vector<Vector2> resolutionList;
 };

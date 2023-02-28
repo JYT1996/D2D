@@ -19,11 +19,10 @@ public:
 
 	WPARAM Run();
 
-
 private:
 	static LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 
-	WinDesc _desc;
+	WinDesc desc;
 
 	static unique_ptr<class Program> program;
 

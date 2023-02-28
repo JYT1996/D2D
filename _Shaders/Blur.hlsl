@@ -8,7 +8,7 @@ struct VertexInput
 
 struct PixelInput
 {
-    float4 position : SV_Position0;
+    float4 position : SV_POSITION0;
     float2 uv : TEXCOORD0;
 };
 
@@ -43,9 +43,7 @@ float4 PS(PixelInput input) : SV_Target
     
     uint blurCount = 0;
     
-    if (_selection == 1)
-        ;
-    else if (_selection == 2)
+    if (_selection == 2)
     {
         blurCount = 4;
     }

@@ -1,20 +1,22 @@
 #include "stdafx.h"
 #include "Window.h"
 #include "Program.h"
+
 unique_ptr<Program> Window::program = nullptr;
 bool Window::isWindowCreated = false;
 
 Window::Window(WinDesc initDesc)
 {
-	_desc = initDesc;
-	WORD wHr = MyRegisterClass(_desc);
+	desc = initDesc;
+
+	WORD wHr = MyRegisterClass(desc);
 	assert(wHr != 0);
 
-	_desc.handle = CreateWindowExW
+	desc.handle = CreateWindowExW
 	(
 		WS_EX_APPWINDOW,
-		_desc.appName.c_str(),
-		_desc.appName.c_str(),
+		desc.appName.c_str(),
+		desc.appName.c_str(),
 		WS_CLIPCHILDREN | WS_CLIPSIBLINGS | WS_OVERLAPPEDWINDOW,
 		CW_USEDEFAULT,
 		CW_USEDEFAULT,
@@ -22,26 +24,29 @@ Window::Window(WinDesc initDesc)
 		CW_USEDEFAULT,
 		nullptr,
 		(HMENU)nullptr,
-		_desc.instance,
+		desc.instance,
 		nullptr
 	);
-	RECT rect = { 0, 0, (LONG)_desc.width, (LONG)_desc.height };
-	UINT centerX = (GetSystemMetrics(SM_CXSCREEN) - (UINT)_desc.width) / 2;
-	UINT centerY = (GetSystemMetrics(SM_CYSCREEN) - (UINT)_desc.height) / 2;
+
+	RECT rect = { 0, 0, (LONG)desc.width, (LONG)desc.height };
+
+	UINT centerX = (GetSystemMetrics(SM_CXSCREEN) - (UINT)desc.width) / 2;
+	UINT centerY = (GetSystemMetrics(SM_CYSCREEN) - (UINT)desc.height) / 2;
 
 	AdjustWindowRectEx(&rect, WS_OVERLAPPEDWINDOW, false, 0);
-	MoveWindow(_desc.handle, centerX, centerY, (int)_desc.width, (int)_desc.height, true);
 
-	ShowWindow(_desc.handle, SW_SHOWNORMAL);
-	UpdateWindow(_desc.handle);
+	MoveWindow(desc.handle, centerX, centerY, (int)desc.width, (int)desc.height, true);
+
+	ShowWindow(desc.handle, SW_SHOWNORMAL);
+	UpdateWindow(desc.handle);
 
 	ShowCursor(true);
 }
 
 Window::~Window()
 {
-	DestroyWindow(_desc.handle);
-	UnregisterClassW(_desc.appName.c_str(), _desc.instance);
+	DestroyWindow(desc.handle);
+	UnregisterClassW(desc.appName.c_str(), desc.instance);
 }
 
 ATOM Window::MyRegisterClass(WinDesc desc)
@@ -49,6 +54,7 @@ ATOM Window::MyRegisterClass(WinDesc desc)
 	WNDCLASSEXW wcex;
 
 	wcex.cbSize = sizeof(WNDCLASSEX);
+
 	wcex.style = CS_HREDRAW | CS_VREDRAW | CS_OWNDC | CS_DBLCLKS;
 	wcex.lpfnWndProc = WndProc;
 	wcex.cbClsExtra = 0;
@@ -60,6 +66,7 @@ ATOM Window::MyRegisterClass(WinDesc desc)
 	wcex.lpszMenuName = nullptr;
 	wcex.lpszClassName = desc.appName.c_str();
 	wcex.hIconSm = wcex.hIcon;
+
 	return RegisterClassExW(&wcex);
 }
 
@@ -88,7 +95,7 @@ WPARAM Window::Run()
 			IMGUI->Update();
 
 			program->Update();
-			//다른 도화지에 그림을 그리는 것이다.
+			
 			program->PreRender();
 			GRAPHICS->Begin();
 			{
@@ -99,6 +106,7 @@ WPARAM Window::Run()
 			GRAPHICS->End();
 		}
 	}
+
 	return msg.wParam;
 }
 
@@ -107,7 +115,6 @@ LRESULT Window::WndProc(HWND handle, UINT message, WPARAM wParam, LPARAM lParam)
 	if (isWindowCreated)
 	{
 		INPUT->InputProc(message, lParam);
-		//IMGUI에서 메시지가 처리가 되었다면 WndProc에 접근할 이유가 없으니 return을 해준다.
 		if (IMGUI->MsgProc(handle, message, wParam, lParam))
 			return true;
 	}
@@ -115,18 +122,19 @@ LRESULT Window::WndProc(HWND handle, UINT message, WPARAM wParam, LPARAM lParam)
 	switch (message)
 	{
 	case WM_CREATE:
-		gHandle = handle;
 		isWindowCreated = true;
+		gHandle = handle;
 		break;
 	case WM_SIZE:
-		gWinWidth = LOWORD(lParam);
-		gWinHeight = HIWORD(lParam);
+		gWinWidth = (float)GET_X_LPARAM(lParam);
+		gWinHeight = (float)GET_Y_LPARAM(lParam);
 		GRAPHICS->Resize(gWinWidth, gWinHeight);
 		//cout << "X : " << gWinWidth << ", Y : " << gWinHeight << '\n';
 		break;
 	case WM_CLOSE:
 	case WM_DESTROY:
 		PostQuitMessage(0);
+
 		return 0;
 	}
 

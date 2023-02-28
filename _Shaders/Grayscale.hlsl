@@ -8,7 +8,7 @@ struct VertexInput
 
 struct PixelInput
 {
-    float4 position : SV_Position0;
+    float4 position : SV_POSITION0;
     float2 uv : TEXCOORD0;
 };
 
@@ -43,7 +43,6 @@ float4 PS(PixelInput input) : SV_Target
     }
     else if (_selection == 3)
     {
-        //MS의 grayscale의 rgb비율
         grayscale = 0.299f * color.r + 0.587f * color.g + 0.114f * color.b;
         color = float4(grayscale, 1);
     }

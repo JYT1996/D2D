@@ -8,7 +8,7 @@ struct VertexInput
 
 struct PixelInput
 {
-    float4 position : SV_Position0;
+    float4 position : SV_POSITION0;
     float2 uv : TEXCOORD0;
 };
 
@@ -24,6 +24,7 @@ PixelInput VS(VertexInput input)
     
     return output;	
 }
+
 Texture2D srcTex : register(t0);
 SamplerState samp : register(s0);
 

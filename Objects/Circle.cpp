@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "Circle.h"
 
-Circle::Circle(const Vector2& position, const Vector2& scale, const float& rotation, const size_t& segments, Color color)
+Circle::Circle(const Vector2& position, const Vector2& scale, const float& rotation, const size_t& segments, const Color& color)
 	: Drawable("Circle", position, scale, rotation, L"_Shaders/Vertex.hlsl"), segments(segments)
 {
 	vertices.assign(segments + 1, Vertex());
@@ -21,7 +21,6 @@ Circle::Circle(const Vector2& position, const Vector2& scale, const float& rotat
 	AddComponent(make_shared<ColliderComponent>(ColliderType::CIRCLE));
 }
 
-
 void Circle::Update()
 {
 	SUPER::Update();
@@ -30,5 +29,6 @@ void Circle::Update()
 void Circle::Render()
 {
 	SUPER::Render();
+
 	DrawCall(D3D11_PRIMITIVE_TOPOLOGY_LINESTRIP, false);
 }

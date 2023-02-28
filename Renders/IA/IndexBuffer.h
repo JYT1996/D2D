@@ -17,5 +17,4 @@ private:
 	UINT stride = 0;
 	UINT offset = 0;
 	UINT count = 0;
-
 };

@@ -1,5 +1,6 @@
 ﻿#pragma once
-//Popup console
+
+//Popup Console
 #ifdef _DEBUG
 #pragma comment(linker, "/entry:wWinMainCRTStartup /subsystem:console")
 #endif
@@ -86,12 +87,12 @@ using namespace SimpleMath;
 #pragma comment(lib, "_Libraries/FMOD/x86/fmodL_vc.lib")
 #endif
 
-//Meacros
+//Macros
 #define WIN_DEFAULT_WIDTH 1280.0f
 #define WIN_DEFAULT_HEIGHT 720.0f
 
-#define WIN_CENTER_X ( WIN_DEFAULT_WIDTH / 2 )
-#define WIN_CENTER_Y ( WIN_DEFAULT_HEIGHT / 2 )
+#define WIN_CENTER_X ( WIN_DEFAULT_WIDTH / 2.0f )
+#define WIN_CENTER_Y ( WIN_DEFAULT_HEIGHT / 2.0f )
 #define WIN_CENTER ( Vector2 ( WIN_CENTER_X, WIN_CENTER_Y ))
 
 #define CHECK(hr) { assert(SUCCEEDED(hr)); }
@@ -119,7 +120,6 @@ static CLASS_NAME* Get()										\
 
 //ExternGlobal
 extern HWND gHandle;
-extern HDC gHDC;
 extern float gWinWidth;
 extern float gWinHeight;
 
@@ -158,9 +158,9 @@ extern float gWinHeight;
 #include "Renders/Shaders/VertexShader.h"
 #include "Renders/IA/IndexBuffer.h"
 #include "Renders/IA/InputLayout.h"
-#include "Renders//Shaders/PixelShader.h"
+#include "Renders/Shaders/PixelShader.h"
 #include "Renders/Resources/ConstantBuffer.h"
-#include "Renders//Resources/GlobalBuffer.h"
+#include "Renders/Resources/GlobalBuffers.h"
 
 //Utilities
 #include "Utilities/Collision.h"
@@ -171,12 +171,12 @@ extern float gWinHeight;
 //Components
 #include "Component/Component.h"
 #include "Component/WorldComponent.h"
-#include "Component//ColorComponent.h"
+#include "Component/ColorComponent.h"
 #include "Component/ColliderComponent.h"
 #include "Component/TextureComponent.h"
 #include "Component/SelectionComponent.h"
 
-//Object
+//Objects
 #include "Objects/Object.h"
 #include "Objects/Drawable.h"
 #include "Objects/ColorRect.h"

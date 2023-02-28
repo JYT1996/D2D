@@ -6,7 +6,7 @@ public:
 	Program();
 
 public:
-	void SetGlobalBuffer();
+	void SetGlobalBuffers();
 
 public:
 	void Init();

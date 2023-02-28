@@ -42,6 +42,6 @@ void FilledCircle::Update()
 void FilledCircle::Render()
 {
 	SUPER::Render();
+
 	DrawCall(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 }
-

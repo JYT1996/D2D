@@ -8,7 +8,7 @@ struct VertexInput
 
 struct PixelInput
 {
-    float4 position : SV_Position0;
+    float4 position : SV_POSITION0;
     float4 color : COLOR0;
 };
 
@@ -19,6 +19,7 @@ PixelInput VS(VertexInput input)
     output.position = mul(input.position, _world);
     output.position = mul(output.position, _view);
     output.position = mul(output.position, _proj);
+    
     output.color = input.color;
     
     return output;	

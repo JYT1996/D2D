@@ -1,5 +1,5 @@
 #pragma once
-//전방선언 
+
 class Object;
 
 namespace Collision

@@ -15,7 +15,7 @@ bool Path::ExistFile(const wstring& path)
 
 bool Path::ExistDirectory(const string& path)
 {
-	return ExistDirectory(String::ToWString(path));
+	return false;
 }
 
 bool Path::ExistDirectory(const wstring& path)
@@ -54,7 +54,7 @@ wstring Path::Combine(vector<wstring>& paths)
 
 	return temp;
 }
-//경로
+
 string Path::GetDirectoryName(string path)
 {
 	String::Replace(path, "\\", "/");
@@ -70,7 +70,7 @@ wstring Path::GetDirectoryName(wstring path)
 
 	return path.substr(0, index + 1);
 }
-//확장자
+
 string Path::GetExtension(string path)
 {
 	String::Replace(path, "\\", "/");
@@ -86,7 +86,7 @@ wstring Path::GetExtension(wstring path)
 
 	return path.substr(index + 1, path.length());
 }
-//파일의 이름 = 확장자포함
+
 string Path::GetFileName(string path)
 {
 	String::Replace(path, "\\", "/");
@@ -102,7 +102,7 @@ wstring Path::GetFileName(wstring path)
 
 	return path.substr(index + 1, path.length());
 }
-//확장자없는 파일의 이름
+
 string Path::GetFileNameWithoutExtension(const string& path)
 {
 	string fileName = GetFileName(path);
@@ -118,11 +118,12 @@ wstring Path::GetFileNameWithoutExtension(const wstring& path)
 
 	return fileName.substr(0, index);
 }
-//필터의 설정
+
 const WCHAR* Path::ImageFilter = L"Image\0*.png;*.bmp;*.jpg;";
 const WCHAR* Path::ShaderFilter = L"HLSL File\0*.hlsl";
 const WCHAR* Path::TextFilter = L"Text File\0*.txt";
-//대화 상자 열기.
+const WCHAR* Path::SoundFilter = L"Sound File\0*.mp3;*.wav;*.flac";
+
 void Path::OpenFileDialog(const wstring& file, const WCHAR* filter, const wstring& folder, function<void(wstring)>& func, const HWND& hwnd)
 {
 	WCHAR name[255];
@@ -130,6 +131,7 @@ void Path::OpenFileDialog(const wstring& file, const WCHAR* filter, const wstrin
 
 	wstring tempFolder = folder;
 	String::Replace(tempFolder, L"/", L"\\");
+
 	OPENFILENAME ofn;
 	ZeroMemory(&ofn, sizeof(ofn));
 	ofn.lStructSize = sizeof(ofn);
@@ -152,7 +154,6 @@ void Path::OpenFileDialog(const wstring& file, const WCHAR* filter, const wstrin
 #pragma warning(default : 6054)
 		}
 	}	
-
 }
 
 void Path::SaveFileDialog(const wstring& file, const WCHAR* filter, const wstring& folder, function<void(wstring)>& func, const HWND& hwnd)
@@ -162,6 +163,7 @@ void Path::SaveFileDialog(const wstring& file, const WCHAR* filter, const wstrin
 
 	wstring tempFolder = folder;
 	String::Replace(tempFolder, L"/", L"\\");
+
 	OPENFILENAME ofn;
 	ZeroMemory(&ofn, sizeof(ofn));
 	ofn.lStructSize = sizeof(ofn);
@@ -207,7 +209,6 @@ void Path::GetFiles(vector<wstring>& files, const wstring& path, const wstring& 
 
 	WIN32_FIND_DATA findData;
 	HANDLE handle = FindFirstFile(file.c_str(), &findData);
-
 	if (handle != INVALID_HANDLE_VALUE)
 	{
 		do 
@@ -226,9 +227,9 @@ void Path::GetFiles(vector<wstring>& files, const wstring& path, const wstring& 
 				files.push_back(fileName);
 			}
 		} while (FindNextFile(handle, &findData));
+
 		FindClose(handle);
-	}
-	
+	}	
 }
 
 void Path::CreateFolder(const string& path)

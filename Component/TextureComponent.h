@@ -4,7 +4,7 @@ class TextureComponent : public Component
 {
 public:
 	TextureComponent(const wstring& texturePath = L"", UINT slot = 0, const string& name = "Texture");
-	TextureComponent(const TextureComponent& other) : TextureComponent(other.texturePath, other.slot, other.name) {};
+	TextureComponent(const TextureComponent& other) : TextureComponent(other.texturePath, other.slot, other.name) {}
 
 public:
 	wstring GetPath() { return texturePath; }

@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "TextureRect.h"
+
 TextureRect::TextureRect(const Vector2& position, const Vector2& scale, const float& rotation, const wstring& texturePath)
 	: Drawable("TextureRect", position, scale, rotation, L"_Shaders/VertexTexture.hlsl")
 {
@@ -46,14 +47,13 @@ TextureRect::TextureRect(const Vector2& position, const Vector2& scale, const fl
 
 	AddComponent(make_shared<ColliderComponent>(ColliderType::RECT));
 	AddComponent(make_shared<TextureComponent>(texturePath));
-	//AddComponent(make_shared<SelectionComponent>(1));
+	AddComponent(make_shared<SelectionComponent>(1));
 }
 
 void TextureRect::Update()
 {
 	SUPER::Update();
 }
-
 
 void TextureRect::Render()
 {
@@ -72,8 +72,7 @@ void TextureRect::GUI(int ordinal)
 	string objName = name + to_string(ordinal);
 	string imgName = "Image : " + String::ToString(Path::GetFileName(GetTexture()->GetPath()));
 	string shaderName = "Shader : " + String::ToString(Path::GetFileName(shaderPath));
-	//Begin은 윈도창을 만드는 것이고 BeginMenu는 그 창에 추가적인 창을 만드는 것이다.
-	//EndMenu는 안쪽에서 해줘야 한다.
+
 	if (ImGui::BeginMenu(objName.c_str()))
 	{
 		ImGui::Text(objName.c_str());
@@ -82,11 +81,9 @@ void TextureRect::GUI(int ordinal)
 		
 		if (ImGui::Button("ChangeImage", ImVec2(100, 30)))
 			ChangeImageFunc();
-
 		if (ImGui::Button("ChangeShader", ImVec2(100, 30)))
 			ChangeShaderFunc();
-
-		if(ImGui::InputText("InputText", text, sizeof(text), ImGuiInputTextFlags_EnterReturnsTrue))
+		if (ImGui::InputText("InputText", text, sizeof(text), ImGuiInputTextFlags_EnterReturnsTrue))
 			SaveTextAsFile(text);
 
 		SUPER::GUI();
@@ -97,11 +94,8 @@ void TextureRect::GUI(int ordinal)
 
 void TextureRect::ChangeImageFunc(const wstring& path)
 {
-	//문자열이 비어있는 상황
 	if (path.length() < 1)
 	{
-		//그러면 dialog를 열어서 이미지를 선택할 수 있는 창을 만든다.
-		//이때 사용하는 Filter는 Path에서 만든 imageFilter를 사용하고, 시작 directory는 _Textures/이다.
 		function<void(wstring)> func = bind(&TextureRect::ChangeImageFunc, this, placeholders::_1);
 		Path::OpenFileDialog(L"", Path::ImageFilter, L"_Textures/", func, gHandle);
 	}

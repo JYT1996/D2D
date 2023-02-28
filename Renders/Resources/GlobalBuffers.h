@@ -16,10 +16,10 @@ public:
 	{
 		data.world = XMMatrixTranspose(world);
 	}
+
 private:
 	WorldStruct data;
 };
-
 
 class ViewProjectiondBuffer : public ConstantBuffer
 {
@@ -41,6 +41,7 @@ public:
 	{
 		data.projection = XMMatrixTranspose(projection);
 	}
+
 private:
 	WorldSViewProjectionStruct data;
 };

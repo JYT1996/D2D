@@ -18,6 +18,7 @@ public:
 
 		return dynamic_pointer_cast<T>(components.at(componentName));		
 	}
+
 public:
 	shared_ptr<WorldComponent> GetWorld() const { return GetComponent<WorldComponent>("World"); }
 	shared_ptr<ColliderComponent> GetCollider() const { return GetComponent<ColliderComponent>("Collider"); }

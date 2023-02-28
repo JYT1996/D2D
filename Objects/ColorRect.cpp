@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "ColorRect.h"
 
-ColorRect::ColorRect(const Vector2& position, const Vector2& scale, const float& rotation, const Color& color)
+ColorRect::ColorRect(const Vector2& position, const Vector2& scale, const float& rotation, Color color)
 	: Drawable("ColorRect", position, scale, rotation, L"_Shaders/Vertex.hlsl")
 {
 	vertices.assign(4, Vertex());
@@ -13,7 +13,9 @@ ColorRect::ColorRect(const Vector2& position, const Vector2& scale, const float&
 	indices = { 0, 1, 2, 2, 1, 3 };
 	
 	vertexBuffer->Create(vertices, D3D11_USAGE_IMMUTABLE);
+
 	indexBuffer->Create(indices, D3D11_USAGE_IMMUTABLE);
+
 	inputLayout->Create(Vertex::descs, Vertex::count, vertexShader->GetBlob());
 
 	AddComponent(make_shared<ColorComponent>(color, 0));
@@ -28,5 +30,6 @@ void ColorRect::Update()
 void ColorRect::Render()
 {		
 	SUPER::Render();
+
 	DrawCall(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 }

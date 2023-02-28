@@ -23,5 +23,6 @@ void Line::Update()
 void Line::Render()
 {
 	SUPER::Render();
+
 	DrawCall(D3D11_PRIMITIVE_TOPOLOGY_LINELIST, false);
 }

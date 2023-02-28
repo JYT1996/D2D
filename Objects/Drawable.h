@@ -1,11 +1,10 @@
 #pragma once
+
 class Drawable : public Object
 {
 public:
-	Drawable(const string& name, const Vector2& position, const Vector2& scale, const float& rotation, const wstring shaderPath);
+	Drawable(const string& name, const Vector2& position, const Vector2& scale, const float& rotation, const wstring shaderPath = L"");
 	Drawable(const Drawable& other) : Drawable(other.name, other.GetWorld()->GetPosition(), other.GetWorld()->GetScale(), other.GetWorld()->GetRotation(), other.shaderPath) {}
-
-	shared_ptr<WorldComponent> GetWorld() const { return GetComponent<WorldComponent>("World"); }
 
 public:
 	void Update() override;

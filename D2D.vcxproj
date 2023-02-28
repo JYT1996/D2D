@@ -25,7 +25,7 @@
     <ClCompile Include="Component\TextureComponent.cpp" />
     <ClCompile Include="Scenes\Scene7_ImGui.cpp" />
     <ClCompile Include="Systems\Gui.cpp" />
-    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Main.cpp" />
     <ClCompile Include="Objects\Circle.cpp" />
     <ClCompile Include="Objects\ColorRect.cpp" />
     <ClCompile Include="Objects\Drawable.cpp" />
@@ -44,7 +44,7 @@
     <ClCompile Include="Renders\Shaders\VertexShader.cpp" />
     <ClCompile Include="Scenes\Scene1_Geometry.cpp" />
     <ClCompile Include="Scenes\Scene2_Clock.cpp" />
-    <ClCompile Include="Scenes\Scene3_Collisition.cpp" />
+    <ClCompile Include="Scenes\Scene3_Collision.cpp" />
     <ClCompile Include="Scenes\Scene4_Texture.cpp" />
     <ClCompile Include="Scenes\Scene5_TextureInverse.cpp" />
     <ClCompile Include="Scenes\Scene6_TextureEffect.cpp" />
@@ -84,7 +84,7 @@
     <ClInclude Include="Renders\IA\IndexBuffer.h" />
     <ClInclude Include="Renders\IA\InputLayout.h" />
     <ClInclude Include="Renders\IA\VertexBuffer.h" />
-    <ClInclude Include="Renders\Resources\GlobalBuffer.h" />
+    <ClInclude Include="Renders\Resources\GlobalBuffers.h" />
     <ClInclude Include="Renders\Resources\VertexType.h" />
     <ClInclude Include="Renders\Shaders\IShader.h" />
     <ClInclude Include="Renders\Shaders\PixelShader.h" />
@@ -92,7 +92,7 @@
     <ClInclude Include="Scenes\Scene.h" />
     <ClInclude Include="Scenes\Scene1_Geometry.h" />
     <ClInclude Include="Scenes\Scene2_Clock.h" />
-    <ClInclude Include="Scenes\Scene3_Collisition.h" />
+    <ClInclude Include="Scenes\Scene3_Collision.h" />
     <ClInclude Include="Scenes\Scene4_Texture.h" />
     <ClInclude Include="Scenes\Scene5_TextureInverse.h" />
     <ClInclude Include="Scenes\Scene6_TextureEffect.h" />

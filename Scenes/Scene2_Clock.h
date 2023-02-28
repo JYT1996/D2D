@@ -12,9 +12,11 @@ public:
 	void PostRender() override {}
 
 private:
-	unique_ptr<Line> hourLine;
-	unique_ptr<Line> minLine;
-	unique_ptr<Line> secLine;
-	unique_ptr<Circle> clockCircle;
 	SYSTEMTIME time = { 0 };
+
+	unique_ptr<Circle> clock;
+
+	unique_ptr<Line> hour;
+	unique_ptr<Line> min;
+	unique_ptr<Line> sec;
 };

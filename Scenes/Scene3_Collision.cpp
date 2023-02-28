@@ -1,10 +1,10 @@
 #include "stdafx.h"
-#include "Scene3_Collisition.h"
+#include "Scene3_Collision.h"
 
 void Scene3::Init()
 {
-	rect1 = make_unique<ColorRect>(WIN_CENTER, Vector2(100.0f, 100.0f), 0.0f, BLUE);
-	rect2 = make_unique<ColorRect>(WIN_CENTER + Vector2(300, 200), Vector2(100.0f, 100.0f), 20.0f);
+	rect1 = make_unique<ColorRect>(WIN_CENTER, Vector2(100, 100), 0.0f, BLUE);
+	rect2 = make_unique<ColorRect>(WIN_CENTER + Vector2(300, 200), Vector2(100, 100), 20.0f);
 	circle = make_unique<Circle>(Vector2(200, 200), Vector2(100, 100), 0.0f, 100, GREEN);
 	filledCircle = make_unique<FilledCircle>(Vector2(200, 500), Vector2(100, 100), 0.0f, 100, CYAN);
 }
@@ -54,26 +54,26 @@ void Scene3::Update()
 		rect1->GetWorld()->Scale(Vector2(150, 150));
 
 	if (INPUT->Press(VK_LEFT))
-		rect1->GetWorld()->Rotat(-200.0f);
+		rect1->GetWorld()->Rotate(-200.0f);
 	if (INPUT->Press(VK_RIGHT))
-		rect1->GetWorld()->Rotat(200.0f);
+		rect1->GetWorld()->Rotate(200.0f);
 
-	if (rect1->GetCollider()->intersect(rect2->GetCollider()))
+	if (rect1->GetCollider()->Intersect(rect2->GetCollider()))
 		rect2->GetColorComp()->SetColor(MAGENTA);
 	else
 		rect2->GetColorComp()->SetColor(RED);
 
-	if (circle->GetCollider()->intersect(rect1->GetCollider()))
+	if (circle->GetCollider()->Intersect(rect1->GetCollider()))
 		circle->GetColorComp()->SetColor(YELLOW);
 	else
 		circle->GetColorComp()->SetColor(GREEN);
 
-	if (rect1->GetCollider()->intersect(filledCircle->GetCollider()))
+	if (rect1->GetCollider()->Intersect(filledCircle->GetCollider()))
 		filledCircle->GetColorComp()->SetColor(WHITE);
 	else
 		filledCircle->GetColorComp()->SetColor(CYAN);
 
-	if (INPUT->Press(VK_LBUTTON) && rect1->GetCollider()->intersect(INPUT->GetMousePosition()))
+	if (INPUT->Press(VK_LBUTTON) && rect1->GetCollider()->Intersect(INPUT->GetMousePosition()))
 		rect1->GetWorld()->SetPosition(INPUT->GetMousePosition());
 
 	rect1->Update();

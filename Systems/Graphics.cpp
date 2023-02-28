@@ -39,7 +39,6 @@ void Graphics::Resize(const float& width, const float& height)
 		CHECK(hr);
 	}
 	CreateRenderTargetView();	
-	//viewport는 struct로 값만 넣어줘도 렌더링 파이프라인에 프레임마다 들어가기 때문에 상관이 없다.
 	SetViewport(width, height);
 	//SetBackBufferToRTV();
 
@@ -66,7 +65,7 @@ void Graphics::SetBackBufferToRTV()
 	deviceContext->OMSetRenderTargets(1, rtv.GetAddressOf(), nullptr);
 	deviceContext->ClearRenderTargetView(rtv.Get(), clearColor);
 }
-//adapter를 열거한다.
+
 void Graphics::EnumerateAdapters()
 {
 	ComPtr<IDXGIFactory1> factory;
@@ -90,24 +89,24 @@ void Graphics::EnumerateAdapters()
 		adapter->GetDesc1(&adapterInfo->adapterDesc);
 		adapterInfo->adapter = adapter;
 
-		EnumerateAdapterOuput(adapterInfo);
+		EnumerateAdapterOutput(adapterInfo);
 		adapterInfos.push_back(adapterInfo);
 
 		++index;
 	}
 }
-//Adapter의 연결된 것을 열거한다
-bool Graphics::EnumerateAdapterOuput(const shared_ptr<D3DEnumAdapterInfo>& adapterInfo)
+
+bool Graphics::EnumerateAdapterOutput(const shared_ptr<D3DEnumAdapterInfo>& adapterInfo)
 {
 	ComPtr<IDXGIOutput> output;
-	//sturct 안에 있는 adapterInfo의 adapter에 연결된 디스플레이를 받아 왔다.
+	
 	HRESULT hr = adapterInfo->adapter->EnumOutputs(0, &output);
-	//번호에 맞는 output을 찾지 못했다는 뜻이다.
+	
 	if (hr == DXGI_ERROR_NOT_FOUND)
 		return false;
 
 	auto outputInfo = make_shared<D3DEnumOutputInfo>();
-	//위에서 연결한 DESC를 outputInfo에 넣어준다.
+	
 	hr = output->GetDesc(&outputInfo->outputDesc);
 	CHECK(hr);
 
@@ -116,24 +115,20 @@ bool Graphics::EnumerateAdapterOuput(const shared_ptr<D3DEnumAdapterInfo>& adapt
 	UINT numModes = 0;
 	vector<DXGI_MODE_DESC> displayModes;
 	DXGI_FORMAT format = DXGI_FORMAT_B8G8R8A8_UNORM;
-	//디스플레이에서 지원하는 해상도가 다를 수 있다. 60 Hz 100 Hz같이 모드가 나뉠 수 있다.
-	//INTERLACED 모니터의 출력 방식
-	//모니터마다 모드의 갯수가 다르기 때문에 numModes에 모드가 몇개 있는지 받아온다.
+	
 	hr = output->GetDisplayModeList(format, DXGI_ENUM_MODES_INTERLACED, &numModes, nullptr);
 	CHECK(hr);
-	//그리고 모드갯수만큼 vector의 공간을 확보하고 vector에 값을 넣는다.
+	
 	displayModes.assign(numModes, DXGI_MODE_DESC());
 	hr = output->GetDisplayModeList(format, DXGI_ENUM_MODES_INTERLACED, &numModes, displayModes.data());
 	CHECK(hr);
 
 	for (UINT i = 0; i < numModes; i++)
 	{
-		//현재 연결된 해상도 리스트를 받을 수 있다.
 		resolutionList.push_back(Vector2((float)displayModes[i].Width, (float)displayModes[i].Height));
 
 		if (displayModes[i].Width == WIN_DEFAULT_WIDTH && displayModes[i].Height == WIN_DEFAULT_HEIGHT)
 		{
-			//보통 마지막에 최대 주사율이 위치한다.
 			outputInfo->numerator = displayModes[i].RefreshRate.Numerator;
 			outputInfo->denominator = displayModes[i].RefreshRate.Denominator;
 		}
@@ -149,11 +144,6 @@ bool Graphics::EnumerateAdapterOuput(const shared_ptr<D3DEnumAdapterInfo>& adapt
 
 void Graphics::CreateSwapChain()
 {
-	//ComPtr라서 자동으로 해제가 된다.
-	/*device.Reset();
-	deviceContext.Reset();
-	swapChain.Reset();*/
-
 	DXGI_SWAP_CHAIN_DESC desc;
 	ZeroMemory(&desc, sizeof(DXGI_SWAP_CHAIN_DESC));
 
@@ -194,9 +184,7 @@ void Graphics::CreateSwapChain()
 	desc.BufferCount = 1;
 
 	desc.OutputWindow = gHandle;
-
 	desc.Windowed = true;
-
 	desc.SwapEffect = DXGI_SWAP_EFFECT_DISCARD;
 
 	vector<D3D_FEATURE_LEVEL> featureLevel
@@ -206,6 +194,7 @@ void Graphics::CreateSwapChain()
 		D3D_FEATURE_LEVEL_10_1,
 		D3D_FEATURE_LEVEL_10_0
 	};
+
 	D3D_FEATURE_LEVEL currentFeature;
 
 	HRESULT hr = D3D11CreateDeviceAndSwapChain
@@ -243,7 +232,7 @@ void Graphics::CreateSwapChain()
 
 void Graphics::CreateRenderTargetView()
 {
-	ComPtr<ID3D11Texture2D> backBuffer = nullptr;
+	ComPtr<ID3D11Texture2D> backBuffer;
 
 	HRESULT hr = swapChain->GetBuffer
 	(
