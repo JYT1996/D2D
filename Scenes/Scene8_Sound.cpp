@@ -4,7 +4,7 @@
 void Scene8::Init()
 {
 	assert(SOUND->AddSound("0", L"_Sounds/war.mp3", true));
-	//assert(SOUND->AddSound("0", L"_Sounds/play_fire.wav", false, true));	
+	assert(SOUND->AddSound("1", L"_Sounds/play_fire.wav", false, true));	
 }
 
 void Scene8::Destroy()
