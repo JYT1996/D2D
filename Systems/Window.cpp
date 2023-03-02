@@ -93,6 +93,7 @@ WPARAM Window::Run()
 			TIME->Update();
 
 			IMGUI->Update();
+			SOUND->Update();
 
 			program->Update();
 			

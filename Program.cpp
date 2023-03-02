@@ -24,9 +24,10 @@ void Program::Init()
 	//sceneList.push_back(make_shared<Scene2>());
 	//sceneList.push_back(make_shared<Scene3>());
 	//sceneList.push_back(make_shared<Scene4>());
-	sceneList.push_back(make_shared<Scene5>());
+	//sceneList.push_back(make_shared<Scene5>());
 	sceneList.push_back(make_shared<Scene6>());
 	sceneList.push_back(make_shared<Scene7>());
+	sceneList.push_back(make_shared<Scene8>());
 
 	currentScene = sceneList[2];
 	currentScene->Init();

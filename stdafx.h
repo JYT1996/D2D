@@ -128,6 +128,7 @@ extern float gWinHeight;
 #include "Systems/Time.h"
 #include "Systems/Graphics.h"
 #include "Systems/Gui.h"
+#include "Systems/Sound.h"
 
 //GetSingletonInstance
 #define INPUT Input::Get()
@@ -136,6 +137,7 @@ extern float gWinHeight;
 #define DEVICE GRAPHICS->GetDevice()
 #define DC GRAPHICS->GetDC()
 #define IMGUI Gui::Get()
+#define SOUND Sound::Get()
 
 //ColorMacros
 #define RED Color(1, 0, 0, 1)

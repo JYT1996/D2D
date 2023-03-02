@@ -109,6 +109,10 @@
     <ClCompile Include="Scenes\Scene7_ImGui.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
+    <ClCompile Include="Systems\Sound.cpp" />
+    <ClCompile Include="Scenes\Scene8_Sound.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Program.h" />
@@ -232,6 +236,10 @@
       <Filter>Utilities</Filter>
     </ClInclude>
     <ClInclude Include="Scenes\Scene7_ImGui.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Systems\Sound.h" />
+    <ClInclude Include="Scenes\Scene8_Sound.h">
       <Filter>Scenes</Filter>
     </ClInclude>
   </ItemGroup>

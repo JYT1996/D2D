@@ -7,3 +7,4 @@
 #include "Scene5_TextureInverse.h"
 #include "Scene6_TextureEffect.h"
 #include "Scene7_ImGui.h"
+#include "Scene8_Sound.h"
