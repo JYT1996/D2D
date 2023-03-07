@@ -155,6 +155,9 @@ void Sound::GUI(const string& key)
 			if (ImGui::Button("Resume", ImVec2(50, 30)))
 				Resume(key);
 
+			if (ImGui::Button("ChangeSound", ImVec2(150, 30)))
+				ChangeSoundFunc(key);
+
 			ImGui::SliderFloat("Volume", &iter->second->channelVolume, 0.0f, 1.0f, "%.2f");
 			SetVolume(key, iter->second->channelVolume);
 
@@ -176,5 +179,20 @@ void Sound::GUI(const string& key)
 
 void Sound::ChangeSoundFunc(const string& key, const wstring& path)
 {
+	auto iter = soundList.find(key);
 
+	if (iter != soundList.end())
+	{
+		if (path.length() < 1)
+		{
+			function<void(wstring)> func = bind(&Sound::ChangeSoundFunc, this, key, placeholders::_1);
+			Path::OpenFileDialog(L"", Path::SoundFilter, L"_Sounds/", func, gHandle);
+		}
+		else
+		{
+			iter->second->channel->stop();
+			iter->second->path = path;
+			system->createSound(String::ToString(path).c_str(), FMOD_DEFAULT, nullptr, &iter->second->sound);
+		}
+	}
 }

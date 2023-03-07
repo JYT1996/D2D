@@ -37,16 +37,19 @@ void Program::Update()
 {
 	if (INPUT->Down(VK_F1))
 	{
+		currentScene->Destroy();
 		currentScene = sceneList[0];
 		currentScene->Init();
 	}
 	else if (INPUT->Down(VK_F2))
 	{
+		currentScene->Destroy();
 		currentScene = sceneList[1];
 		currentScene->Init();
 	}
 	else if (INPUT->Down(VK_F3))
 	{
+		currentScene->Destroy();
 		currentScene = sceneList[2];
 		currentScene->Init();
 	}

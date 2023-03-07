@@ -115,7 +115,7 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{36E8B970-BDF2-4B34-9E3B-70452802AFBF}</ProjectGuid>
+    <ProjectGuid>{E6E32C15-6D2A-4FDA-A2D1-053AAAD6A1F4}</ProjectGuid>
     <RootNamespace>D2D</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>

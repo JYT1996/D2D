@@ -9,7 +9,8 @@ void Scene8::Init()
 
 void Scene8::Destroy()
 {
-	
+	SOUND->DeleteSound("0");
+	SOUND->DeleteSound("1");	
 }
 
 void Scene8::Update()
