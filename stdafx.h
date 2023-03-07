@@ -169,6 +169,7 @@ extern float gWinHeight;
 #include "Utilities/RenderTexture.h"
 #include "Utilities/String.h"
 #include "Utilities/Path.h"
+#include "Utilities/Animator.h"
 
 //Components
 #include "Component/Component.h"
