@@ -71,7 +71,7 @@ void Animator::Update()
 					currentFrameIndex = 0;
 			}
 		}
-
+		
 		deltaTime = 0;
 	}
 
@@ -85,8 +85,19 @@ void Animator::AddAnimClip(const shared_ptr<AnimationClip>& animClip)
 
 void Animator::SetCurrentAnimClip(const wstring& clipName)
 {
+	if (clipName == currentAnimClip->GetClipName() && currentAnimClip->GetIsLoop() == true) return;
+
 	if (animClips.find(clipName) != animClips.end())
 	{
+		currentAnimClip = animClips.find(clipName)->second;
 
+		deltaTime = 0.0f;
+
+		if (currentAnimClip->GetIsReverse())
+			currentFrameIndex = currentAnimClip->GetLastFrameIndex();
+		else
+			currentFrameIndex = 0;
+
+		currentFrame = currentAnimClip->GetKeyframe(currentFrameIndex);
 	}
 }

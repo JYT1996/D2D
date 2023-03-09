@@ -7,7 +7,7 @@ public:
 	TextureComponent(const TextureComponent& other) : TextureComponent(other.texturePath, other.slot, other.name) {}
 
 public:
-	wstring GetPath() { return texturePath; }
+	wstring GetPath() const { return texturePath; }
 	ScratchImage* GetImage() { return &image; }
 
 	void SetSRV(ComPtr<ID3D11ShaderResourceView> srv) { this->srv = srv; }

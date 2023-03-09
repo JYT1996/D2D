@@ -8,3 +8,4 @@
 #include "Scene6_TextureEffect.h"
 #include "Scene7_ImGui.h"
 #include "Scene8_Sound.h"
+#include "Scene9_Animation.h"

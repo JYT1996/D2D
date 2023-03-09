@@ -39,7 +39,7 @@ public:
 
 	void AddAnimClip(const shared_ptr<AnimationClip>& animClip);
 
-private:
+public:
 	Vector2 GetCurrentFrame() const { return currentFrame; }
 	Vector2 GetTexelFrameSize() const { return currentAnimClip->GetTexelFrameSize(); }
 	

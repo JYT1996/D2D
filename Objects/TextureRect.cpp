@@ -83,8 +83,6 @@ void TextureRect::GUI(int ordinal)
 			ChangeImageFunc();
 		if (ImGui::Button("ChangeShader", ImVec2(100, 30)))
 			ChangeShaderFunc();
-		if (ImGui::InputText("InputText", text, sizeof(text), ImGuiInputTextFlags_EnterReturnsTrue))
-			SaveTextAsFile(text);
 
 		SUPER::GUI();
 

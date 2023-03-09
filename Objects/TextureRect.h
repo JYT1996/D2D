@@ -21,11 +21,9 @@ private:
 	void ChangeShaderFunc(const wstring& path = L"");
 	void SaveTextAsFile(const string& text, const wstring& path = L"");
 
-private:
+protected:
 	vector<VertexTexture> vertices;
 	vector<UINT> indices;
 
 	ComPtr<ID3D11BlendState> blendState;
-
-	char text[50] = "";
 };
