@@ -5,6 +5,17 @@ AnimationRect::AnimationRect(const Vector2& position, const Vector2& scale, floa
 	: TextureRect(position, scale, rotation, texturePath)
 {
 	VB->Create(vertices, D3D11_USAGE_DYNAMIC);
+
+	//CreateSamplerState
+	{
+		CD3D11_DEFAULT def;
+		CD3D11_SAMPLER_DESC desc(def);
+
+		desc.Filter = D3D11_FILTER_MIN_MAG_MIP_POINT;
+
+		HRESULT hr = DEVICE->CreateSamplerState(&desc, &sampleStater);
+		CHECK(hr);
+	}
 }
 
 void AnimationRect::Update()
@@ -28,5 +39,7 @@ void AnimationRect::Update()
 
 void AnimationRect::Render()
 {
+	DC->PSSetSamplers(0, 1, sampleStater.GetAddressOf());
+
 	SUPER::Render();
 }

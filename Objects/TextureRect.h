@@ -24,6 +24,6 @@ private:
 protected:
 	vector<VertexTexture> vertices;
 	vector<UINT> indices;
-
+		
 	ComPtr<ID3D11BlendState> blendState;
 };

@@ -16,4 +16,6 @@ public:
 private:
 	shared_ptr<Animator> animator;
 	vector<shared_ptr<AnimationClip>> animClips;
+
+	ComPtr<ID3D11SamplerState> sampleStater;
 };

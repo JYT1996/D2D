@@ -32,8 +32,8 @@ float4 PS(PixelInput input) : SV_Target
 {
 	float4 color = srcTex.Sample(samp, input.uv);
 	
-	//if (color.a == 0.0f)
-	//	discard;
+	if (color.r == 1.0f && color.g == 0.0f && color.b == 1.0f)
+		discard;
 	
 	return color;
 }
