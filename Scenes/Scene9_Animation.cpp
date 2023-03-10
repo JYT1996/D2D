@@ -40,6 +40,7 @@ void Scene9::Update()
 	}
 
 	animRect->Update();
+	//CAMERA->SetPosition(animRect->GetWorld()->GetPosition() - WIN_CENTER / 2);
 }
 
 void Scene9::PreRender()

@@ -4,18 +4,6 @@
 
 Program::Program()
 {
-	VPBuffer = make_unique<ViewProjectiondBuffer>();
-
-	SetGlobalBuffers();
-}
-
-void Program::SetGlobalBuffers()
-{
-	view = XMMatrixLookAtLH(Vector3(0, 0, 0), Vector3(0, 0, 1), Vector3(0, 1, 0));
-	projection = XMMatrixOrthographicOffCenterLH(0, WIN_DEFAULT_WIDTH, 0, WIN_DEFAULT_HEIGHT, 0, 1);
-
-	VPBuffer->SetView(view);
-	VPBuffer->SetProjection(projection);
 }
 
 void Program::Init()
@@ -55,6 +43,8 @@ void Program::Update()
 		currentScene->Init();
 	}
 
+	CAMERA->Update();
+
 	currentScene->Update();
 }
 
@@ -65,7 +55,7 @@ void Program::PreRender()
 
 void Program::Render()
 {
-	VPBuffer->SetVSBuffer(1);
+	CAMERA->Render();
 
 	currentScene->Render();
 }

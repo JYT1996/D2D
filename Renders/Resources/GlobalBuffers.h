@@ -21,7 +21,7 @@ private:
 	WorldStruct data;
 };
 
-class ViewProjectiondBuffer : public ConstantBuffer
+class ViewProjectionBuffer : public ConstantBuffer
 {
 	struct WorldSViewProjectionStruct
 	{
@@ -30,7 +30,7 @@ class ViewProjectiondBuffer : public ConstantBuffer
 	};
 
 public:
-	ViewProjectiondBuffer() : ConstantBuffer(&data, sizeof(WorldSViewProjectionStruct)) {}
+	ViewProjectionBuffer() : ConstantBuffer(&data, sizeof(WorldSViewProjectionStruct)) {}
 
 	void SetView(const Matrix& view)
 	{

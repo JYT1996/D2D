@@ -35,7 +35,7 @@ Window::Window(WinDesc initDesc)
 
 	AdjustWindowRectEx(&rect, WS_OVERLAPPEDWINDOW, false, 0);
 
-	MoveWindow(desc.handle, centerX, centerY, (int)desc.width, (int)desc.height, true);
+	MoveWindow(desc.handle, centerX, centerY, rect.right - rect.left, rect.bottom - rect.top , true);
 
 	ShowWindow(desc.handle, SW_SHOWNORMAL);
 	UpdateWindow(desc.handle);

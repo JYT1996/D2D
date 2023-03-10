@@ -6,9 +6,6 @@ public:
 	Program();
 
 public:
-	void SetGlobalBuffers();
-
-public:
 	void Init();
 
 	void Update();
@@ -17,10 +14,6 @@ public:
 	void PostRender();
 
 private:
-	unique_ptr<ViewProjectiondBuffer> VPBuffer;
-	
-	Matrix view, projection;
-
 	vector<shared_ptr<Scene>> sceneList;
 	shared_ptr<Scene> currentScene;
 };

@@ -56,6 +56,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Systems\Camera.cpp" />
     <ClCompile Include="Systems\Graphics.cpp" />
     <ClCompile Include="Systems\Gui.cpp" />
     <ClCompile Include="Systems\Input.cpp" />
@@ -105,6 +106,7 @@
     <ClInclude Include="Scenes\Scene9_Animation.h" />
     <ClInclude Include="Scenes\SceneList.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="Systems\Camera.h" />
     <ClInclude Include="Systems\Graphics.h" />
     <ClInclude Include="Systems\Gui.h" />
     <ClInclude Include="Systems\Input.h" />
