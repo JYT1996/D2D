@@ -109,14 +109,23 @@
     <ClCompile Include="Scenes\Scene7_ImGui.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="Systems\Sound.cpp" />
     <ClCompile Include="Scenes\Scene8_Sound.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="Utilities\Animator.cpp" />
-    <ClCompile Include="Objects\AnimationRect.cpp" />
     <ClCompile Include="Scenes\Scene9_Animation.cpp">
       <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\AnimationRect.cpp">
+      <Filter>Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Utilities\Animator.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="Systems\Camera.cpp">
+      <Filter>Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="Systems\Sound.cpp">
+      <Filter>Systems</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -243,14 +252,23 @@
     <ClInclude Include="Scenes\Scene7_ImGui.h">
       <Filter>Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="Systems\Sound.h" />
     <ClInclude Include="Scenes\Scene8_Sound.h">
       <Filter>Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="Utilities\Animator.h" />
-    <ClInclude Include="Objects\AnimationRect.h" />
     <ClInclude Include="Scenes\Scene9_Animation.h">
       <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\AnimationRect.h">
+      <Filter>Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Utilities\Animator.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Systems\Camera.h">
+      <Filter>Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="Systems\Sound.h">
+      <Filter>Systems</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
