@@ -6,6 +6,8 @@ void Scene9::Init()
 	Vector2 mapSize = Vector2(800 * 3.0f, 800 * 3.0f);
 	background = make_unique<TextureRect>(mapSize / 2.0f, mapSize, 0.0f, L"_Textures/map.png");
 
+	CAMERA->SetEdges(Vector2(0, 0), mapSize);
+
 	animRect = make_unique<AnimationRect>(Vector2(300, 300), Vector2(100, 100), 0.0f, L"_Textures/rockman.bmp");
 	
 	ScratchImage* image = animRect->GetTexture()->GetImage();
@@ -40,7 +42,7 @@ void Scene9::Update()
 	}
 
 	animRect->Update();
-	//CAMERA->SetPosition(animRect->GetWorld()->GetPosition() - WIN_CENTER / 2);
+	CAMERA->SetPosition(animRect->GetWorld()->GetPosition() - WIN_CENTER / 2);
 }
 
 void Scene9::PreRender()

@@ -46,6 +46,19 @@ void Camera::SetPosition(const Vector2& position)
 {
 	this->position = position;
 
+	if (bEdge)
+	{
+		if (this->position.x < minEdge.x)
+			this->position.x = minEdge.x;
+		else if (this->position.x + WIN_DEFAULT_WIDTH > maxEdge.x)
+			this->position.x = maxEdge.x - WIN_DEFAULT_WIDTH;
+
+		if (this->position.y < minEdge.y)
+			this->position.y = minEdge.y;
+		else if (this->position.y + WIN_DEFAULT_HEIGHT > maxEdge.y)
+			this->position.y = maxEdge.y - WIN_DEFAULT_HEIGHT;
+	}
+
 	UpdateView();
 }
 
