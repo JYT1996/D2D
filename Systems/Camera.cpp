@@ -8,7 +8,7 @@ Camera::Camera()
 	eye = { position.x, position.y, 0 };
 	at = { position.x, position.y, 1 };
 	view = XMMatrixLookAtLH(eye, at, up);
-	projection = XMMatrixOrthographicOffCenterLH(0, WIN_DEFAULT_WIDTH, 0, WIN_DEFAULT_HEIGHT, 0, 1);
+	projection = XMMatrixOrthographicOffCenterLH(LB.x, RT.x, LB.y, RT.y, 0, 1);
 
 	VPBuffer->SetView(view);
 	VPBuffer->SetProjection(projection);
@@ -26,6 +26,14 @@ void Camera::Update()
 		Move(Vector2(-speed, 0));
 	if (INPUT->Press(VK_LSHIFT) && INPUT->Press('L'))
 		Move(Vector2(speed, 0));
+
+	if (INPUT->Press(VK_LSHIFT) && INPUT->Press('U'))
+		ZoomIn();
+	if (INPUT->Press(VK_LSHIFT) && INPUT->Press('O'))
+		ZoomOut();
+
+	if (INPUT->Down(VK_F8))
+		InitZoom();
 }
 
 void Camera::Render()
@@ -40,6 +48,13 @@ void Camera::UpdateView()
 	view = XMMatrixLookAtLH(eye, at, up);
 
 	VPBuffer->SetView(view);
+}
+
+void Camera::UpdateProj()
+{
+	projection = XMMatrixOrthographicOffCenterLH(LB.x, RT.x, LB.y, RT.y, 0, 1);
+
+	VPBuffer->SetProjection(projection);
 }
 
 void Camera::SetPosition(const Vector2& position)
@@ -67,4 +82,47 @@ void Camera::Move(const Vector2& position)
 	this->position += position * TIME->GetDeltaTime();
 
 	UpdateView();
+}
+
+Vector2 Camera::UnProject(const Vector2& source)
+{
+	Vector2 output;
+	output = (source * 2.0f / Vector2(WIN_DEFAULT_WIDTH, WIN_DEFAULT_HEIGHT)) - Vector2(1, 1);
+
+	Matrix VP = view * projection;
+	VP = VP.Invert();
+
+	return XMVector2TransformCoord(output, VP);
+}
+
+void Camera::ZoomIn()
+{
+	if (LB.y + zoomSpeed * TIME->GetDeltaTime() >= RT.y - zoomSpeed * TIME->GetDeltaTime())
+		return;
+
+	LB.x += zoomSpeed * widthRatio * TIME->GetDeltaTime();
+	LB.y += zoomSpeed * TIME->GetDeltaTime();
+	RT.x -= zoomSpeed * widthRatio * TIME->GetDeltaTime();
+	RT.y -= zoomSpeed * TIME->GetDeltaTime();
+	
+
+	UpdateProj();
+}
+
+void Camera::ZoomOut()
+{
+	LB.x -= zoomSpeed * widthRatio * TIME->GetDeltaTime();
+	LB.y -= zoomSpeed * TIME->GetDeltaTime();
+	RT.x += zoomSpeed * widthRatio * TIME->GetDeltaTime();
+	RT.y += zoomSpeed * TIME->GetDeltaTime();
+
+	UpdateProj();
+}
+
+void Camera::InitZoom()
+{
+	LB = { 0,0 };
+	RT = { gWinWidth, gWinHeight };
+
+	UpdateProj();
 }
