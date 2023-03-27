@@ -127,6 +127,12 @@
     <ClCompile Include="Systems\Sound.cpp">
       <Filter>Systems</Filter>
     </ClCompile>
+    <ClCompile Include="TileMap\TileSet.cpp">
+      <Filter>TileMap</Filter>
+    </ClCompile>
+    <ClCompile Include="TileMap\TileMap.cpp">
+      <Filter>TileMap</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Program.h" />
@@ -270,6 +276,12 @@
     <ClInclude Include="Systems\Sound.h">
       <Filter>Systems</Filter>
     </ClInclude>
+    <ClInclude Include="TileMap\TileSet.h">
+      <Filter>TileMap</Filter>
+    </ClInclude>
+    <ClInclude Include="TileMap\TileMap.h">
+      <Filter>TileMap</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Systems">
@@ -298,6 +310,9 @@
     </Filter>
     <Filter Include="Utilities">
       <UniqueIdentifier>{de538316-603b-4634-b073-a97104a2dbb0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TileMap">
+      <UniqueIdentifier>{ed8520de-330a-491a-80d0-f9703fdae2f7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

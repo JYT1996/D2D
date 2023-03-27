@@ -63,6 +63,8 @@
     <ClCompile Include="Systems\Sound.cpp" />
     <ClCompile Include="Systems\Time.cpp" />
     <ClCompile Include="Systems\Window.cpp" />
+    <ClCompile Include="TileMap\TileMap.cpp" />
+    <ClCompile Include="TileMap\TileSet.cpp" />
     <ClCompile Include="Utilities\Animator.cpp" />
     <ClCompile Include="Utilities\Collision.cpp" />
     <ClCompile Include="Utilities\Path.cpp" />
@@ -114,6 +116,8 @@
     <ClInclude Include="Systems\Time.h" />
     <ClInclude Include="Systems\Window.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="TileMap\TileMap.h" />
+    <ClInclude Include="TileMap\TileSet.h" />
     <ClInclude Include="Utilities\Animator.h" />
     <ClInclude Include="Utilities\Collision.h" />
     <ClInclude Include="Utilities\Path.h" />
