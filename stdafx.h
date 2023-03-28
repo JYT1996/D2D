@@ -192,5 +192,7 @@ extern float gWinHeight;
 #include "Objects/TextureRect.h"
 #include "Objects/AnimationRect.h"
 
+#include "TileMap/TileMap.h"
+
 //Scene
 #include "Scenes/Scene.h"

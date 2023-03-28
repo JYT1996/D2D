@@ -19,6 +19,11 @@ public:
 	void SetPosition(const Vector2& position) { this->position = position; }
 	void SetScale(const Vector2& scale) { this->scale = scale; }
 	void SetRotation(const float& rotation) { this->rotation = XMConvertToRadians(rotation); }
+	void SetWorld(const Matrix& world)
+	{
+		this->world = world;
+		WB->SetWorld(world);
+	}
 
 	void Move(const Vector2& position) { this->position += position * TIME->GetDeltaTime(); }
 	void Scale(const Vector2& scale) { this->scale += scale * TIME->GetDeltaTime(); }
