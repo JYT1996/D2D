@@ -47,8 +47,8 @@ struct VertexColorTexture
 	{}
 
 	Vector2 position;
-	Vector2 uv;
 	Color color;
+	Vector2 uv;
 
 	static D3D11_INPUT_ELEMENT_DESC descs[];
 	static constexpr UINT count = 3;
