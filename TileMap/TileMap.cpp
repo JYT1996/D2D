@@ -39,6 +39,9 @@ TileMap::TileMap(const Vector2& position, const Vector2& scale, float rotation, 
 
 void TileMap::Update()
 {
+	if (ImGui::IsAnyItemActive())
+		return;
+
 	SUPER::Update();
 
 	if (INPUT->Press(VK_LBUTTON))
@@ -91,6 +94,17 @@ void TileMap::Render()
 void TileMap::GUI()
 {
 	tileSet->GUI();
+
+	static bool bOpen = true;
+	if (ImGui::Begin("TileMap", &bOpen))
+	{
+		if (ImGui::Button("Save", ImVec2(50, 30)))
+			SaveTileMap();
+
+		if (ImGui::Button("Load", ImVec2(50, 30)))
+			LoadTileMap();
+	}
+	ImGui::End();
 }
 
 void TileMap::GenerateTileMap(UINT width, UINT height, UINT spacing)
@@ -122,4 +136,59 @@ Tile* TileMap::GetTile(const Vector2& unprojectedMousePos)
 		return nullptr;
 
 	return &tiles[y][x];
+}
+
+void TileMap::SaveTileMap(const wstring& path)
+{
+	if (path.length() < 1)
+	{
+		function<void(wstring)> func = bind(&TileMap::SaveTileMap, this, placeholders::_1);
+		Path::SaveFileDialog(L"", Path::TileMapFilter, L"_Maps/", func, gHandle);
+	}
+	else
+	{
+		if (tiles.empty()) return;
+
+		ofstream out(path.c_str());
+
+		if (out.is_open())
+		{
+			out.write((char*)&width, sizeof(width));
+			out.write((char*)&height, sizeof(height));
+			out.write((char*)&spacing, sizeof(spacing));
+			for (UINT i = 0; i < height; i++)
+				out.write((char*)tiles[i].data(), tiles[i].size() * sizeof(Tile));
+		}
+
+		out.close();
+	}
+}
+
+void TileMap::LoadTileMap(const wstring& path)
+{
+	if (path.length() < 1)
+	{
+		function<void(wstring)> func = bind(&TileMap::LoadTileMap, this, placeholders::_1);
+		Path::OpenFileDialog(L"", Path::TileMapFilter, L"_Maps/", func, gHandle);
+	}
+	else
+	{
+		if (tiles.empty()) return;
+
+		ifstream in(path.c_str());
+
+		if (in.is_open())
+		{
+			in.read((char*)&width, sizeof(width));
+			in.read((char*)&height, sizeof(height));
+			in.read((char*)&spacing, sizeof(spacing));
+
+			GenerateTileMap(width, height, spacing);
+
+			for (UINT i = 0; i < height; i++)
+				in.read((char*)tiles[i].data(), tiles[i].size() * sizeof(Tile));
+		}
+
+		in.close();
+	}
 }

@@ -123,6 +123,7 @@ const WCHAR* Path::ImageFilter = L"Image\0*.png;*.bmp;*.jpg";
 const WCHAR* Path::ShaderFilter = L"HLSL File\0*.hlsl";
 const WCHAR* Path::TextFilter = L"Text File\0*.txt";
 const WCHAR* Path::SoundFilter = L"Sound File\0*.mp3;*.wav;*.flac";
+const WCHAR* Path::TileMapFilter = L"TileMap File\0*.tile";
 
 void Path::OpenFileDialog(const wstring& file, const WCHAR* filter, const wstring& folder, function<void(wstring)>& func, const HWND& hwnd)
 {
@@ -178,6 +179,8 @@ void Path::SaveFileDialog(const wstring& file, const WCHAR* filter, const wstrin
 		ofn.lpstrDefExt = L".txt";
 	else if (filter == ShaderFilter)
 		ofn.lpstrDefExt = L".hlsl";
+	else if (filter == TileMapFilter)
+		ofn.lpstrDefExt = L".tile";
 
 	if (GetOpenFileName(&ofn) == TRUE)
 	{

@@ -23,6 +23,9 @@ private:
 	void GenerateTileMap(UINT width, UINT height, UINT spacing);
 	Tile* GetTile(const Vector2& unprojectedMousePos);
 	
+	void SaveTileMap(const wstring& path = L"");
+	void LoadTileMap(const wstring& path = L"");
+
 private:
 	UINT width = 0, height = 0;
 	UINT spacing = 0;
