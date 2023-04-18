@@ -1,0 +1,130 @@
+{
+  "$schema": "https://raw.githubusercontent.com/spdx/spdx-spec/v2.2.1/schemas/spdx-schema.json",
+  "spdxVersion": "SPDX-2.2",
+  "dataLicense": "CC0-1.0",
+  "SPDXID": "SPDXRef-DOCUMENT",
+  "documentNamespace": "https://spdx.org/spdxdocs/directxtex-x86-windows-2023-03-30-9ee59a84-7867-416f-b61b-14a5722fccc4",
+  "name": "directxtex:x86-windows@2023-03-30 17c7c68568a070507f43f88dbc638aac1af340b2beea744275165f321e58d899",
+  "creationInfo": {
+    "creators": [
+      "Tool: vcpkg-bedcba5172f5e4b91caac660ab7afe92c27a9895"
+    ],
+    "created": "2023-04-18T08:28:15Z"
+  },
+  "relationships": [
+    {
+      "spdxElementId": "SPDXRef-port",
+      "relationshipType": "GENERATES",
+      "relatedSpdxElement": "SPDXRef-binary"
+    },
+    {
+      "spdxElementId": "SPDXRef-port",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-file-0"
+    },
+    {
+      "spdxElementId": "SPDXRef-port",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-file-1"
+    },
+    {
+      "spdxElementId": "SPDXRef-binary",
+      "relationshipType": "GENERATED_FROM",
+      "relatedSpdxElement": "SPDXRef-port"
+    },
+    {
+      "spdxElementId": "SPDXRef-file-0",
+      "relationshipType": "CONTAINED_BY",
+      "relatedSpdxElement": "SPDXRef-port"
+    },
+    {
+      "spdxElementId": "SPDXRef-file-1",
+      "relationshipType": "CONTAINED_BY",
+      "relatedSpdxElement": "SPDXRef-port"
+    },
+    {
+      "spdxElementId": "SPDXRef-file-1",
+      "relationshipType": "DEPENDENCY_MANIFEST_OF",
+      "relatedSpdxElement": "SPDXRef-port"
+    }
+  ],
+  "packages": [
+    {
+      "name": "directxtex",
+      "SPDXID": "SPDXRef-port",
+      "versionInfo": "2023-03-30",
+      "downloadLocation": "NOASSERTION",
+      "homepage": "https://github.com/Microsoft/DirectXTex",
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "description": "DirectXTex texture processing library",
+      "comment": "This is the port (recipe) consumed by vcpkg."
+    },
+    {
+      "name": "directxtex:x86-windows",
+      "SPDXID": "SPDXRef-binary",
+      "versionInfo": "17c7c68568a070507f43f88dbc638aac1af340b2beea744275165f321e58d899",
+      "downloadLocation": "NONE",
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "comment": "This is a binary package built by vcpkg."
+    },
+    {
+      "SPDXID": "SPDXRef-resource-1",
+      "name": "Microsoft/DirectXTex",
+      "downloadLocation": "git+https://github.com/Microsoft/DirectXTex@${DIRECTXTEX_TAG}",
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "2e3a0b6830988d1ca137f462d4eedde53d07f30b5eb4bbc8fc588819a1a4e2a220dd4d23efaf08dae225e23286a21c3054560485a6578037c6b355a9450901cd"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-resource-2",
+      "name": "texassemble-${DIRECTXTEX_TAG}.exe",
+      "packageFileName": "texassemble-${DIRECTXTEX_TAG}.exe",
+      "downloadLocation": "https://github.com/Microsoft/DirectXTex/releases/download/${DIRECTXTEX_TAG}/texassemble.exe",
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "0d22ca97567333142ebb612b16093270907853a6eb4ee583d497d62a2e11de0930144760c1674c3acd775fdaca2cf611dfa7878bf4634bd5913d9196c7dd4155"
+        }
+      ]
+    }
+  ],
+  "files": [
+    {
+      "fileName": "./portfile.cmake",
+      "SPDXID": "SPDXRef-file-0",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "2ee4e5830236c8dee5b8f71eb5005d82953258885f4daa2708ec6a6a7322585b"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "copyrightText": "NOASSERTION"
+    },
+    {
+      "fileName": "./vcpkg.json",
+      "SPDXID": "SPDXRef-file-1",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "9c3da94dbaeab695ae34907ba2e2d772d4b5c64e6f0d9cc6851af94c1f0e605b"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "copyrightText": "NOASSERTION"
+    }
+  ]
+}

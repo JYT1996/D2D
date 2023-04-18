@@ -1,0 +1,115 @@
+{
+  "$schema": "https://raw.githubusercontent.com/spdx/spdx-spec/v2.2.1/schemas/spdx-schema.json",
+  "spdxVersion": "SPDX-2.2",
+  "dataLicense": "CC0-1.0",
+  "SPDXID": "SPDXRef-DOCUMENT",
+  "documentNamespace": "https://spdx.org/spdxdocs/directx-headers-x86-windows-1.608.2#1-1e2ec32d-00b1-4c59-9d1a-bf9ef04b2e67",
+  "name": "directx-headers:x86-windows@1.608.2#1 4b0c9aa73865f1fea0e9d1fe926f3b71855cf5b29edb6effa2b239978041ff80",
+  "creationInfo": {
+    "creators": [
+      "Tool: vcpkg-bedcba5172f5e4b91caac660ab7afe92c27a9895"
+    ],
+    "created": "2023-04-18T08:27:22Z"
+  },
+  "relationships": [
+    {
+      "spdxElementId": "SPDXRef-port",
+      "relationshipType": "GENERATES",
+      "relatedSpdxElement": "SPDXRef-binary"
+    },
+    {
+      "spdxElementId": "SPDXRef-port",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-file-0"
+    },
+    {
+      "spdxElementId": "SPDXRef-port",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-file-1"
+    },
+    {
+      "spdxElementId": "SPDXRef-binary",
+      "relationshipType": "GENERATED_FROM",
+      "relatedSpdxElement": "SPDXRef-port"
+    },
+    {
+      "spdxElementId": "SPDXRef-file-0",
+      "relationshipType": "CONTAINED_BY",
+      "relatedSpdxElement": "SPDXRef-port"
+    },
+    {
+      "spdxElementId": "SPDXRef-file-1",
+      "relationshipType": "CONTAINED_BY",
+      "relatedSpdxElement": "SPDXRef-port"
+    },
+    {
+      "spdxElementId": "SPDXRef-file-1",
+      "relationshipType": "DEPENDENCY_MANIFEST_OF",
+      "relatedSpdxElement": "SPDXRef-port"
+    }
+  ],
+  "packages": [
+    {
+      "name": "directx-headers",
+      "SPDXID": "SPDXRef-port",
+      "versionInfo": "1.608.2#1",
+      "downloadLocation": "NOASSERTION",
+      "homepage": "https://devblogs.microsoft.com/directx/",
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "description": "Official DirectX 12 Headers",
+      "comment": "This is the port (recipe) consumed by vcpkg."
+    },
+    {
+      "name": "directx-headers:x86-windows",
+      "SPDXID": "SPDXRef-binary",
+      "versionInfo": "4b0c9aa73865f1fea0e9d1fe926f3b71855cf5b29edb6effa2b239978041ff80",
+      "downloadLocation": "NONE",
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "comment": "This is a binary package built by vcpkg."
+    },
+    {
+      "SPDXID": "SPDXRef-resource-1",
+      "name": "Microsoft/DirectX-Headers",
+      "downloadLocation": "git+https://github.com/Microsoft/DirectX-Headers@v1.608.2b",
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "d4e82615751d9ee46c456c676bfd6831c47d159ee58634531fc1acd09927f00c4e8d379cb233a1f89e3489a6a30d8edc0552b76945071badaed6a9c8591cbb0c"
+        }
+      ]
+    }
+  ],
+  "files": [
+    {
+      "fileName": "./portfile.cmake",
+      "SPDXID": "SPDXRef-file-0",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "e26d7a7b5834ca1bb9da637242a160324d3179e45b2ddeea4edadafb9d70e327"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "copyrightText": "NOASSERTION"
+    },
+    {
+      "fileName": "./vcpkg.json",
+      "SPDXID": "SPDXRef-file-1",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "2b60de367cf64c0cbd9efb566111875f57d5b96329db46f3e870b87e9e5d5550"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "copyrightText": "NOASSERTION"
+    }
+  ]
+}

@@ -53,7 +53,6 @@ using namespace SimpleMath;
 #include <imgui_internal.h>
 #include <imgui_impl_dx11.h>
 #include <imgui_impl_win32.h>
-
 //FMOD
 #include "_Libraries/FMOD/fmod.hpp"
 #ifdef _M_X64

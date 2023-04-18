@@ -37,6 +37,7 @@ void Gui::PrintFrame()
 {
 	bool temp = true;
 	ImGui::SetNextWindowPos({ gWinWidth - 150, 0 });
+	ImGui::SetNextWindowSize({ 150, 0 });
 	if (ImGui::Begin("FrameRate", &temp, ImGuiWindowFlags_NoBackground | ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize))
 	{
 		string frameStr = "Frame Rate : " + to_string((int)ImGui::GetIO().Framerate);
