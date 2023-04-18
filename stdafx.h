@@ -46,39 +46,13 @@ using namespace DirectX;
 using namespace SimpleMath;
 
 //DirectXTex
-#include "_Libraries/DirectXTex/DirectXTex.h"
-#ifdef _M_X64
-	#ifdef _DEBUG
-		#pragma comment(lib, "_Libraries/DirectXTex/x64/Debug/DirectXTex.lib")
-	#elif NDEBUG
-		#pragma comment(lib, "_Libraries/DirectXTex/x64/Release/DirectXTex.lib")
-	#endif
-#elif _M_IX86
-	#ifdef _DEBUG
-		#pragma comment(lib, "_Libraries/DirectXTex/Win32/Debug/DirectXTex.lib")
-	#elif NDEBUG
-		#pragma comment(lib, "_Libraries/DirectXTex/Win32/Release/DirectXTex.lib")
-	#endif
-#endif
+#include <DirectXTex.h>
 
 //ImGui
-#include "_Libraries/ImGui/imgui.h"
-#include "_Libraries/ImGui/imgui_internal.h"
-#include "_Libraries/ImGui/imgui_impl_dx11.h"
-#include "_Libraries/ImGui/imgui_impl_win32.h"
-#ifdef _M_X64
-#ifdef _DEBUG
-#pragma comment(lib, "_Libraries/ImGui/x64/Debug/ImGui.lib")
-#elif NDEBUG
-#pragma comment(lib, "_Libraries/ImGui/x64/Release/ImGui.lib")
-#endif
-#elif _M_IX86
-#ifdef _DEBUG
-#pragma comment(lib, "_Libraries/ImGui/Win32/Debug/ImGui.lib")
-#elif NDEBUG
-#pragma comment(lib, "_Libraries/ImGui/Win32/Release/ImGui.lib")
-#endif
-#endif
+#include <imgui.h>
+#include <imgui_internal.h>
+#include <imgui_impl_dx11.h>
+#include <imgui_impl_win32.h>
 
 //FMOD
 #include "_Libraries/FMOD/fmod.hpp"
